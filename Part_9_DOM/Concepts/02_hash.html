@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Full Window.location.hash Guide</title>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      section {
+        height: 700px;
+        margin-bottom: 50px;
+        border: 1px solid #ccc;
+        padding: 10px;
+      }
+      nav a {
+        margin-right: 10px;
+        text-decoration: none;
+        color: blue;
+      }
+      button {
+        margin-top: 20px;
+        padding: 10px 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Complete window.location.hash Demo</h1>
+
+    <!-- Navigation links using hash -->
+    <nav>
+      <a href="#section1">Go to Section 1</a>
+      <a href="#section2">Go to Section 2</a>
+      <a href="#section3">Go to Section 3</a>
+    </nav>
+
+    <!-- Sections -->
+    <section id="section1">This is Section 1</section>
+    <section id="section2">This is Section 2</section>
+    <section id="section3">This is Section 3</section>
+    <p id="output"></p>
+    <!-- Button to change hash programmatically -->
+    <!-- <button id="changeHash">Change Hash to #section2 programmatically</button> -->
+
+    <script>
+      console.log(location.search);
+
+      const params = new URLSearchParams(window.location.search);
+      document.getElementById("output").textContent =
+        "Query value: " + (params.get("query") || "No query found!");
+
+      window.addEventListener("load", () => {
+        // 1️⃣ Scroll to top
+        window.scrollTo(0, 0);
+
+        // 2️⃣ Clear hash in URL without reloading
+        if (window.location.hash) {
+          history.replaceState(
+            null,
+            null,
+            window.location.pathname + window.location.search
+          );
+        }
+      });
+
+      /*
+      ===== THEORY =====
+      1️⃣ window object: 
+         - The global object in browsers.
+         - Properties like alert(), setTimeout(), and location belong here.
+      
+      2️⃣ window.location:
+         - Contains the current URL of the page.
+         - Important properties:
+           href      → full URL
+           protocol  → http: or https:
+           hostname  → domain name
+           pathname  → path after domain
+           search    → query string
+           hash      → part after # (fragment identifier)
+
+      3️⃣ window.location.hash:
+         - Represents everything after the '#' in the URL.
+         - Example: URL "https://example.com/page.html#section2"
+           → window.location.hash = "#section2"
+         - Does NOT reload the page when changed.
+         - Can be used for anchor links, SPA routing, or state tracking.
+    */
+
+      // ===== PRACTICAL EXAMPLES =====
+
+      // 1. Accessing hash directly
+      // console.log("Full URL:", window.location.href);
+      // console.log("Current hash:", window.location.hash);
+
+      // if (window.location.hash === "#section1") {
+      //   console.log("You are at Section 1!");
+      // }
+
+      // // 2. Listening to hash changes
+      // window.addEventListener("hashchange", () => {
+      //   console.log("Hash changed to:", window.location.hash);
+      //   alert("Hash changed to: " + window.location.hash);
+      // });
+
+      // // 3. Changing hash programmatically
+      // document.getElementById("changeHash").addEventListener("click", () => {
+      //   window.location.hash = "#section2"; // updates URL without page reload
+      // });
+
+      // // 4. Smooth scrolling to current hash section on page load
+      // if (window.location.hash) {
+      //   const element = document.querySelector(window.location.hash);
+      //   if (element) element.scrollIntoView({ behavior: "smooth" });
+      // }
+
+      /*
+      ===== REAL-WORLD USE CASES =====
+      1️⃣ Anchor Links:
+         <a href="#section1">Jump to Section 1</a>
+         - Browser scrolls to the element with id="section1"
+      
+      2️⃣ Single-Page Apps (SPA):
+         - Use hash to track which "page" is active without reloading.
+         - Example:
+             if (window.location.hash === "#home") showHomePage();
+             else if (window.location.hash === "#about") showAboutPage();
+      
+      3️⃣ Temporary state tracking:
+         - Store which tab, section, or content is active.
+         - Users can bookmark or share URL with the hash.
+
+      ✅ Summary:
+         - window.location.hash is a string after '#' in the URL.
+         - Changing it updates the URL fragment but does NOT reload.
+         - hashchange event can be used to respond to changes dynamically.
+         - Very useful for navigation, SPA routing, and page state tracking.
+    */
+    </script>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>History Demo</title>
+  </head>
+  <body>
+    <h1>History API Demo</h1>
+    <button id="push">Push State</button>
+    <button id="replace">Replace State</button>
+
+    <script>
+      document.getElementById("push").addEventListener("click", () => {
+        const page = prompt("Enter page name for pushState:");
+        history.pushState({ page }, `Page ${page}`, `/${page}`);
+        console.log("URL after pushState:", window.location.href);
+      });
+
+      document.getElementById("replace").addEventListener("click", () => {
+        const page = prompt("Enter page name for replaceState:");
+        history.replaceState({ page }, `Page ${page}`, `/${page}`);
+        console.log("URL after replaceState:", window.location.href);
+      });
+
+      // Detect back/forward
+      window.addEventListener("popstate", (event) => {
+        console.log(
+          "Location changed to:",
+          window.location.href,
+          "State:",
+          event.state
+        );
+      });
+    </script>
+  </body>
+</html>

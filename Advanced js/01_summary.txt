@@ -1,0 +1,173 @@
+1️⃣ Global Context (Global Execution Context)
+
+Definition: The global context is the default context where your JavaScript code starts execution. It's created when the JS engine first runs your script.
+
+Key Points:
+
+1. There is only one global execution context in a JS program.
+2. All global variables and functions belong to this context.
+3. In browsers, the global object is window.
+4. In Node.js, the global object is global.
+5. Code outside of any function runs in the global context.
+
+Creation Phase (Memory Allocation):
+
+-Variables declared with var → undefined.
+-Variables declared with let and const → not initialized (Temporal Dead Zone).
+-Functions → the whole function definition is stored in memory.
+-Global object reference (this) → points to the global object (window in browsers).
+
+Execution Phase:
+
+-Variables get their actual values.
+-Code executes line by line.
+
+Example : 
+
+var a = 10;
+let b = 20;
+const c = 30;
+
+function greet() {
+    console.log("Hello!");
+}
+
+console.log(this); // window in browser
+console.log(a);    // 10
+console.log(b);    // 20
+greet();           // Hello!
+
+
+-----------------------------------------------------------------------------------
+
+
+2️⃣ Function(local) Context /  (Function Execution Context)
+
+Definition: Each time a function is invoked, a new function execution context is created.
+
+Key Points:
+
+1.Variables inside a function are local and cannot be accessed outside.
+2.Every function call has its own local memory space.
+3.this inside a regular function depends on how the function is called (global or object).
+4.Functions can form closures, preserving their context even after the outer function finishes.
+5.create temporary
+
+Creation Phase (Memory Allocation):
+
+-Function arguments → stored in memory.
+-Local variables → initialized as undefined.
+-this → depends on call type.
+-Function declarations inside function → stored completely.
+
+Execution Phase:
+
+-Arguments and variables get their actual values.
+-Code inside function executes.
+
+Example:
+
+var globalVar = "I am global";
+
+function outer(x) {
+    var localVar = "I am local";
+    
+    function inner(y) {
+        var innerVar = "I am inner";
+        console.log(globalVar); // I am global
+        console.log(localVar);  // I am local
+        console.log(x + y);      // can access arguments
+    }
+    
+    inner(5);
+}
+
+outer(10);
+
+-----------------------------------------------------------------------------------
+
+🔑 Step 1: Memory Phase (Before Execution)
+
+When JS reaches function outer(x) {...}, it stores: 
+    -The function outer in memory with its code. 
+    -No variables are created yet, because outer has not been called.
+
+-----------------------------------------------------------------------------------
+
+
+
+🔑 Step 2: Calling outer(10)
+
+When you call outer(10):
+
+1.A new execution context is created for outer.
+
+2.Inside this context:
+
+-x is created and assigned 10.
+-localVar is created and assigned "I am local".
+-inner function is created and stored (with its code).
+
+But here's the key:
+When inner is created, it doesn't just store its code —
+it also remembers the environment (scope) where it was created.
+This includes:
+-x
+-localVar
+-Any other variables inside outer’s scope.
+-This "remembered environment" is what we call the closure.
+
+
+-----------------------------------------------------------------------------------
+
+
+🔑 Step 3: Calling inner(5)
+
+Now inner is invoked:
+
+1.A new execution context is created for inner.
+
+2.Inside this context:
+
+-y is created and assigned 5.
+-innerVar is created and assigned "I am inner".
+-The function starts executing line by line.
+
+3.When console.log(x + y) runs:
+
+-JS looks for x → not found inside inner → goes to closure (outer’s scope) → finds x = 10.
+-y is found inside inner itself (y = 5).
+-Adds them: 10 + 5 = 15.
+
+-----------------------------------------------------------------------------------
+
+📌 Why Closure Remembers x and localVar
+
+Even though outer has finished executing, inner still has a reference to the scope where it was created.
+This means:
+
+-x is still accessible.
+-localVar is still accessible.
+-They live in memory as long as inner is reachable.
+
+This is why we say closures "close over" variables from their parent scope.
+
+-----------------------------------------------------------------------------------
+
+🧠 Key Takeaway
+
+Closures work because functions in JavaScript carry their lexical environment with them.
+When you call inner, it uses:
+
+-Its own variables (y, innerVar)
+-Plus the variables from the outer function (x, localVar)
+
+Even after outer is done executing, those variables stay alive because inner still references them.
+
+-----------------------------------------------------------------------------------
+
+1️⃣ Are they different or nested?
+
+-Global context is the outermost context.
+-Function context is created inside the global context only when the function is called.
+-So yes, function context exists inside global context, but it has its own separate memory space.

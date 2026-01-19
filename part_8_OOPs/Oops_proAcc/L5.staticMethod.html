@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // static method using class
+
+      class Car {
+        constructor(ownerName, carName, mdlNo, seaType) {
+          this.ownerName = ownerName;
+          this.carName = carName;
+          this.model = mdlNo;
+          this.seaType = seaType;
+        }
+        getDetails() {
+          console.log(
+            `Car Name : ${this.carName},Car Model : ${this.model},Car Seat Type : ${this.seaType}`
+          );
+        }
+        // you can't use this inside static method becuase these are not instances of object this is belong instance to access properties
+        static carOwner() {
+          console.log("hi my name is kiran");
+        }
+      }
+      const hondaCity = new Car("krian", "Honda City", "H1230", "4 seater");
+      hondaCity.getDetails(); // instance method because callig it on instance
+      Car.carOwner();
+      console.log(Object.getOwnPropertyNames(hondaCity.__proto__));
+
+      console.log("\n");
+
+      // static method in function
+
+      let Person = function (name, gender, birthYear) {
+        this.name = name;
+        this.gender = gender;
+        this.birthYear = birthYear;
+      };
+      Person.prototype.calcAge = function () {
+        let age = new Date().getFullYear() - this.birthYear;
+        return age;
+      };
+
+      Person.greet = function () {
+        console.log("hi i am static method");
+      };
+
+      const Kiran = new Person("kiran", "male", 1998);
+      console.log(Kiran.calcAge());
+      Person.greet();
+      console.log(Kiran);
+
+      /*
+-Object properties → instance itself
+-Prototype methods → prototype object
+-Static methods → class constructor itself (like a property of the class object)
+*/
+    </script>
+  </body>
+</html>

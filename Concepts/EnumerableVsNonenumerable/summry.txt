@@ -1,0 +1,31 @@
+1. Enumerable properties :
+
+-Definition: Properties that can be counted/iterated over.
+-Default: Most properties you create manually (like obj.name = "John") are   enumerable by default.
+
+Example:
+Visible in:
+
+-for...in loops
+-Object.keys(obj)
+-JSON.stringify(obj)
+
+let person = {
+  name: "Kiran",
+  age: 21
+};
+
+for (let key in person) {
+  console.log(key); // "name", "age"
+}
+
+console.log(Object.keys(person)); // ["name", "age"]
+
+-------------------------------------------------------------------------------------------------
+
+2. Non-enumerable properties
+
+-Definition: Properties that exist on the object but don’t show up in enumeration.
+-Created using: Object.defineProperty() or some built-in object properties.
+-Not visible in: for...in, Object.keys(), JSON.stringify().
+-Still accessible directly via obj.propertyName.

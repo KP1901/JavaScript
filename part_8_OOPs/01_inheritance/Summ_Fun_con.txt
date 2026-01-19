@@ -1,0 +1,69 @@
+So, Kiran is an instance of Employee, so the prototype chain is automatically set for it. But Kiran is not an instance of Person because we are not using new Person().
+For creating a new object for Employee.prototype (because there is no Employee object itself — it’s just a constructor),
+I mean, we never need an Employee object or a Person object.
+But since we don’t have Employee and Person instances, we can’t directly reach the prototype methods.
+For this, we create a new object for Employee.prototype that points to Person.prototype.
+Since we create an Employee prototype object, now Person.prototype is linked inside Employee.prototype.
+
+
+step 1 : kiran is created on the instance of Employee which has an internal prototype link ([[Prototype]]) that points to Employee.prototype.
+Because every function in JavaScript has a .prototype property, Employee.prototype exists.
+So, kiran accesses properties and methods via that prototype chain.
+
+----------------------------------------------------
+
+"Yes, that's correct. When you create an instance like let kiran = new Employee(), JavaScript sets up the prototype chain as follows:
+
+kiran.__proto__ === Employee.prototype;
+Employee.prototype.__proto__ === Person.prototype;
+
+
+This means kiran can access properties and methods defined on both Employee.prototype and Person.prototype. To establish this chain, we use:
+
+Employee.prototype = Object.create(Person.prototype);
+
+
+This line creates a new object whose prototype is Person.prototype and assigns it to Employee.prototype. Now, instances of Employee (like kiran) can access methods defined on Person.prototype through the prototype chain."
+
+Key Points:
+
+Prototype Chain: When kiran is created, its internal [[Prototype]] points to Employee.prototype. Through Employee.prototype, it can access Person.prototype due to the chain established by Object.create(Person.prototype).
+
+Object.create(): This method creates a new object with the specified prototype object and properties. In this case, it creates an object with Person.prototype as its prototype, which is then assigned to Employee.prototype.
+
+Constructor Functions: Every function in JavaScript has a prototype property. When you define a constructor function like Employee, it automatically gets a prototype property, which is used to set up the prototype chain for instances created with that constructor.
+
+
+-------------------------------
+
+🧠 How this.salary Works
+
+Constructor Function: When you create an instance using new Employee('Kiran', 50000), the Employee function is invoked with this referring to the new object being created. This sets kiran.name to 'Kiran' and kiran.salary to 50000.
+
+Prototype Method: The getSalary method is added to Employee.prototype. This means it's available to all instances of Employee, including kiran.
+
+Method Invocation: When you call kiran.getSalary(), JavaScript looks for the getSalary method on kiran. Since it's not found directly on kiran, JavaScript checks kiran.__proto__, which points to Employee.prototype, and finds the method there.
+
+Accessing this.salary: Inside getSalary, this refers to kiran because that's the object on which the method was called. Therefore, this.salary accesses kiran.salary, which is 50000.
+
+
+// kiran.constructor  is empolyee
+//Employee.constructor is function
+//Employee.prototype.constructor is employee
+//Person.constructor is function
+// Person.prototype.constructor is person
+
+
+
+
+
+
+--------------------------------
+When you do:
+Rectangle.prototype = Object.create(Shape.prototype);
+
+JavaScript is basically doing something like: (behind scence)
+// behind the scenes, JS does something like:
+let temp = {};                         // 1. create a new object
+Object.setPrototypeOf(temp, Shape.prototype); // 2. link its __proto__ to Shape.prototype
+Rectangle.prototype = temp;            // 3. assign it to Rectangle.prototype

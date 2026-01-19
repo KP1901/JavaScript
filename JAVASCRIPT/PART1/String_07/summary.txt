@@ -1,0 +1,113 @@
+1️⃣ Literal match (plain text)
+
+Matches exactly "hello"
+
+"hello world".match(/hello/); // ["hello"]
+
+2️⃣ Digits
+
+\d → one digit (0–9)
+"abc123".match(/\d/) // ['1']
+"abc123".match(/\d+/) // ['123']
+
+3️⃣ Letters
+
+\w → letter, number, underscore 
+Equivalent to: [a-zA-Z0-9_]
+
+"hi_123".match(/\w+/) // ["hi_123"]
+
+4️⃣ Spaces
+
+\s → space, tab, newline
+
+"hi there".match(/\s/);// [" "]
+
+5️⃣ Character sets [ ]
+
+Match one character from a group
+
+"cat".match(/[aeiou]/) // a
+"cat".match(/[a-z]/) // a
+
+| Symbol  | Meaning         |
+| ------- | --------------- |
+| `+`     | 1 or more       |
+| `*`     | 0 or more       |
+| `?`     | 0 or 1          |
+| `{n}`   | exactly n       |
+| `{n,m}` | between n and m |
+
+
+7️⃣ Anchors (position control)    
+
+| Symbol | Meaning         |
+| ------ | --------------- |
+| `^`    | start of string |
+| `$`    | end of string   |
+
+
+/^hello$/
+Matches only "hello", not "hello world"
+
+✔ String must start with hello
+
+"hello world".match(/^hello/); // ✅
+"say hello".match(/^hello/);   // ❌
+
+
+✔ String must end with world
+
+"hello world".match(/world$/); // ✅
+"world hello".match(/world$/); // ❌
+
+/^hello$/
+✔ String must be exactly hello
+❌ No extra text before or after
+
+Simple rule to remember 🧠
+
+^ = start
+$ = end
+^...$ = exact match
+
+8️⃣ Groups ( )
+
+let date = "2025-09-15";
+date.match(/(\d{4})-(\d{2})-(\d{2})/);
+
+Result:
+
+[
+ "2025-09-15",
+ "2025",
+ "09",
+ "15"
+]
+
+9️⃣ Flags
+
+| Flag | Meaning              |
+| ---- | -------------------- |
+| `g`  | global (all matches) |
+| `i`  | case-insensitive     |
+| `m`  | multiline            |
+
+
+10️⃣ match() vs matchAll() (simple)
+
+match()
+
+-Returns matches
+-Groups lost with g
+
+matchAll()
+
+-Keeps groups + index
+-Best for advanced extraction
+
+let s = "2025-09-15 2024-01-01";
+
+for (let m of s.matchAll(/(\d{4})-(\d{2})-(\d{2})/g)) {
+  console.log(m[1], m[2], m[3]);
+}

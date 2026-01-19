@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // donwload all jason data (hindi language from any website) =>paste it in console of any website
+      (function () {
+        const hindiCharRegex = /[\u0900-\u097F]/;
+
+        const textNodes = [...document.querySelectorAll("body *")]
+          .filter(
+            (el) =>
+              el.children.length === 0 && hindiCharRegex.test(el.innerText)
+          )
+          .map((el) => el.innerText.trim())
+
+          .filter((v, i, arr) => v && arr.indexOf(v) === i); // unique + non-empty
+
+        const result = {};
+
+        textNodes.forEach((text, index) => {
+          const key = `hindi_text_${index + 1}`;
+          result[key] = text;
+        });
+
+        console.log("🔠 Hindi Translations Found:", result);
+
+        // Optional: Download as JSON
+        const blob = new Blob([JSON.stringify(result, null, 2)], {
+          type: "application/json",
+        });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "discord_hindi_visible_text.json";
+        link.click();
+      })();
+    </script>
+  </body>
+</html>

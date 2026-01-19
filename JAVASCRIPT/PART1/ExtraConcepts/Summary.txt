@@ -1,0 +1,52 @@
+🔴 If the method expects a NUMBER
+Examples :
+slice(start, end)
+substring(start, end)
+Math.max(a, b)
+
+Passing :
+slice(0,fn)
+
+coercion path :
+
+fn → Number(fn) → NaN
+
+fn => Number("fn") => NaN
+
+🔵 If the method expects a STRING
+
+"hello".concat(fn) => hello fn
+
+✅ Final takeaway
+✔ Callback-accepting methods → function is executed
+✔ Non-callback methods → function is treated as a VALUE
+✔ Conversion depends on expected type, not always NaN
+-------------------------------------------------
+🔤 String methods that accept a function
+
+✅ replace()
+✅ replaceAll()
+-----------------------------------------------------
+📦 Array methods that accept a function (very important)
+
+Iteration / transformation
+  -map(fn)
+  -filter(fn)
+  -reduce(fn)
+  -reduceRight(fn)
+  -forEach(fn)
+-Searching / checking
+  -find(fn)
+  -findIndex(fn)
+  -some(fn)
+  -every(fn)
+-Sorting
+  -sort((a, b) => number)
+-----------------------------------------
+  📚 Object-related
+
+Object.keys().forEach(fn)
+Object.values().map(fn)
+Object.entries().filter(fn)
+
+(Objects themselves don’t take callbacks, but their extracted arrays do.)

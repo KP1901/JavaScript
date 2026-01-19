@@ -1,0 +1,27 @@
+🔹 What is Math?
+
+-Math is a built-in global object
+-Used for mathematical operations
+-Not a constructor → ❌ new Math()
+
+1️⃣ Rounding
+
+-Math.round(x) → nearest integer
+-Math.floor(x) → round down
+-Math.ceil(x) → round up
+-Math.trunc(x) → remove decimal part
+
+2️⃣ Absolute & Power
+
+-Math.abs(x) → absolute value
+-Math.pow(a, b) → power (a^b)
+-Math.sqrt(x) → square root
+
+3️⃣ Min / max
+
+-Math.min(a, b, c) → smallest
+-Math.max(a, b, c) → largest
+
+🧠 One-line summary
+
+Math object gives ready-made math tools for rounding, random numbers, min/max, and calculations.

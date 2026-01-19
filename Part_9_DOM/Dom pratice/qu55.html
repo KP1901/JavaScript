@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Show Error Below Input</title>
+    <style>
+      :root {
+        --error-color: #b00020;
+        --radius: 8px;
+        --gap: 8px;
+        --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+          Arial;
+      }
+
+      body {
+        font-family: var(--font);
+        padding: 32px;
+        background: #f7f7fb;
+        color: #111;
+      }
+
+      form {
+        max-width: 420px;
+        background: #fff;
+        padding: 20px;
+        border-radius: var(--radius);
+        box-shadow: 0 6px 18px rgba(12, 12, 20, 0.06);
+      }
+
+      label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 600;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 1rem;
+        box-sizing: border-box;
+      }
+
+      input[type="text"][aria-invalid="true"] {
+        border-color: var(--error-color);
+        outline: 3px solid rgba(176, 0, 32, 0.06);
+      }
+
+      .error {
+        margin-top: 6px;
+        font-size: 0.9rem;
+        color: var(--error-color);
+        opacity: 0;
+        transform: translateY(-2px);
+        transition: opacity 0.15s ease, transform 0.15s ease;
+        display: block;
+      }
+
+      .error.visible {
+        opacity: 1;
+      }
+
+      button {
+        margin-top: 14px;
+        padding: 10px 14px;
+        font-size: 1rem;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        background: #2563eb;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="demoForm" novalidate>
+      <label for="fullname">Full name</label>
+      <input
+        id="fullname"
+        name="fullname"
+        type="text"
+        autocomplete="name"
+        aria-describedby="fullname-error"
+        aria-invalid="false"
+        placeholder="Enter your full name"
+      />
+      <span
+        id="fullname-error"
+        class="error"
+        role="alert"
+        aria-live="assertive"
+      ></span>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <script src="qu55.js"></script>
+  </body>
+</html>
+
+<!-- --------------------------------------- 
+
+1. id="fullname" 
+Purpose: Gives this input a unique identifier in the page. 
+Usage: 
+   -Used by labels (<label for="fullname">) to link to this input. 
+    -Can be used in JavaScript (document.getElementById("fullname")).</label
+
+----------------------------------------------------------------------------------------------------------
+
+2. name="fullname"
+
+Purpose: Defines the key that will be sent to the server when submitting a form.
+
+Example:
+If a user types John Doe and submits, the browser will send:
+fullname=John%20Doe
+
+----------------------------------------------------------------------------------------------------------
+3. type="text"
+
+-Purpose: Specifies the type of input.
+-"text" means this is a single-line text input (as opposed to email, password, number, etc.).
+
+----------------------------------------------------------------------------------------------------------
+
+4. autocomplete="name"
+
+-Purpose: Tells the browser what kind of information should auto-fill this field.
+-"name" means the browser can suggest the user’s full name from stored data.
+
+----------------------------------------------------------------------------------------------------------
+
+5. aria-describedby="fullname-error"
+
+-Purpose: Accessibility attribute (ARIA).
+-It tells screen readers that this input is described by the element with id="fullname-error".
+-Usually points to a <span> or <p> with an error/help message.
+
+    Example
+
+    <p id="fullname-error">Please enter your full name.</p>
+
+Screen readers will read the error message when they focus on the input.
+
+----------------------------------------------------------------------------------------------------------
+
+
+6. aria-invalid="false"
+
+Purpose: Another ARIA attribute.
+-Indicates whether the value entered is currently invalid.
+-false → currently valid
+-true → input has an error (often toggled dynamically via JavaScript)
+
+Example (JS toggling):
+
+const input = document.getElementById("fullname");
+input.setAttribute("aria-invalid", "true");
+
+----------------------------------------------------------------------------------------------------------
+
+3. role="alert"
+
+- role = alert is enough just to make sure all  screen reader behaves consistently 
+
+-Purpose: This is an ARIA (Accessible Rich Internet Applications) attribute.
+
+-Meaning: It tells assistive technologies (like screen readers) that this element is an alert message.
+
+-Effect: Screen readers will automatically announce the content of this span when it changes.
+
+----------------------------------------------------------------------------------------------------------
+
+
+4. aria-live="assertive"
+
+-Purpose: Another ARIA attribute that controls when updates are announced by screen readers.
+
+-Values:
+
+     -"off" → No automatic announcement.
+     -"polite" → Waits until the user is idle, then announces.
+     -"assertive" → Interrupts immediately to announce the change.
+
+Meaning here: If you set text inside this <span>, it will be spoken right away by screen readers.
+> -->

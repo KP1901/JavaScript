@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>BOM Challenge 4 - Theory + Code</title>
+  </head>
+  <body>
+    <h1>Challenge 4: Alert on Leaving Page</h1>
+    <p>Try refreshing or closing this page — you'll see a warning!</p>
+    <a href="https://www.google.com">google</a>
+    <script>
+      /* ================================
+       THEORY: window.onbeforeunload
+       ================================
+       1️⃣ What is it?
+       - 'onbeforeunload' is a BOM (Browser Object Model) event.
+       - Fires JUST BEFORE the page is unloaded (closing, refreshing, navigating away).
+       - Used to warn users about unsaved data.
+
+       2️⃣ How it works step-by-step:
+       - User tries to leave the page (close, refresh, navigate).
+       - 'onbeforeunload' event fires.
+       - The assigned function executes:
+         * event.preventDefault()  -> stops default unload (mostly ignored in modern browsers)
+         * event.returnValue       -> triggers confirmation dialog
+       - Browser shows a dialog:
+         * Stay -> page remains
+         * Leave -> page unloads
+
+       3️⃣ Properties:
+       - event.preventDefault()  : prevents immediate unload
+       - event.returnValue       : any string triggers dialog (custom text often ignored)
+
+       4️⃣ Browser differences:
+       - Modern browsers (Chrome, Firefox, Edge, Safari) ignore custom text.
+       - Older browsers may show custom text.
+
+       5️⃣ Ways to attach event:
+       - Property method: window.onbeforeunload = function(event) { ... }
+         * Only one handler at a time.
+       - addEventListener: window.addEventListener("beforeunload", function(event) { ... })
+         * Multiple handlers allowed, more flexible.
+
+       6️⃣ Example use case:
+       - Warn user if form has unsaved changes.
+         let formEdited = true;
+         if(formEdited){
+           event.preventDefault();
+           event.returnValue = "You have unsaved changes!";
+         }
+    */
+
+      /* ================================
+       CODE EXAMPLES
+       ================================ */
+
+      // 1️⃣ Simple property method
+      window.onbeforeunload = function (event) {
+        event.preventDefault();
+        event.returnValue = "Are you sure you want to leave?";
+      };
+
+      // 2️⃣ Conditional example (form edited)
+      let formEdited = true; // user made changes
+      window.onbeforeunload = function (event) {
+        if (formEdited) {
+          event.preventDefault();
+          event.returnValue =
+            "You have unsaved changes! Are you sure you want to leave?";
+        }
+        // if formEdited = false, no warning appears
+      };
+
+      // 3️⃣ Modern addEventListener method
+      window.addEventListener("beforeunload", function (event) {
+        event.preventDefault(); // triggers warning in older browsers
+        event.returnValue = ""; // required for modern browsers
+        console.log("User tried to leave the page!");
+      });
+    </script>
+  </body>
+</html>

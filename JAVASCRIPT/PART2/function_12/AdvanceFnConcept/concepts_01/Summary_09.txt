@@ -1,0 +1,27 @@
+🧠 Mental rule (important)
+
+-If you need logic → use a function
+-If you already have a value → use Promise.resolve
+
+
+Here you go — very short & to the point 👇
+
+function getUser() {
+  return new Promise((resolve) => resolve(10));
+}
+
+
+➡️ Creates a new Promise each time the function is called.
+➡️ Used for real async logic.
+--------------------------------------------------------------------------------------------------
+const b = new Promise((resolve) => resolve(10));
+
+
+➡️ Promise is created once immediately.
+➡️ Same Promise reused everywhere.
+----------------------------------------------------------------------------------------------------------
+const p = Promise.resolve(10);
+
+
+➡️ Shortcut for an already-resolved Promise.
+➡️ Same as above, cleaner.

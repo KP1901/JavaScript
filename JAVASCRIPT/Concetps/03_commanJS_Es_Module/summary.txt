@@ -1,0 +1,190 @@
+1️⃣ What is CommonJS (CJS)?
+
+🔹 Used in
+
+Node.js (original system)
+
+Backend
+
+🔹 Syntax
+
+require()
+module.exports
+
+🔹 Example
+
+// math.js
+function add(a, b) {
+  return a + b;
+}
+module.exports = add;
+
+// app.js
+const add = require("./math");
+console.log(add(2, 3));
+
+🔹 Key points
+
+-Loads modules at runtime
+-require() is a function
+-Can be inside if, loops
+-No real default export
+
+2️⃣ What is ES Module (ESM)?
+
+🔹 Used in
+
+-Browsers
+-Modern Node.js
+-Standard JavaScript module system
+
+🔹 Syntax
+
+import
+export
+export default
+
+
+🔹 Example
+
+// math.js
+export function add(a, b) {
+  return a + b;
+}
+
+// app.js
+import { add } from "./math.js";
+console.log(add(2, 3));
+
+
+🔹 Key points
+
+-Loaded before execution (static)
+-import is NOT a function
+-Must be at top level
+-Supports default export
+
+3️⃣ Side-by-side comparison (IMPORTANT)
+
+| Feature            | CommonJS         | ES Module    |
+| ------------------ | ---------------- | ------------ |
+| Keywords           | `require`        | `import`     |
+| Export             | `module.exports` | `export`     |
+| Default export     | ❌                | ✅            |
+| Load time          | Runtime          | Compile-time |
+| Conditional import | ✅                | ❌            |
+| Tree shaking       | ❌                | ✅            |
+| Browser support    | ❌                | ✅            |
+
+4️⃣ How Node decides which one to use
+
+Option 1: package.json
+{
+  "type": "module"
+}
+
+.js → ES Module
+
+Without it:
+
+.js → CommonJS
+
+-----------------------------------------------------------------------------------
+
+File extension?
+ ├─ .mjs → ES Module
+ ├─ .cjs → CommonJS
+ └─ .js
+      ├─ package.json type = "module" → ES Module
+      └─ else → CommonJS
+-----------------------------------------------------------------------------------
+
+What does "type": "module" in package.json REALLY mean?
+
+Short answer (remember this):
+
+You are telling Node.js:
+
+“Treat all .js files in this project as ES Modules, not CommonJS.”
+
+That’s it. Nothing more.
+
+Before "type": "module" (default)
+// package.json
+{
+}
+Node behavior:
+.js → CommonJS
+
+You must use require
+
+const fs = require("fs");
+
+After "type": "module"
+// package.json
+{
+  "type": "module"
+}
+
+Node behavior:
+
+.js → ES Module
+
+You must use import
+
+import fs from "fs";
+
+---------------------------------------------------------------------------
+✅ Correct final understanding (polished)
+
+CommonJS uses require (old Node.js system).
+ES Modules use import (JavaScript standard).
+Node.js is old, but it now also supports ES Modules.
+
+That is 100% correct ✅
+
+Yes, today you can use import for backend (Node.js) and frontend (browser).
+require is mostly for old Node.js code.
+
+Because there are TWO module systems (CommonJS and ES Modules),
+Node.js needed a way to know which one you are using.
+That’s why "type": "module" exists.
+
+ES Modules = ES6 (2015) => import , export
+
+-----------------------------------------------------------------------------------------
+Corrected & final explanation ✅
+
+Before ES6, JavaScript itself had NO module system.
+Node.js created its own system called CommonJS, where:
+
+module.exports was used to export
+require() was used to import
+
+This worked only in Node.js, not in the browser.
+
+That statement is perfect.
+-------------------------------------------------------------------------------------------
+Correct final statement ✅
+
+Today, both JavaScript (browser) and Node.js use ES Modules.
+We use export to export and import to import.
+require (CommonJS) is mostly for old Node.js code and is not needed for new projects.
+
+That is 100% correct.
+--------------------------------------------------------------------------------------
+Is this the same as memory creation phase?
+
+❌ Not exactly
+
+Memory creation phase = part of execution context
+
+Module linking = happens even before execution contexts are created
+
+So the order is:
+
+Parse module
+→ Resolve imports
+→ Link modules
+→ Create execution context (memory phase)
+→ Execute code

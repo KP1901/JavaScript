@@ -1,0 +1,74 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: "Poppins", sans-serif;
+  user-select: none;
+}
+
+body {
+  background: linear-gradient(145deg, #111827, #0f172a, #1e293b);
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+.calc {
+  background-color: rgba(255, 255, 255, 0.06);
+  width: 340px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+.display {
+  height: 80px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 14px;
+  font-size: 2rem;
+  overflow-x: auto;
+}
+.keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+button {
+  font-size: 1.3rem;
+  border: none;
+  outline: 0;
+  border-radius: 14px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.07);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+button:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+button:active {
+  transform: translateY(0);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.op:hover {
+  background: linear-gradient(135deg, #34d399, #1d4ed8);
+}
+.equal {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+}
+.clear {
+  background: linear-gradient(135deg, #ef4444, #f97316);
+  font-weight: 700;
+}
+.wide {
+  grid-column: span 2;
+}

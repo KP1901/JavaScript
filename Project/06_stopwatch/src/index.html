@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StopWatch</title>
+    <link rel="stylesheet" href="output.css" />
+  </head>
+  <body
+    class="bg-[#f0f0f0] font-sans flex flex-col justify-center items-center h-screen px-5"
+  >
+    <div
+      id="timer"
+      class="rounded-2xl text-7xl font-bold text-shadow-[2px_2px_#f8a5c2] text-[#f92672] text-center mx-auto my-10 max-xm:text-[4rem]"
+    >
+      00:00:00:00
+    </div>
+    <div
+      id="buttons"
+      class="flex items-center justify-center gap-10 text-[1.5rem] py-4 px-8 max-xm:flex-col"
+    >
+      <button
+        id="start"
+        class="bg-[#f92672] text-white border-0 text-[2rem] font-bold px-12 py-[0.7rem] rounded-lg cursor-pointer shadow-[2px_2px_10px_rgba(0,0,0,0.3)] hover:bg-[#f44583] hover:shadow-[2px_2px_10px_rgba(0,0,0,0.5)] transition-all ease-in duration-200 max-xm:px-5 max-xm:py-[0.6rem] max-xm:text-3xl"
+      >
+        Start
+      </button>
+      <button
+        id="stop"
+        class="bg-[#f92672] text-white border-0 text-[2rem] font-bold px-12 py-[0.7rem] rounded-lg cursor-pointer shadow-[2px_2px_10px_rgba(0,0,0,0.3)] hover:bg-[#f44583] hover:shadow-[2px_2px_10px_rgba(0,0,0,0.5)] transition-all ease-in duration-200 disabled:opacity-50 disabled:cursor-default max-xm:px-5 max-xm:py-[0.6rem] max-xm:text-3xl"
+      >
+        Stop
+      </button>
+      <button
+        id="reset"
+        class="bg-[#f92672] text-white border-0 text-[2rem] font-bold px-12 py-[0.7rem] rounded-lg cursor-pointer shadow-[2px_2px_10px_rgba(0,0,0,0.3)] hover:bg-[#f44583] hover:shadow-[2px_2px_10px_rgba(0,0,0,0.5)] transition-all ease-in duration-200 max-xm:px-5 max-xm:py-[0.6rem] max-xm:text-3xl"
+      >
+        Reset
+      </button>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

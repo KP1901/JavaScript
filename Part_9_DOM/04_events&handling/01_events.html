@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+    there are three ways to handle event
+    -inline event handle 
+    -event handler properties
+    -using addeventListner
+    -->
+  </body>
+</html>
+<!-- 
+
+EVENT
+------
+- An action/occurrence in the browser.
+- Examples: click, keypress, mouseover, page load, form submit.
+
+EVENT HANDLER
+--------------
+- A function that executes in response to an event.
+- "Handler" = the code that handles the event.
+- Example:
+    function sayHello() {
+      console.log("Button clicked!");
+    }
+
+EVENT LISTENER
+---------------
+- A method that attaches an event handler to an element.
+- Syntax:
+    element.addEventListener("eventType", handlerFunction);
+
+- Example:
+    const btn = document.querySelector("button");
+
+    // attaching event handler via listener
+    btn.addEventListener("click", sayHello);
+
+    function sayHello() {
+      console.log("Button clicked!");
+    }
+
+DIFFERENCE
+-----------
+- Event → the action itself (click, keydown).
+- Event Handler → the function that runs when the event happens.
+- Event Listener → the mechanism used to "listen" for an event
+  and call the handler when it occurs.
+
+
+-->

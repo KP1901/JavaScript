@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./output.css" rel="stylesheet" />
+  </head>
+  <body
+    class="font-sans flex flex-col min-h-screen items-center justify-center gap-10"
+  >
+    <h1 class="text-3xl font-bold">Pomodoro Timer</h1>
+    <div id="timer" class="text-5xl">
+      <span id="min">05</span>:<span id="sec">00</span>
+    </div>
+    <div class="buttons flex gap-6">
+      <button
+        type="button"
+        class="cursor-pointer border p-2 bg-green-600 text-white shadow-[0px_0px_2px_green]"
+        id="start"
+      >
+        START
+      </button>
+      <button
+        type="button"
+        class="cursor-pointer border p-2 bg-red-600 text-white shadow-[0px_0px_2px_green]"
+        id="stop"
+      >
+        STOP
+      </button>
+      <button
+        type="button"
+        class="cursor-pointer border p-2 bg-gray-600 text-white shadow-[0px_0px_2px_green]"
+        id="reset"
+      >
+        RESET
+      </button>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

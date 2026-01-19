@@ -1,0 +1,100 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #cba8ff, #9db9fe);
+  font-family: sans-serif;
+}
+li {
+  list-style: none;
+}
+.flex {
+  display: flex;
+  align-items: center;
+}
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 80px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: 20px;
+}
+.heading {
+  gap: 10px;
+}
+.createBtn {
+  padding: 10px;
+  border-radius: 10px;
+  border: 0;
+  outline: 0;
+  gap: 10px;
+  cursor: pointer;
+  background: #5709cc;
+  color: #fff;
+}
+.createBtn:hover {
+  background: #5709cc90;
+}
+.notes-container {
+  flex-direction: column;
+  gap: 20px;
+}
+textarea {
+  resize: none;
+  min-width: 500px;
+  padding: 10px 30px;
+  border-radius: 10px;
+  min-height: 150px;
+  outline: transparent;
+  border: transparent;
+  box-shadow: 3px 3px 10px rgba(28, 28, 24, 0.271);
+  text-justify :inter-cluster;
+}
+textarea:focus {
+  outline: transparent;
+  border: transparent;
+}
+textarea::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* track */
+textarea::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+/* thumb (the moving part) */
+textarea::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* hover effect */
+textarea::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.note {
+  position: relative;
+  z-index: 100;
+}
+#deleteIcon {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  cursor: pointer;
+}
+#saveIcon {
+  position: absolute;
+  right: 40px;
+  bottom: 10px;
+  cursor: pointer;
+  z-index: 1000;
+}

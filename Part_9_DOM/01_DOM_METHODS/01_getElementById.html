@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>getElementById Example with Theory</title>
+  </head>
+  <body>
+    <!-- Elements with IDs -->
+    <h1 id="heading">Hello World!</h1>
+    <p id="para">This is a paragraph.</p>
+    <input type="text" id="username" value="Kiran" />
+    <button id="btn">Click Me</button>
+
+    <script>
+      /*
+      THEORY:
+      --------------------------------------------------------
+      1. document.getElementById("id")
+         → Selects an element from the DOM by its unique 'id'.
+      
+      2. Returns the first element with that 'id'.
+      
+      3. If no element with that id exists → returns null.
+      
+      4. Common Uses:
+         - Read or change text (innerText, textContent, innerHTML).
+         - Change CSS styles dynamically.
+         - Get input field values.
+         - Attach event listeners (click, input, etc.).
+      
+      5. Important:
+         - 'id' must be UNIQUE on the page.
+         - If multiple elements have same id (bad practice), 
+           only the first one will be selected.
+    */
+
+      // 1. Select element by ID
+      const headingElement = document.getElementById("heading");
+      console.log(headingElement);
+      // Output: <h1 id="heading">Hello World!</h1>
+
+      // 2. Change the text content of the heading
+      headingElement.textContent = "Welcome to JavaScript!";
+
+      // 3. Change paragraph style
+      document.getElementById("para").style.color = "blue";
+      document.getElementById("para").style.fontSize = "20px";
+
+      // 4. Get value from input field
+      let user = document.getElementById("username").value;
+      console.log("User input is:", user); // Output: "Kiran"
+
+      // 5. If ID does not exist, returns null
+      const notFound = document.getElementById("doesNotExist");
+      console.log(notFound); // Output: null
+
+      // 6. Example: Button click changes heading
+      document.getElementById("btn").addEventListener("click", function () {
+        document.getElementById("heading").textContent = "Button Clicked!";
+        document.getElementById("heading").style.color = "green";
+      });
+    </script>
+  </body>
+</html>
+
+<!-- 
+
+Notes on getElementById (From Given Code)
+
+1. Definition:
+   document.getElementById("id") → Select element by unique id.
+
+2. Return Value:
+   Returns first element with that id.
+   If not found → null.
+
+3. Important:
+   id must be unique.
+   If multiple ids → only first is selected.
+
+4. Uses (from code):
+   Read / change text → element.textContent
+   Change CSS style → element.style.property
+   Get input value → element.value
+   Attach event → element.addEventListener("click", fn)
+
+5. Properties Used:
+   .textContent → get/set text
+   .style.color → change text color
+   .style.fontSize → change font size
+   .value → get input field value
+
+6. Method Used:
+   .addEventListener("click", fn) → handle button click
+
+Example Actions:
+   Change heading text
+   Change paragraph color & size
+   Get input value
+   Button click changes heading
+   If id not found → null
+
+-->

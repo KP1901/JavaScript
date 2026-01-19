@@ -1,0 +1,26 @@
+🔧 4 Ways to Fix the Top-Level await Warning
+
+1️⃣ Add ES module type (BEST)
+
+{ "type": "module" }
+
+
+2️⃣ Rename file
+
+file.js → file.mjs
+
+
+3️⃣ Wrap in async function
+
+(async () => {
+  await task();
+})();
+
+
+4️⃣ Use CommonJS (no top-level await)
+
+async function main() {
+  await task();
+}
+main();
+--------------------------------------------------------------------------------------

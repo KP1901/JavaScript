@@ -1,0 +1,63 @@
+✅ 1. String = Primitive Data Type
+-----------------------------------------
+✅ 2. Four Ways to Create Strings
+-const s1 = "hello";
+-const s1 = 'hello';
+-const s1 = '`hello`;
+-const s1 =  new String("hello");
+-----------------------------------------
+✅ 3. Strings Are Immutable
+
+This is important and powerful.
+
+let s = "hello";
+s[0] = "H";   // ❌ not possible
+console.log(s);   // "hello"
+
+Whenever you modify a string, JavaScript creates a new string, it never changes the existing one.
+-----------------------------------------
+
+✅ 4. Stored Using UTF-16
+
+Every character is stored as 16-bit units.
+
+Normal characters = 1 unit (a,b,c,d)
+Emojis = 2 units
+
+Example:
+
+"👍".length      // 2  (not 1!)
+"😎".length      // 2
+
+
+We’ll learn this deeply later.
+---------------------------------------------------
+✅ 5. JS Uses UTF-16 Encoding
+
+Every string in JavaScript is stored as a sequence of 16-bit units called code units.
+
+Example:
+"A"  → 1 code unit  
+"Z"  → 1 code unit  
+"5"  → 1 code unit  
+" "  → 1 code unit  
+
+So:
+
+"ABC".length  // 3
+---------------------------------------------------
+✅ 6. But emojis / rare characters use 2 code units
+"👍".length   // 2
+"😎".length   // 2
+
+
+👍 (U+1F44D)
+↓
+D83D + DC4D    ← two 16-bit units
+--------------------------------------------------------------------------------
+| Method          | Works for normal text | Works for emojis | Returns                |
+| --------------- | --------------------- | ---------------- | ---------------------- |
+| `str[i]`        | ✔                     | ❌                | character or undefined |
+| `charAt()`      | ✔                     | ❌                | character              |
+| `codePointAt()` | ✔                     | ✔                | number (Unicode value) |
+| `Array.from()`  | ✔                     | ✔                | character              |

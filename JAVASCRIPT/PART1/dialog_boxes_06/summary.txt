@@ -1,0 +1,60 @@
+alert() is the simplest JavaScript function used to show a popup message box in the browser.
+
+Here’s the basic usage:
+
+alert("Hello World!");
+
+✔ What Happens?
+
+-A popup dialog appears.
+-It shows the message.
+-User must click OK to continue.
+-It blocks JavaScript execution until dismissed.
+- it returns undefined
+------------------------------
+
+confirm() is a built-in JavaScript function that shows a dialog box with OK and Cancel buttons.
+
+✅ Basic Usage
+confirm("Are you sure?");
+✔ What happens?
+Browser shows a popup with:
+-A message
+-OK button
+-Cancel button
+
+It returns a boolean value:
+
+User Clicks	       Returned Value
+OK	                   true
+Cancel	                false
+
+--------------------------------------
+prompt() is a built-in JavaScript dialog box that asks the user for input.
+
+It shows:
+
+-A message
+-A text input field
+-OK and Cancel buttons
+
+And like alert() and confirm(), it blocks code execution until the user responds.
+
+| User Action            | Value Returned               |
+| ---------------------- | ---------------------------- |
+| **Clicked OK**         | The text they typed (string) |
+| **Clicked Cancel**     | `null`                       |
+| **Typed nothing + OK** | `""` (empty string)          |
+
+-------------------------------------
+
+✅ Why do they block?
+
+Because they are synchronous and modal dialogs.
+
+Meaning:
+
+-JavaScript pauses execution.
+-Browser UI is frozen.
+-Nothing else runs until the user responds.
+-After closing the dialog, code continues.

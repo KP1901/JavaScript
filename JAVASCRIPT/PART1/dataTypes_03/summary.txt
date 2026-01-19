@@ -1,0 +1,63 @@
+===============================
+  JAVASCRIPT DATA TYPES - NOTES
+===============================
+
+JavaScript has 2 main categories of data types:
+1. Primitive Types (immutable)
+2. Non-Primitive Types (reference types)
+
+------------------------------------
+1. PRIMITIVE DATA TYPES (7 types)
+------------------------------------
+These are stored directly in memory and copied by VALUE.
+
+1) Number
+- All numbers in JS (integers + decimals)
+- Stored as 64-bit floating point
+- NaN is also a type of number
+
+2) String
+- Text values in single, double, or template quotes
+- Strings are immutable
+
+3) Boolean
+- Only two values: true or false
+
+4) Undefined
+- Variable declared but not assigned a value
+
+5) Null
+- Represents intentional empty value
+- typeof null === "object" (JS bug)
+
+6) Symbol
+- Unique identifiers
+- Useful for object keys
+
+7) BigInt
+- Used for extremely large numbers
+- Ends with 'n' (example: 123n)
+
+-------------------------------------------
+2. NON-PRIMITIVE (REFERENCE) DATA TYPES
+-------------------------------------------
+These are stored by reference (memory address).
+Modifying one variable can affect the other.
+
+1) Object
+2) Array
+3) Function
+4) Date, Map, Set, etc. (all are objects)
+
+Examples:
+
+Object:
+    let person = { name: "Kiran", age: 21 };
+
+Array:
+    let nums = [10, 20, 30];
+
+Function:
+    function sayHi() { console.log("Hi"); }
+
+---------------------------------------------------

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Air Quality Checker</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="container">
+      <h1>🌫 Air Quality Checker</h1>
+      <form>
+        <input
+          type="text"
+          name=""
+          id="cityInput"
+          placeholder="Enter city name (e.g.,Delhi) "
+        />
+        <input type="submit" id="aqiBtn" value="Check AQI" />
+      </form>
+      <div id="air-quality-data" style="display: none">
+        <h3>Air Quality Index</h3>
+        <div class="details"></div>
+        <div id="aqi-index"></div>
+        <div id="aqi-review"></div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

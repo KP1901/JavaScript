@@ -1,0 +1,20 @@
+Escape characters are special sequences that start with a backslash \ and allow you to print characters you normally cannot type directly inside a string.
+
+console.log("Line1\nLine2");
+
+Line1
+Line2
+------------------------------------------------------------------------
+
+The Most Important Escape Characters
+
+| Escape | Meaning         | Example Output             |
+| ------ | --------------- | -------------------------- |
+| `\n`   | New line        | starts a new line          |
+| `\t`   | Tab/indent      | adds horizontal space      |
+| `\\`   | Backslash       | prints `\`                 |
+| `\"`   | Double quote    | allows quotes inside " "   |
+| `\'`   | Single quote    | allows quotes inside ' '   |
+| `\r`   | Carriage return | moves to start of line     |
+| `\b`   | Backspace       | removes previous character |
+| `\f`   | Form feed       | rare (old printers)        |

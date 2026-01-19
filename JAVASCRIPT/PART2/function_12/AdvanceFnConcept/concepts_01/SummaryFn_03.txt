@@ -1,0 +1,98 @@
+function memoizeFetch(fn) {
+  const cache = {};
+
+  return async function (id) {
+    if (cache[id]) {
+      console.log("from cache");
+      return cache[id];
+    }
+
+    console.log("from API");
+    const result = await fn(id);
+    cache[id] = result;
+    console.log(result);
+
+    return result;
+  };
+}
+
+async function fetchUser(id) {
+  return { id, name: "Kiran" };
+}
+
+const getUser = memoizeFetch(fetchUser);
+
+await getUser(1); // from API
+await getUser(1); // from cache
+await getUser(1); // from cache
+
+/*
+✅ Global Execution Context (GEC)
+Creation Phase
+
+Global Lexical Environment created
+
+Memory allocated:
+
+memoizeFetch → function
+fetchUser   → function
+getUser     → undefined
+
+
+outer → null
+
+📌 Correction
+❌ “memory created: fn()”
+✅ Functions are stored by reference, not executed
+
+Execution Phase
+const getUser = memoizeFetch(fetchUser);
+
+
+👉 Now memoizeFetch is CALLED
+
+✅ memoizeFetch Execution Context
+Creation Phase
+fn    → fetchUser
+cache → {}
+
+
+📌 cache object is created once
+
+Execution Phase
+return async function(id) { ... }
+
+
+👉 Returned function closes over cache
+
+getUser → async function
+outer   → memoizeFetch Lexical Environment
+
+
+🔥 This is closure (you got this right)
+
+✅ getUser Execution Context (each call)
+Creation Phase
+id → 1
+
+Execution Phase (first call)
+if (cache[id]) ❌ false
+console.log("from API")
+result = await fetchUser(id)
+cache[id] = result
+return result
+
+
+📌 outer → memoizeFetch LE
+📌 access to cache via closure
+
+Execution Phase (second & third call)
+if (cache[id]) ✅ true
+console.log("from cache")
+return cache[id]
+
+
+❌ fetchUser not called
+❌ no await
+
+*/

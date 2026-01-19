@@ -1,0 +1,1830 @@
+
+/********************************************************************
+ STEP 0 — PROGRAM START (MEMORY CREATION PHASE)
+ This file explains what JavaScript does BEFORE any code runs.
+ Nothing below is executed yet.
+********************************************************************/
+
+/*
+====================================================
+WHAT HAPPENS WHEN JAVASCRIPT STARTS
+====================================================
+
+1. JavaScript engine starts.
+2. Global Execution Context (GEC) is created.
+3. Call Stack is created (empty).
+4. Heap memory is available.
+
+IMPORTANT:
+- No function is running
+- No async work started
+- No Promise created
+- No cache exists
+- No setTimeout registered
+*/
+
+/*
+====================================================
+GLOBAL EXECUTION CONTEXT (GEC) CONTAINS
+====================================================
+
+1) Memory / Variable Environment
+   - Stores function declarations
+   - Stores variable names (initialized as undefined)
+
+2) Call Stack
+   - Executes code line by line
+   - Currently EMPTY
+*/
+
+/*
+====================================================
+JS STARTS SCANNING THE FILE (NOT EXECUTING)
+====================================================
+
+JavaScript reads the file TOP → BOTTOM
+It only looks for:
+- function declarations
+- variable declarations
+
+Function bodies are NOT executed.
+*/
+
+/*
+====================================================
+FIRST FUNCTION DECLARATION
+====================================================
+*/
+
+function fetch(url) {
+  // This code DOES NOT RUN now
+  // JS only stores this function in memory
+  // No Promise is created
+  // No setTimeout is registered
+}
+
+/*
+Memory after this line:
+fetch → function
+*/
+
+/*
+====================================================
+SECOND FUNCTION DECLARATION (ASYNC)
+====================================================
+*/
+
+async function loadData(key) {
+  // This code DOES NOT RUN now
+  // Marked as async
+  // Will return a Promise WHEN CALLED
+}
+
+/*
+Memory after this line:
+fetch    → function
+loadData → async function
+*/
+
+/*
+====================================================
+THIRD FUNCTION DECLARATION
+====================================================
+*/
+
+function memoizeAsync(fn) {
+  // This code DOES NOT RUN now
+  // No cache exists yet
+  // cache will be created ONLY when this function is CALLED
+}
+
+/*
+Memory after this line:
+fetch         → function
+loadData      → async function
+memoizeAsync  → function
+*/
+
+/*
+====================================================
+IMPORTANT TRUTH (MOST IMPORTANT PART OF STEP 0)
+====================================================
+
+At this stage:
+
+- fetch is NOT called
+- loadData is NOT called
+- memoizeAsync is NOT called
+
+So:
+
+- NO cache object exists
+- NO closure exists
+- NO Promise exists
+- NO async execution has started
+*/
+
+/*
+====================================================
+WHY CACHE DOES NOT EXIST YET
+====================================================
+
+Cache is created only when this line runs:
+
+const memoizedLoadData = memoizeAsync(loadData);
+
+But this line has NOT executed yet in STEP 0.
+*/
+
+/*
+====================================================
+STATE OF JAVASCRIPT AT END OF STEP 0
+====================================================
+
+Memory:
+- fetch         → function
+- loadData      → async function
+- memoizeAsync  → function
+- run           → async function (when scanned later)
+
+Call Stack:
+- EMPTY
+
+Async Tasks:
+- NONE
+
+Promises:
+- NONE
+
+Cache:
+- DOES NOT EXIST
+*/
+
+/*
+====================================================
+FINAL RULE OF STEP 0
+====================================================
+
+Writing code creates memory.
+Calling code executes logic.
+
+Function written ≠ function executed.
+*/
+
+// ------------------------------------------------------------------------------------------------
+
+/********************************************************************
+ STEP 1 — FIRST EXECUTION LINE RUNS
+ This is where JavaScript EXECUTION PHASE begins.
+********************************************************************/
+
+/*
+====================================================
+UP TO NOW (RECAP)
+====================================================
+
+- All functions are defined
+- Nothing has executed yet
+- No cache exists
+- No async work exists
+- Call Stack is empty
+*/
+
+/*
+====================================================
+THIS IS THE FIRST LINE THAT ACTUALLY EXECUTES
+====================================================
+*/
+
+// const memoizedLoadData = memoizeAsync(loadData);
+
+/*
+====================================================
+WHAT THIS LINE MEANS (PLAIN ENGLISH)
+====================================================
+
+"Call memoizeAsync and pass the loadData function to it.
+Store whatever memoizeAsync returns into memoizedLoadData."
+*/
+
+/*
+====================================================
+IMPORTANT: WHAT IS BEING PASSED?
+====================================================
+
+loadData        ❌ is NOT called
+loadData()      ❌ is NOT written
+
+loadData        ✅ is PASSED AS A VALUE (function reference)
+
+Think of it as:
+"Give memoizeAsync the loadData function itself"
+*/
+
+/*
+====================================================
+ENTERING memoizeAsync(fn)
+====================================================
+
+At this moment:
+fn === loadData
+*/
+
+/*
+====================================================
+FIRST LINE INSIDE memoizeAsync RUNS
+====================================================
+*/
+
+// const cache = {};
+
+/*
+WHAT HAPPENS HERE:
+
+- A new object is created in memory
+- cache exists ONLY inside memoizeAsync
+- cache is NOT global
+- cache will survive because of closure
+*/
+
+/*
+Current state:
+cache = {}
+*/
+
+/*
+====================================================
+NEXT: memoizeAsync RETURNS A FUNCTION
+====================================================
+*/
+
+// return async function (key) {
+// This function is CREATED, NOT EXECUTED
+/*
+  It remembers:
+  - cache (closure)
+  - fn (which is loadData)
+
+  This is the WRAPPER function
+  */
+// };
+
+/*
+====================================================
+memoizeAsync FINISHES EXECUTION
+====================================================
+
+- memoizeAsync returns the wrapper function
+- Execution leaves memoizeAsync
+*/
+
+/*
+====================================================
+ASSIGNMENT HAPPENS
+====================================================
+*/
+
+// const memoizedLoadData = /* returned wrapper function */;
+
+/*
+====================================================
+CRITICAL UNDERSTANDING
+====================================================
+
+memoizedLoadData IS NOW:
+
+- A function
+- NOT the same as loadData
+- A WRAPPER around loadData
+- Has private access to cache
+*/
+
+/*
+====================================================
+VERY IMPORTANT: WHAT HAS NOT HAPPENED YET
+====================================================
+
+❌ loadData has NOT run
+❌ fetch has NOT run
+❌ setTimeout has NOT run
+❌ No Promise has been awaited
+❌ No async pause has happened
+
+Only function creation + closure setup happened
+*/
+
+/*
+====================================================
+STATE OF JS AT END OF STEP 1
+====================================================
+
+Memory:
+- fetch               → function
+- loadData            → async function
+- memoizeAsync        → function
+- memoizedLoadData    → async wrapper function (with closure)
+
+Cache:
+- EXISTS now (inside closure)
+- cache = {}
+
+Call Stack:
+- EMPTY (line finished)
+
+Async Tasks:
+- NONE
+
+Promises:
+- NONE
+*/
+
+/*
+====================================================
+FINAL RULE OF STEP 1
+====================================================
+
+Calling memoizeAsync does NOT fetch data.
+It ONLY CREATES a wrapped function with memory (cache).
+
+
+------------------------------------------------------------------------------------------------------
+for key explaination
+
+/********************************************************************
+ EXPLANATION: return async function (key)
+ This explains ONLY what `key` is and where it comes from.
+********************************************************************/
+
+/*
+====================================================
+THE LINE IN QUESTION
+====================================================
+*/
+
+return async function (key) {
+  // function body
+};
+
+/*
+====================================================
+WHAT IS `key`?
+====================================================
+
+- `key` is a PARAMETER (input variable)
+- It does NOT have a value right now
+- It will get a value ONLY when this function is CALLED
+*/
+
+/*
+====================================================
+WHEN IS THIS FUNCTION CREATED?
+====================================================
+
+This function is CREATED when this line runs:
+
+const memoizedLoadData = memoizeAsync(loadData);
+
+At that moment:
+- The function exists
+- `key` has NO value yet
+*/
+
+/*
+====================================================
+WHEN DOES `key` GET A VALUE?
+====================================================
+
+`key` gets its value when the returned function is CALLED.
+
+Example:
+*/
+
+memoizedLoadData(1);
+
+/*
+This means:
+key = 1
+*/
+
+/*
+Another example:
+*/
+
+memoizedLoadData(2);
+
+/*
+This means:
+key = 2
+*/
+
+/*
+====================================================
+WHY IS IT CALLED `key`?
+====================================================
+
+Because it is used as a CACHE KEY.
+
+Inside the function:
+*/
+
+if (key in cache) {
+  return cache[key];
+}
+
+/*
+So the cache looks like this:
+
+cache = {
+  1: dataForUser1,
+  2: dataForUser2
+}
+
+- key decides WHICH data to fetch
+- key decides WHERE data is stored in cache
+*/
+
+/*
+====================================================
+IMPORTANT CLARIFICATION
+====================================================
+
+This line:
+
+return async function (key) { ... }
+
+DOES NOT:
+- call the function
+- assign a value to key
+- fetch data
+
+It ONLY:
+- creates a function
+- prepares it to receive `key` later
+*/
+
+/*
+====================================================
+TIMELINE (VERY IMPORTANT)
+====================================================
+
+STEP 1:
+const memoizedLoadData = memoizeAsync(loadData);
+
+- function is created
+- key = undefined (no value yet)
+
+STEP 2:
+memoizedLoadData(1);
+
+- function runs
+- key = 1
+
+STEP 3:
+memoizedLoadData(2);
+
+- function runs again
+- key = 2
+*/
+
+/*
+====================================================
+FINAL RULE (MEMORIZE THIS)
+====================================================
+
+`key` is just an input parameter.
+Its value comes ONLY when the returned function is called.
+
+------------------------------------------------------------------------------------------------------
+*/
+
+/********************************************************************
+ STEP 2 — CALLING THE WRAPPER FUNCTION (FIRST TIME)
+ This is where REAL async work starts.
+********************************************************************/
+
+/*
+====================================================
+RECAP BEFORE STEP 2
+====================================================
+
+- memoizedLoadData EXISTS
+- memoizedLoadData is an ASYNC FUNCTION
+- cache EXISTS but is EMPTY
+
+cache = {}
+*/
+
+/*
+====================================================
+THIS LINE EXECUTES
+====================================================
+*/
+
+// const a = await memoizedLoadData(1);
+
+/*
+====================================================
+WHAT THIS LINE MEANS
+====================================================
+
+"Call the wrapper function with argument 1
+and WAIT until it finishes, then store the result in `a`"
+*/
+
+/*
+====================================================
+ENTERING THE WRAPPER FUNCTION
+====================================================
+*/
+
+// async function wrapper(key) {
+// key gets value from the call
+// }
+
+/*
+After calling:
+memoizedLoadData(1)
+
+This means:
+key = 1
+*/
+
+/*
+====================================================
+CACHE CHECK HAPPENS
+====================================================
+*/
+
+// if (key in cache) {
+//   return cache[key];
+// }
+
+/*
+At this moment:
+cache = {}
+
+So:
+1 in cache ❌ false
+
+This is called a CACHE MISS
+*/
+
+/*
+====================================================
+CACHE MISS → CALL ORIGINAL FUNCTION
+====================================================
+*/
+
+// const result = await fn(key);
+
+/*
+IMPORTANT:
+fn === loadData
+
+So this line becomes:
+
+await loadData(1);
+*/
+
+/*
+====================================================
+WHAT HAPPENS NOW
+====================================================
+
+- Wrapper function PAUSES at await
+- Control goes into loadData(1)
+- Wrapper does NOT continue until loadData finishes
+*/
+
+/*
+====================================================
+STATE RIGHT NOW
+====================================================
+
+Wrapper function:
+- Paused at await fn(key)
+
+cache:
+- Still {}
+
+JS Thread:
+- Free to do other work
+
+No data returned yet
+*/
+
+/*
+====================================================
+FINAL RULE OF STEP 2
+====================================================
+
+Calling memoizedLoadData(1):
+
+- Assigns key = 1
+- Checks cache
+- Cache miss
+- Calls original async function (loadData)
+- PAUSES and waits
+*/
+/********************************************************************
+ STEP 3 — ENTERING loadData(key)
+ This is where API logic starts.
+********************************************************************/
+
+/*
+====================================================
+RECAP BEFORE STEP 3
+====================================================
+
+- wrapper function is PAUSED at:
+  await fn(key)
+
+- fn === loadData
+- key === 1
+
+cache = {}
+*/
+
+/*
+====================================================
+THIS LINE EXECUTES
+====================================================
+*/
+
+// await loadData(1);
+
+/*
+====================================================
+ENTERING loadData FUNCTION
+====================================================
+*/
+
+// async function loadData(key) {
+// key receives the value passed from wrapper
+// }
+
+/*
+After entering:
+key = 1
+*/
+
+/*
+====================================================
+FIRST LINE INSIDE loadData
+====================================================
+*/
+
+// const res = await fetch(`/api/data/${key}`);
+
+/*
+This becomes:
+
+fetch("/api/data/1");
+*/
+
+/*
+====================================================
+WHAT THIS LINE MEANS
+====================================================
+
+- fetch is CALLED
+- fetch RETURNS a Promise immediately
+- await causes loadData to PAUSE here
+*/
+
+/*
+====================================================
+IMPORTANT: WHAT IS PAUSED AND WHAT IS NOT
+====================================================
+
+PAUSED:
+- loadData
+- wrapper function
+- run function
+
+NOT PAUSED:
+- JavaScript main thread
+- Event loop
+*/
+
+/*
+====================================================
+CONTROL FLOW RIGHT NOW
+====================================================
+
+run()
+ ↓
+memoizedLoadData(1)
+ ↓
+wrapper(key = 1)
+ ↓
+await loadData(1)   ← paused here
+      ↓
+fetch("/api/data/1") ← called
+*/
+
+/*
+====================================================
+STATE AT END OF STEP 3
+====================================================
+
+loadData:
+- Paused at await fetch(...)
+
+wrapper:
+- Still paused
+
+cache:
+- Still {}
+
+Promises:
+- fetch promise is PENDING
+
+No data available yet
+*/
+
+/*
+====================================================
+FINAL RULE OF STEP 3
+====================================================
+
+Entering loadData does NOT fetch data instantly.
+It CALLS fetch and then PAUSES waiting for the Promise.
+*/
+/********************************************************************
+ STEP 4 — ENTERING fetch(url)
+ This step explains what happens inside fetch().
+********************************************************************/
+
+/*
+====================================================
+RECAP BEFORE STEP 4
+====================================================
+
+- loadData is PAUSED at:
+  await fetch("/api/data/1")
+
+- wrapper function is PAUSED
+- run function is PAUSED
+
+cache = {}
+
+No data yet
+*/
+
+/*
+====================================================
+THIS LINE HAS ALREADY RUN
+====================================================
+*/
+
+// fetch("/api/data/1");
+
+/*
+====================================================
+ENTERING fetch FUNCTION
+====================================================
+*/
+
+// function fetch(url) {
+// url receives the argument
+// }
+
+/*
+After entering fetch:
+url = "/api/data/1"
+*/
+
+/*
+====================================================
+WHAT fetch RETURNS
+====================================================
+*/
+
+// return new Promise((resolve) => {
+// executor function runs immediately
+// });
+
+/*
+IMPORTANT:
+- fetch RETURNS a Promise IMMEDIATELY
+- That Promise is in PENDING state
+*/
+
+/*
+====================================================
+WHAT RUNS IMMEDIATELY INSIDE Promise
+====================================================
+*/
+
+// setTimeout(() => {
+//   console.log("Fetching from server:", url);
+
+//   resolve({
+//     ok: true,
+//     json() {
+//       return Promise.resolve({
+//         id: url,
+//         data: "Server Data for " + url,
+//       });
+//     },
+//   });
+// }, 1000);
+
+/*
+====================================================
+WHAT setTimeout DOES
+====================================================
+
+- Registers a timer with the browser / Node
+- Delay = 1000ms
+- Callback is scheduled
+- DOES NOT block JavaScript
+*/
+
+/*
+====================================================
+VERY IMPORTANT: WHAT DOES NOT HAPPEN YET
+====================================================
+
+❌ console.log inside setTimeout does NOT run yet
+❌ resolve(...) does NOT run yet
+❌ Promise is still PENDING
+*/
+
+/*
+====================================================
+fetch FUNCTION FINISHES EXECUTION
+====================================================
+
+- Promise has been returned
+- setTimeout is registered
+- fetch exits
+*/
+
+/*
+====================================================
+CONTROL RETURNS TO loadData
+====================================================
+
+loadData is still PAUSED at:
+await fetch("/api/data/1")
+
+Because the Promise is still PENDING
+*/
+
+/*
+====================================================
+STATE AT END OF STEP 4
+====================================================
+
+fetch:
+- Finished execution
+
+setTimeout:
+- Waiting in timer system (1000ms)
+
+Promise:
+- PENDING
+
+loadData:
+- PAUSED
+
+wrapper:
+- PAUSED
+
+run:
+- PAUSED
+
+cache:
+- {}
+*/
+
+/*
+====================================================
+FINAL RULE OF STEP 4
+====================================================
+
+fetch does NOT wait for setTimeout.
+It RETURNS a Promise immediately and exits.
+*/
+/********************************************************************
+ STEP 5 — setTimeout FIRES and Promise RESOLVES
+ This is where async work actually completes.
+********************************************************************/
+
+/*
+====================================================
+RECAP BEFORE STEP 5
+====================================================
+
+- fetch() has returned a PENDING Promise
+- setTimeout is waiting (1000ms)
+- loadData is PAUSED at:
+  await fetch("/api/data/1")
+
+- wrapper is PAUSED
+- run is PAUSED
+
+cache = {}
+*/
+
+/*
+====================================================
+AFTER 1000ms — TIMER EXPIRES
+====================================================
+
+The browser / Node timer system now executes
+the callback that was registered earlier.
+*/
+
+/*
+THIS CALLBACK RUNS NOW
+*/
+
+// console.log("Fetching from server:", url);
+
+/*
+Output:
+Fetching from server: /api/data/1
+*/
+
+/*
+====================================================
+PROMISE IS RESOLVED
+====================================================
+*/
+
+// resolve({
+//   ok: true,
+//   json() {
+//     return Promise.resolve({
+//       id: url,
+//       data: "Server Data for " + url,
+//     });
+//   },
+// });
+
+/*
+WHAT THIS DOES:
+
+- The fetch Promise changes from:
+  PENDING → FULFILLED
+
+- Fulfilled value is:
+*/
+
+// {
+//   ok: true,
+//   json: function
+// }
+
+/*
+====================================================
+IMPORTANT EVENT LOOP DETAIL
+====================================================
+
+- Resolving the Promise does NOT resume loadData immediately
+- The continuation is placed in the MICROTASK QUEUE
+- After current task finishes, JS will resume loadData
+*/
+
+/*
+====================================================
+STATE AT END OF STEP 5
+====================================================
+
+fetch Promise:
+- FULFILLED
+
+setTimeout:
+- DONE (removed)
+
+loadData:
+- READY to resume (microtask queued)
+
+wrapper:
+- Still PAUSED
+
+run:
+- Still PAUSED
+
+cache:
+- {}
+*/
+
+/*
+====================================================
+FINAL RULE OF STEP 5
+====================================================
+
+setTimeout resolves the Promise.
+Promise resolution schedules continuation via microtask.
+*/
+/********************************************************************
+ STEP 6 — loadData RESUMES after fetch Promise resolves
+********************************************************************/
+
+/*
+====================================================
+RECAP BEFORE STEP 6
+====================================================
+
+- fetch Promise is FULFILLED
+- loadData was PAUSED at:
+  const res = await fetch("/api/data/1");
+
+- wrapper is PAUSED
+- run is PAUSED
+
+cache = {}
+*/
+
+/*
+====================================================
+loadData CONTINUES EXECUTION
+====================================================
+*/
+
+// const res = await fetch("/api/data/1");
+
+/*
+Now this line COMPLETES.
+
+res becomes the resolved value of fetch Promise:
+*/
+
+// res = {
+//   ok: true,
+//   json: function
+// };
+
+/*
+====================================================
+NEXT LINE IN loadData EXECUTES
+====================================================
+*/
+
+if (!res.ok) {
+  throw new Error("Failed to fetch data");
+}
+
+/*
+WHAT HAPPENS HERE:
+
+- res.ok === true
+- !true === false
+- Condition FAILS
+- throw is SKIPPED
+- Execution continues normally
+*/
+
+/*
+====================================================
+NEXT LINE: PARSE JSON
+====================================================
+*/
+
+// const data = await res.json();
+
+/*
+WHAT HAPPENS HERE:
+
+- res.json() is CALLED
+- res.json() RETURNS a Promise immediately
+- await causes loadData to PAUSE AGAIN
+*/
+
+/*
+====================================================
+WHAT res.json() RETURNS
+====================================================
+*/
+
+// Promise.resolve({
+//   id: "/api/data/1",
+//   data: "Server Data for /api/data/1",
+// });
+
+/*
+====================================================
+STATE AT END OF STEP 6
+====================================================
+
+loadData:
+- PAUSED again at await res.json()
+
+wrapper:
+- Still PAUSED
+
+run:
+- Still PAUSED
+
+cache:
+- {}
+
+Promise from res.json():
+- PENDING (but will resolve immediately)
+*/
+
+/*
+====================================================
+FINAL RULE OF STEP 6
+====================================================
+
+await does NOT end execution.
+It pauses the function AGAIN when another Promise appears.
+*/
+/********************************************************************
+ STEP 7 — res.json() RESOLVES and loadData RETURNS
+********************************************************************/
+
+/*
+====================================================
+RECAP BEFORE STEP 7
+====================================================
+
+- loadData is PAUSED at:
+  const data = await res.json();
+
+- wrapper is PAUSED
+- run is PAUSED
+
+cache = {}
+*/
+
+/*
+====================================================
+res.json() PROMISE RESOLVES
+====================================================
+
+res.json() was:
+
+Promise.resolve({
+  id: "/api/data/1",
+  data: "Server Data for /api/data/1"
+});
+
+This Promise resolves immediately.
+*/
+
+/*
+====================================================
+loadData RESUMES
+====================================================
+*/
+
+// const data = await res.json();
+
+/*
+Now this line COMPLETES.
+
+data becomes:
+*/
+
+// data = {
+//   id: "/api/data/1",
+//   data: "Server Data for /api/data/1",
+// };
+
+/*
+====================================================
+NEXT LINE: RETURN DATA
+====================================================
+*/
+
+// return data;
+
+/*
+WHAT THIS DOES:
+
+- loadData Promise becomes FULFILLED
+- Fulfilled value = data object
+- Execution LEAVES loadData
+*/
+
+/*
+====================================================
+IMPORTANT PROMISE RULE
+====================================================
+
+In async functions:
+
+return value  → Promise RESOLVED
+throw error   → Promise REJECTED
+*/
+
+/*
+====================================================
+STATE AT END OF STEP 7
+====================================================
+
+loadData:
+- FINISHED execution
+
+Promise returned by loadData:
+- FULFILLED with data
+
+wrapper:
+- READY to resume
+
+run:
+- Still PAUSED
+
+cache:
+- {}
+*/
+
+/*
+====================================================
+FINAL RULE OF STEP 7
+====================================================
+
+Returning data from an async function
+resolves its Promise with that data.
+*/
+
+/********************************************************************
+ STEP 8 — WRAPPER FUNCTION RESUMES AFTER loadData
+********************************************************************/
+
+/*
+====================================================
+RECAP BEFORE STEP 8
+====================================================
+
+- loadData Promise is FULFILLED
+- loadData returned `data`
+
+data = {
+  id: "/api/data/1",
+  data: "Server Data for /api/data/1"
+}
+
+- wrapper was PAUSED at:
+  const result = await fn(key);
+
+- run is PAUSED
+
+cache = {}
+*/
+
+/*
+====================================================
+WRAPPER FUNCTION RESUMES
+====================================================
+*/
+
+// const result = await fn(key);
+
+/*
+This line now COMPLETES.
+
+Because:
+fn === loadData
+loadData Promise is fulfilled
+
+So:
+*/
+
+// result = {
+//   id: "/api/data/1",
+//   data: "Server Data for /api/data/1",
+// };
+
+/*
+====================================================
+NEXT LINE: STORE RESULT IN CACHE
+====================================================
+*/
+
+// cache[key] = result;
+
+/*
+Since:
+key = 1
+
+cache now becomes:
+*/
+
+// cache = {
+//   1: {
+//     id: "/api/data/1",
+//     data: "Server Data for /api/data/1",
+//   },
+// };
+
+/*
+====================================================
+NEXT LINE: RETURN RESULT FROM WRAPPER
+====================================================
+*/
+
+// return result;
+
+/*
+WHAT THIS DOES:
+
+- Wrapper async function Promise is FULFILLED
+- Fulfilled value = result
+- Execution LEAVES wrapper function
+*/
+
+/*
+====================================================
+IMPORTANT PROMISE FLOW
+====================================================
+
+loadData resolved → wrapper resumed
+wrapper returned → wrapper Promise resolved
+*/
+
+/*
+====================================================
+STATE AT END OF STEP 8
+====================================================
+
+wrapper:
+- FINISHED execution
+
+Promise returned by memoizedLoadData(1):
+- FULFILLED with data
+
+run:
+- READY to resume
+
+cache:
+- { 1: data }
+*/
+
+/*
+====================================================
+FINAL RULE OF STEP 8
+====================================================
+
+Wrapper function:
+- Receives data from loadData
+- Stores it in cache
+- Returns it to the caller
+*/
+/********************************************************************
+ STEP 9 — run() RESUMES AFTER await memoizedLoadData(1)
+********************************************************************/
+
+/*
+====================================================
+RECAP BEFORE STEP 9
+====================================================
+
+- memoizedLoadData(1) Promise is FULFILLED
+- Returned value is:
+
+{
+  id: "/api/data/1",
+  data: "Server Data for /api/data/1"
+}
+
+- run() was PAUSED at:
+  const a = await memoizedLoadData(1);
+
+cache = {
+  1: {
+    id: "/api/data/1",
+    data: "Server Data for /api/data/1"
+  }
+}
+*/
+
+/*
+====================================================
+run() RESUMES EXECUTION
+====================================================
+*/
+
+// const a = await memoizedLoadData(1);
+
+/*
+This line now COMPLETES.
+
+Variable assignment happens:
+*/
+
+// a = {
+//   id: "/api/data/1",
+//   data: "Server Data for /api/data/1",
+// };
+
+/*
+====================================================
+NEXT LINE IN run() EXECUTES
+====================================================
+*/
+
+// console.log(a);
+
+/*
+OUTPUT:
+{
+  id: "/api/data/1",
+  data: "Server Data for /api/data/1"
+}
+*/
+
+/*
+====================================================
+IMPORTANT CLARIFICATION
+====================================================
+
+- `await` is now DONE
+- run() continues like normal synchronous code
+- No async pause here
+*/
+
+/*
+====================================================
+STATE AT END OF STEP 9
+====================================================
+
+run():
+- Still running (not finished yet)
+
+cache:
+- {
+    1: data
+  }
+
+Call Stack:
+- run()
+
+No pending async tasks from first call
+*/
+
+/*
+====================================================
+FINAL RULE OF STEP 9
+====================================================
+
+When awaited Promise resolves:
+- await line completes
+- value is assigned
+- execution continues normally
+*/
+/********************************************************************
+ STEP 10 — SECOND CALL TO memoizedLoadData(1)
+ CACHE HIT (THIS IS THE PAYOFF)
+********************************************************************/
+
+/*
+====================================================
+RECAP BEFORE STEP 10
+====================================================
+
+cache already contains:
+
+cache = {
+  1: {
+    id: "/api/data/1",
+    data: "Server Data for /api/data/1"
+  }
+}
+
+run() is still executing
+*/
+
+/*
+====================================================
+THIS LINE EXECUTES
+====================================================
+*/
+
+// const b = await memoizedLoadData(1);
+
+/*
+====================================================
+ENTERING WRAPPER FUNCTION AGAIN
+====================================================
+*/
+
+async function wrapper(key) {
+  // same wrapper as before
+}
+
+/*
+After calling:
+memoizedLoadData(1)
+
+This means again:
+key = 1
+*/
+
+/*
+====================================================
+CACHE CHECK HAPPENS AGAIN
+====================================================
+*/
+
+if (key in cache) {
+  console.log("Returning from cache:", key);
+  return cache[key];
+}
+
+/*
+Now:
+1 in cache ✅ true
+
+This is called a CACHE HIT
+*/
+
+/*
+====================================================
+WHAT HAPPENS ON CACHE HIT
+====================================================
+
+- console.log runs
+- value is returned IMMEDIATELY
+- NO loadData call
+- NO fetch
+- NO setTimeout
+- NO await pause
+*/
+
+/*
+Console output:
+Returning from cache: 1
+*/
+
+/*
+====================================================
+PROMISE BEHAVIOR
+====================================================
+
+Because wrapper is async:
+
+return cache[key];
+
+This automatically becomes:
+Promise.resolve(cache[key])
+*/
+
+/*
+====================================================
+run() RESUMES IMMEDIATELY
+====================================================
+*/
+
+// const b = await memoizedLoadData(1);
+
+/*
+This line completes instantly.
+
+b becomes:
+*/
+
+// b = {
+//   id: "/api/data/1",
+//   data: "Server Data for /api/data/1",
+// };
+
+/*
+====================================================
+NEXT LINE IN run() EXECUTES
+====================================================
+*/
+
+// console.log(b);
+
+/*
+OUTPUT:
+{
+  id: "/api/data/1",
+  data: "Server Data for /api/data/1"
+}
+*/
+
+/*
+====================================================
+STATE AT END OF STEP 10
+====================================================
+
+cache:
+- unchanged
+- still contains key 1
+
+run():
+- continues execution
+
+NO async delay occurred
+*/
+
+/*
+====================================================
+FINAL RULE OF STEP 10
+====================================================
+
+Cache hit means:
+- No network
+- No async pause
+- Instant return
+*/
+/********************************************************************
+ STEP 11 — THIRD CALL (NEW KEY → CACHE MISS AGAIN)
+ THIS IS THE FINAL STEP
+********************************************************************/
+
+/*
+====================================================
+RECAP BEFORE STEP 11
+====================================================
+
+cache currently contains:
+
+cache = {
+  1: {
+    id: "/api/data/1",
+    data: "Server Data for /api/data/1"
+  }
+}
+
+run() is still executing
+*/
+
+/*
+====================================================
+THIS LINE EXECUTES
+====================================================
+*/
+
+// const c = await memoizedLoadData(2);
+
+/*
+====================================================
+ENTERING WRAPPER FUNCTION
+====================================================
+*/
+
+// async function wrapper(key) {
+// same wrapper, same cache
+// }
+
+/*
+After calling:
+memoizedLoadData(2)
+
+This means:
+key = 2
+*/
+
+/*
+====================================================
+CACHE CHECK
+====================================================
+*/
+
+// if (key in cache) {
+//   return cache[key];
+// }
+
+/*
+Now:
+2 in cache ❌ false
+
+This is a CACHE MISS
+*/
+
+/*
+====================================================
+CACHE MISS → CALL ORIGINAL FUNCTION
+====================================================
+*/
+
+// const result = await fn(key);
+
+/*
+fn === loadData
+
+So this becomes:
+await loadData(2)
+*/
+
+/*
+====================================================
+WHAT HAPPENS NOW
+====================================================
+
+- Same flow as FIRST CALL
+- fetch("/api/data/2") is called
+- setTimeout waits 1000ms
+- Promise resolves
+- res.json() resolves
+- loadData returns data
+*/
+
+/*
+Returned data:
+*/
+
+// {
+//   id: "/api/data/2",
+//   data: "Server Data for /api/data/2"
+// }
+
+/*
+====================================================
+STORE RESULT IN CACHE
+====================================================
+*/
+
+// cache[key] = result;
+
+/*
+cache now becomes:
+*/
+
+// cache = {
+//   1: {
+//     id: "/api/data/1",
+//     data: "Server Data for /api/data/1",
+//   },
+//   2: {
+//     id: "/api/data/2",
+//     data: "Server Data for /api/data/2",
+//   },
+// };
+
+/*
+====================================================
+RETURN RESULT FROM WRAPPER
+====================================================
+*/
+
+// return result;
+
+/*
+Wrapper Promise is fulfilled
+*/
+
+/*
+====================================================
+run() RESUMES
+====================================================
+*/
+
+// const c = await memoizedLoadData(2);
+
+/*
+Assignment happens:
+*/
+
+// c = {
+//   id: "/api/data/2",
+//   data: "Server Data for /api/data/2",
+// };
+
+/*
+====================================================
+NEXT LINE EXECUTES
+====================================================
+*/
+
+// console.log(c);
+
+/*
+OUTPUT:
+{
+  id: "/api/data/2",
+  data: "Server Data for /api/data/2"
+}
+*/
+
+/*
+====================================================
+run() FINISHES
+====================================================
+*/
+
+/*
+====================================================
+FINAL STATE OF PROGRAM
+====================================================
+
+cache = {
+  1: data1,
+  2: data2
+}
+
+All async work completed
+No pending Promises
+Program execution finished
+*/
+
+/*
+====================================================
+FINAL MASTER RULE (MEMORIZE THIS)
+====================================================
+
+1) First call → cache miss → fetch → store
+2) Same key → cache hit → instant return
+3) New key → cache miss → fetch → store
+
+THIS IS ASYNC MEMOIZATION
+*/

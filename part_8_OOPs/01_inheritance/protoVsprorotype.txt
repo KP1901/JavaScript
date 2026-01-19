@@ -1,0 +1,74 @@
+
+# __proto__ vs [[Prototype]] Deep Dive
+
+## 1. [[Prototype]] is the REAL internal link
+
+const person = { species: "Homo sapiens" };
+const employee = Object.create(person);
+
+console.log(employee.species); // "Homo sapiens"
+console.log(Object.getPrototypeOf(employee) === person); // true ✅
+
+## 2. __proto__ is a Getter/Setter for [[Prototype]]
+
+console.log(employee.__proto__ === person); // true ✅
+
+Object.setPrototypeOf(employee, {});
+console.log(Object.getPrototypeOf(employee)); // now points to {}
+
+employee.__proto__ = person; // sets it back (not recommended for performance)
+
+## 3. Objects Don't Have .prototype Property
+
+const obj = {};
+console.log(obj.prototype); // undefined ❌
+console.log(Object.getPrototypeOf(obj) === Object.prototype); // true ✅
+
+## 4. Functions Have .prototype Property
+
+function Person() {}
+console.log(Person.prototype); // { constructor: Person }
+
+const person1 = new Person();
+console.log(Object.getPrototypeOf(person1) === Person.prototype); // true ✅
+
+## 5. Proof That __proto__ is Just an Accessor
+
+console.log(Object.getOwnPropertyDescriptor(Object.prototype, "__proto__"));
+// Output:
+// {
+//   get: ƒ __proto__(),
+//   set: ƒ __proto__(),
+//   enumerable: false,
+//   configurable: true
+// }
+
+## 6. [[Prototype]] Still Exists Even If __proto__ is Deleted
+
+delete Object.prototype.__proto__;
+
+const obj2 = {};
+console.log(Object.getPrototypeOf(obj2)); // still works ✅ (hidden [[Prototype]] is still there)
+
+## Summary
+
+- [[Prototype]] = The real hidden link connecting objects.
+- __proto__ = A getter/setter defined on Object.prototype that allows you to access/change [[Prototype]].
+
+Think of:
+[[Prototype]] = the actual road
+__proto__ = the window that lets you see/change the road.
+
+----------------------------------
+1️⃣ __proto__
+Exists on every normal object instance.
+
+It’s a hidden link to the object’s prototype (the object it inherits from).
+
+----------------------------------
+2️⃣ prototype
+
+Exists only on functions (constructor functions or classes).
+
+It is an object that will become the __proto__ of instances created by that function.
+so proto present in normal object and prototype exist on portoftype obejct or function constructor object so function ojbect prototype also have proto which linkd to their parent prototype

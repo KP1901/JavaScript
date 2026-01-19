@@ -1,0 +1,26 @@
+✅ 1) extends – Links Child Prototype to Parent Prototype
+
+✅ Corrected:
+The extends keyword sets up inheritance by linking Child.prototype to Parent.prototype, so that the child class inherits all methods from the parent class.
+
+✅ 2) constructor() – Initializes Instance Properties
+
+✅ Corrected:
+-The constructor() is a special method used to initialize instance properties when a   class is instantiated. It acts like a function constructor in older JavaScript.
+-✔️ constructor() — Initializes Properties for the Current Class
+-"In a child class, the constructor initializes the child’s own properties, and super() is used to call the parent constructor to initialize the parent's properties within the child instance."
+
+✅ 3) super() – Calls Parent Class Constructor
+
+✅ Corrected:
+In a subclass, super() is used inside the constructor to call the parent class's constructor. This allows the child to inherit and initialize properties from the parent.
+
+✅ Corrected:
+In a subclass, super() is used inside the constructor to call the parent class's constructor. This allows the child to inherit and initialize properties from the parent.
+
+✅ 4) this – Refers to the Current Instance
+
+✅ Corrected:
+this refers to the current instance of the class (i.e., the object being created). It gives access to the instance's properties and methods.
+
+A class in JavaScript is essentially a special type of function called a constructor function. Like any function, it is an object itself and has a prototype property.

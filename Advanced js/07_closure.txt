@@ -1,0 +1,114 @@
+Closure Theory
+
+-------------------------------------------------------------------------------------------------------
+Definition
+
+A closure in JavaScript is created when an inner function remembers and has access to variables from its outer function, even after the outer function has finished executing.
+
+In simple words:
+A closure “closes over” the variables of its outer function.
+
+-------------------------------------------------------------------------------------------------------
+
+Why Closures Exist
+
+-Every function in JS has access to its own local variables, outer function variables, and global variables.
+-Normally, when a function finishes execution, its local variables are destroyed.
+-But if an inner function references those variables, they are kept alive in memory — this is a closure.
+
+-------------------------------------------------------------------------------------------------------
+Structure of a Closure
+function outer() {
+    let outerVar = "I am outer"; // outer function variable
+
+    function inner() {
+        console.log(outerVar); // inner function accessing outerVar
+    }
+
+    return inner;
+}
+
+const innerFunc = outer(); // outer() finishes execution
+innerFunc(); // "I am outer" ← still accessible!
+
+Explanation:
+
+1outerVar belongs to outer() scope.
+2.Normally it would disappear after outer() returns.
+3.But inner() is returned and stored in innerFunc.
+4.innerFunc() still has access to outerVar → closure in action.
+
+-------------------------------------------------------------------------------------------------------
+
+Characteristics of Closures
+
+1.Access to Outer Variables: Inner function can access variables from the outer function.
+2.Persistence: Outer function’s variables live in memory as long as inner function exists.
+3.Private Variables: Variables of outer function cannot be accessed directly from outside, only via the inner function.
+4.Function Factory: Closures allow functions to be customized and returned with private state.
+
+=======================================================================================================
+
+1. Data Privacy (Encapsulation)
+
+Closures let you hide internal variables so they cannot be accessed directly from outside. This is like private variables in other programming languages.
+
+function createCounter() {
+    let count = 0; // private variable
+
+    return {
+        increment: function() {
+            count++;
+            return count;
+        },
+        decrement: function() {
+            count--;
+            return count;
+        },
+        getCount: function() {
+            return count;
+        }
+    };
+}
+
+const counter = createCounter();
+console.log(counter.increment()); // 1
+console.log(counter.increment()); // 2
+console.log(counter.getCount());  // 2
+console.log(counter.count);       // undefined (cannot access directly)
+
+Explanation:
+
+-count exists only inside createCounter().
+-increment, decrement, getCount are inner functions, so they close over count.
+-The variable is protected from outside access, giving data privacy.
+
+
+=======================================================================================================
+
+2. Memoization (Caching Computation) = “remember the result so you don’t do the same work twice.”
+
+Closures can store results of expensive computations in a private cache, so the function doesn’t repeat work unnecessarily.
+
+Example: Fibonacci with Memoization
+
+function memoizedFibonacci() {
+    const cache = {}; // private cache
+
+    return function fib(n) {
+        if (n in cache) return cache[n]; // return cached result
+        if (n <= 1) return n;
+        cache[n] = fib(n - 1) + fib(n - 2); // store result
+        return cache[n];
+    };
+}
+
+const fib = memoizedFibonacci();
+console.log(fib(10)); // 55
+console.log(fib(50)); // very fast due to memoization
+
+Explanation:
+
+-cache is private and persists because of closure.
+-Each call checks the cache first → avoids recalculating the same value.
+-This is performance optimization using closures.

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script src="pr1.js" defer></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        background: #01281cf6;
+        color: #fff;
+        padding: 20px;
+      }
+      .right {
+        flex-basis: 50%;
+        display: grid;
+        background-color: red;
+        grid-template-columns: repeat(1fr, 4);
+        gap: 30px;
+      }
+      .left {
+        width: 100%;
+        flex-basis: 50%;
+        margin: 0 auto;
+      }
+      .top-section {
+        display: flex;
+        align-items: center;
+        margin: 0 auto;
+      }
+      .bottom-section {
+        display: flex;
+        align-items: center;
+        margin: 0 auto;
+      }
+
+      .item {
+        width: 300px;
+        height: 100%;
+        margin: 10px;
+        background: black;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .list {
+        display: inline-block;
+        padding: 20px;
+        background: rgb(104, 104, 180);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left">
+        <div class="list" draggable="true">Item 1</div>
+        <div class="list" draggable="true">Item 2</div>
+        <div class="list" draggable="true">Item 3</div>
+        <div class="list" draggable="true">Item 4</div>
+        <div class="list" draggable="true">Item 5</div>
+      </div>
+      <div class="right">
+        <div class="top-section">
+          <div class="delete-zone item">Drag Here to delete</div>
+          <div class="edit-zone item">Drag Here to send Edit</div>
+        </div>
+        <div class="bottom-section">
+          <div class="deleted-files item" aria-placeholder="hi"></div>
+          <div class="edited-files item"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

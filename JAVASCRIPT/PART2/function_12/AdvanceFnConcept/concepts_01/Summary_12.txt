@@ -1,0 +1,40 @@
+📌 Fetch behavior — COMPLETE LIST
+1️⃣ Network-level failures (Promise ❌ rejected)
+
+These are real failures where the request cannot be made.
+
+| Situation                  | HTTP status | Promise state | `response`    |
+| -------------------------- | ----------- | ------------- | ------------- |
+| Internet OFF               | —           | ❌ rejected    | ❌ no response |
+| DNS failure (wrong domain) | —           | ❌ rejected    | ❌ no response |
+| Server down                | —           | ❌ rejected    | ❌ no response |
+| CORS blocked               | —           | ❌ rejected    | ❌ no response |
+| Request timeout            | —           | ❌ rejected    | ❌ no response |
+
+
+👉 Only these go to .catch() / rejected in allSettled
+
+2️⃣ HTTP-level failures (Promise ✅ fulfilled)
+
+Request reached the server, server replied with an error code.
+
+| Situation      | HTTP status | Promise state | `response.ok` |
+| -------------- | ----------- | ------------- | ------------- |
+| Wrong URL path | 404         | ✅ fulfilled   | ❌ false       |
+| Unauthorized   | 401         | ✅ fulfilled   | ❌ false       |
+| Forbidden      | 403         | ✅ fulfilled   | ❌ false       |
+| Server error   | 500         | ✅ fulfilled   | ❌ false       |
+| Bad request    | 400         | ✅ fulfilled   | ❌ false       |
+
+
+👉 These NEVER reject automatically
+
+3️⃣ Successful responses (Promise ✅ fulfilled)
+| Situation  | HTTP status | Promise state | `response.ok` |
+| ---------- | ----------- | ------------- | ------------- |
+| Success    | 200         | ✅ fulfilled   | ✅ true        |
+| Created    | 201         | ✅ fulfilled   | ✅ true        |
+| No content | 204         | ✅ fulfilled   | ✅ true        |
+
+
+Fetch only rejects for network errors, NOT for HTTP errors

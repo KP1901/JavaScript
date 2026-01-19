@@ -1,0 +1,20 @@
+// achiveve objecet inheritacne chaining
+
+const employee = Object.create(person);
+
+This creates a brand-new empty object.
+But — the important part — its [[Prototype]] (or __proto__) is set to person.
+
+const employee = {};               // empty object
+Object.setPrototypeOf(employee, person); // link employee.__proto__ = person
+
+// achieve proptotype inheritacce chaining
+
+ employee.proptotype = Object.create(person.protyotype);
+
+ // behind the scenes, JS does something like:
+let temp = {};                         // 1. create a new object
+Object.setPrototypeOf(temp, Shape.prototype); // 2. link its __proto__ to Shape.prototype
+Rectangle.prototype = temp;            // 3. assign it to Rectangle.prototype
+
+so temp contains => Object.create(shape.proptotype)

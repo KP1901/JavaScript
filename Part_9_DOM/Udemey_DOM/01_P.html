@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background: #1a1a1a;
+        color: #fff;
+      }
+      h1 {
+        color: #fff;
+      }
+      .highlight {
+        background-color: yellow;
+        color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- example 8 form handling -->
+    <section id="example-8">
+      <h2>Form Handling</h2>
+      <form id="feedbackForm">
+        <label for="feedbackInput">Your Feedback:</label>
+        <input
+          type="text"
+          name="feedbackInput"
+          id="feedbackInput"
+          placeholder="Enter feeedback"
+        />
+        <button id="sub-btn" type="submit">Submit Feedback</button>
+      </form>
+      <p id="feedbackDisplay"></p>
+    </section>
+
+    <!-- example 9 dom content Loaded -->
+    <section>
+      <h2>Dom Content Loaded</h2>
+      <p id="domStatus">Wating for dom to load</p>
+    </section>
+
+    <!-- example 10 css classes manipulation -->
+    <section id="example-10">
+      <h2>css classes Manipulation</h2>
+      <p id="descriptionText">This text will change bg color!</p>
+      <button id="toggleHighlight">Toggle Highlight</button>
+    </section>
+
+    <script>
+      // example 8
+      let getInputFromFeedback = document.getElementById("feedbackInput");
+      let p = document.getElementById("feedbackDisplay");
+
+      document
+        .querySelector("#sub-btn")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          p.innerText = `Feedback is :${getInputFromFeedback.value}`;
+        });
+
+      // example 9
+      document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("domStatus").textContent = "Dom Fully Loaded";
+      });
+
+      //   example 10
+      const toggleBtn = document.getElementById("toggleHighlight");
+      toggleBtn.addEventListener("click", function () {
+        const descriptionText = document.getElementById("descriptionText");
+        // if (!descriptionText.classList.contains("highlight")) {
+        //   descriptionText.classList.add("highlight");
+        // } else {
+        //   descriptionText.classList.remove("highlight");
+        // }
+        descriptionText.classList.toggle("highlight");
+      });
+    </script>
+  </body>
+</html>

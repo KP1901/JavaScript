@@ -1,0 +1,93 @@
+// In Async context
+
+// 1. already resolve promise with two way
+
+// way 1 async function
+async function getData() {
+  return 10;
+}
+
+// way 2 explicit promise
+
+function getData() {
+  return Promise.resolve(10);
+}
+
+// 2. function return Promise
+
+function getData() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(10);
+    }, 1000);
+  });
+}
+
+/*
+await works with ANY function that returns a Promise
+It does NOT matter how the Promise was created.
+*/
+
+// sequential vs parallel execution of Promise
+
+
+1️⃣ Sequential (one after another)
+Using async / await
+async function run() {
+  const data = await fetchData(); // wait here
+  console.log(data);
+}
+run();
+
+
+➡️ fetchData() starts
+➡️ JavaScript waits
+➡️ Then logs result
+➡️ Only one task at a time
+
+Using .then()
+getData()
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+
+➡️ Same behavior
+➡️ Waits for result
+➡️ Logs when done
+
+🔑 Still sequential
+
+2️⃣ Parallel (together)
+Using async / await
+async function run() {
+  const [a, b] = await Promise.all([fetchData(), fetchUser()]);
+  console.log(a, b);
+}
+run();
+
+
+➡️ fetchData() starts
+➡️ fetchUser() starts at the same time
+➡️ await waits for both
+
+Using .then()
+Promise.all([fetchData(), fetchUser()]).then(([a, b]) => {
+  console.log(a, b);
+});
+
+
+➡️ Same thing
+➡️ Same timing
+➡️ Just different syntax
+
+🔑 Very important rule (easy words)
+
+Parallel or sequential depends on how you START functions
+NOT on async/await or .then()
+
+Start one → wait → start next → sequential
+Start both together → wait → parallel

@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="style.css" type="text/css" rel="stylesheet" />
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Lucida Sans";
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p {
+        margin: 10px 0px;
+      }
+      header {
+        background-color: #f39c12;
+        color: white;
+        display: flex;
+      }
+      .header-title {
+        padding: 20px 50px;
+        font-weight: bold;
+        font-size: 28px;
+        width: 75%;
+      }
+      .header-login {
+        width: 25%;
+        padding: 20px 50px;
+      }
+      .login-btn {
+        padding: 10px 20px;
+        border: none;
+      }
+      .main-content-area {
+        margin: 20px 20px;
+        padding: 20px 20px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        border-radius: 2px;
+      }
+      .nav-menu-items {
+        padding: 0px 0px;
+        display: flex;
+        /* border: #123 1.5px solid; */
+      }
+      .menu-item {
+        padding: 10px 15px;
+        margin-top: 20px;
+        margin-left: 0px;
+        margin-right: 0px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        background-color: #dedede;
+      }
+      .home-page,
+      .emi-calculator-page,
+      .apply-loan-page {
+        padding: 20px 20px;
+        border: #dedede 2px solid;
+      }
+
+      .home-page-banner {
+        /* background-color: #fdebd0; */
+        padding: 20px 30px;
+        color: #28282b;
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+      }
+      .apply-now-button {
+        border: solid 2px transparent;
+        padding: 10px 20px;
+        border-radius: 3px;
+        background-color: #f39c12;
+        font-weight: bold;
+      }
+      .know-more-button {
+        border: #f39c12 2px solid;
+        padding: 10px 20px;
+        border-radius: 3px;
+        color: #f39c12;
+        font-weight: bold;
+        background-color: transparent;
+      }
+
+      .our-services-container {
+        margin-top: 40px;
+        display: flex;
+        flex-wrap: wrap;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        border-radius: 5px;
+      }
+      .our-services {
+        font-size: 14px;
+        padding: 10px 20px;
+        margin: 10px 10px;
+        width: 45%;
+      }
+      a {
+        text-decoration: none;
+        color: #f39c12;
+      }
+
+      .emi-calculator-form,
+      .apply-for-loan-form {
+        padding: 20px 20px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      }
+      .column {
+        display: flex;
+        width: 100%;
+      }
+      .field-column-1 {
+        width: 100%;
+        padding: 2px;
+        margin-bottom: 20px;
+      }
+      .field-column-2 {
+        width: 50%;
+        padding: 2px;
+        margin-bottom: 20px;
+      }
+      input[type="text"],
+      input[type="number"],
+      input[type="email"],
+      input[type="date"],
+      select {
+        width: 100%;
+        height: 36px;
+        border-radius: 3px;
+        border: #dedede 2px solid;
+      }
+      .calculate-emi-button {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        background-color: #f39c12;
+        border: none;
+        border-radius: 3px;
+        width: 100%;
+        margin-top: 20px;
+      }
+      .apply-loan-button {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        background-color: #f39c12;
+        border: none;
+        border-radius: 3px;
+        width: 100%;
+        margin-top: 20px;
+      }
+      .modal-overlay {
+        background: rgba(0, 0, 0, 0.7);
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+
+      .modal-wrapper {
+        width: 520px;
+        background: ghostwhite;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .modal-header {
+        padding-left: 20px;
+        border-bottom: #ddd 2px solid;
+      }
+
+      .modal-footer {
+        padding: 10px 20px;
+        display: flex;
+        border-top: #ddd 2px solid;
+      }
+
+      .modal-content {
+        margin: 50px 50px;
+      }
+
+      .close-modal-btn {
+        padding: 8px 25px;
+        background: #f39c12;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 15px;
+        color: ghostwhite;
+        font-weight: 5px;
+        margin-left: auto;
+        cursor: pointer;
+        border: none;
+      }
+      .close-dymodal-btn {
+        padding: 8px 25px;
+        background: #f39c12;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 15px;
+        color: ghostwhite;
+        font-weight: 5px;
+        margin-left: auto;
+        cursor: pointer;
+        border: none;
+      }
+      #close-btn {
+        padding: 8px 25px;
+        background: #f39c12;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 15px;
+        color: ghostwhite;
+        font-weight: 5px;
+        margin-left: auto;
+        cursor: pointer;
+        border: none;
+      }
+      table {
+        width: 100%;
+      }
+      td {
+        padding: 8px 0px;
+      }
+      .hide {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-title">DOM Manipulation</div>
+      <div class="header-login">
+        <button class="login-btn">Login</button>
+      </div>
+    </header>
+    <div class="main-content-area">
+      <div class="nav-menu-items">
+        <div class="menu-item" onclick="renderSection('home-page')">Home</div>
+        <div class="menu-item" onclick="renderSection('emi-calculator-page')">
+          EMI Calculator
+        </div>
+        <div class="menu-item" onclick="renderSection('apply-loan-page')">
+          Apply for Loan
+        </div>
+      </div>
+      <div class="main-section-area">
+        <!--THIS SECTION IS FOR HOME PAGE-->
+        <section class="home-page">
+          <div class="home-page-banner">
+            <div>
+              <h1>
+                <strong>WE TAKE YOUR BANKING SECURITY</strong>
+              </h1>
+              <p style="font-size: 24px">SERIOUSLY !</p>
+              <div style="margin-bottom: 50px">
+                Avail best loan offers from our bank and enjoy low rate of
+                interest for flexible duration. Apply now and get a call.
+              </div>
+              <button class="apply-now-button">APPLY NOW</button>
+              <button class="know-more-button">KNOW MORE</button>
+            </div>
+          </div>
+
+          <h2>Home Page</h2>
+          <p class="about-us" id="intro">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur
+          </p>
+
+          <p class="about-us" id="about"></p>
+          <h2 class="about-us" id="offers"></h2>
+          <div class="our-services-container">
+            <div class="our-services">
+              <h4>Savings Account</h4>
+              <p>Open instant savings account in 5 minutes</p>
+              <a href="#">OPEN NOW</a>
+            </div>
+            <div class="our-services">
+              <h4>Home Loan</h4>
+              <p>Digital sanction with benifits of special processing fee.</p>
+              <a href="#">AVAIL HOME LOAN NOW</a>
+            </div>
+            <div class="our-services">
+              <h4>Credit Card</h4>
+              <p>Get the right card for you.</p>
+              <a href="#">GET CREDIT CARD INSTANTLY</a>
+            </div>
+            <div class="our-services">
+              <h4>Personal Loan</h4>
+              <p>Get personal loan for all your needs.</p>
+              <a href="#">AVAIL PERSONAL LOAN NOW</a>
+            </div>
+          </div>
+        </section>
+
+        <!--THIS SECTION IS FOR EMI CALCULATOR PAGE-->
+        <section class="emi-calculator-page">
+          <h2>EMI Calculator</h2>
+          <div class="emi-calculator-form">
+            <div class="column">
+              <div class="field-column-2">
+                <div>Enter Amount</div>
+                <input
+                  type="number"
+                  min="50000"
+                  max="10000000"
+                  step="10000"
+                  id="amount"
+                />
+              </div>
+              <div class="field-column-2">
+                <div>Enter Duration</div>
+                <input
+                  type="number"
+                  min="12"
+                  max="72"
+                  step="12"
+                  id="duration"
+                  required
+                />
+              </div>
+            </div>
+            <div class="column">
+              <div class="field-column-1">
+                <div>Enter Interest Rate</div>
+                <input
+                  type="number"
+                  min="8.4"
+                  max="14.2"
+                  step="0.2"
+                  id="roi"
+                  required
+                />
+              </div>
+            </div>
+            <div class="column">
+              <div class="field-column-1">
+                <!-- so it suitable because every time the new object create because handling content dynamically.by using inline even new object will always get calculateEMI() -->
+                <button class="calculate-emi-button">Calculate EMI</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!--THIS SECTION IS FOR APPLY FOR LOAN PAGE-->
+        <section class="apply-loan-page">
+          <h2>Apply for Loan</h2>
+          <form class="apply-for-loan-form" id="loan-form">
+            <div class="column">
+              <div class="field-column-2">
+                <div>First Name</div>
+                <input type="text" id="fname" />
+              </div>
+              <div class="field-column-2">
+                <div>Last Name</div>
+                <input type="text" id="lname" />
+              </div>
+            </div>
+            <div class="column">
+              <div class="field-column-1">
+                <div>Email</div>
+                <input type="email" id="email" />
+              </div>
+            </div>
+            <div class="column">
+              <div class="field-column-2">
+                <div>Occupation</div>
+                <select id="occupation" name="occupation">
+                  <option value="GovernmentEmp">Goverment Employee</option>
+                  <option value="salaried">Salaried Employee</option>
+                  <option value="selfEmployed">Self Employed</option>
+                </select>
+              </div>
+              <div class="field-column-2">
+                <div>Date of Birth</div>
+                <input type="date" id="dob" />
+              </div>
+            </div>
+            <div class="column">
+              <div class="field-column-1">
+                <span style="display: inline-block; width: 150px"
+                  >Gender:
+                </span>
+                <input type="radio" id="male" name="gender" value="male" />
+                Male
+                <input type="radio" id="female" name="gender" value="female" />
+                Female
+                <input type="radio" id="none" name="gender" value="none" /> Do
+                not Specify
+              </div>
+            </div>
+            <div class="column">
+              <div class="field-column-1">
+                <span style="display: inline-block; width: 150px"
+                  >How to contact:
+                </span>
+                <input
+                  type="checkbox"
+                  id="phone"
+                  name="contact"
+                  value="phone"
+                />
+                Phone
+                <input
+                  type="checkbox"
+                  id="email"
+                  name="contact"
+                  value="email"
+                />
+                Email
+                <input type="checkbox" id="sms" name="contact" value="sms" />
+                SMS
+              </div>
+            </div>
+            <div class="column">
+              <div class="field-column-1">
+                <button class="apply-loan-button" id="loan-btn" type="button">
+                  Apply For loan
+                </button>
+              </div>
+            </div>
+          </form>
+        </section>
+      </div>
+
+      <!--Calculate EMI Modal Window-->
+      <div class="modal-overlay hide" id="calculate-emi-modal">
+        <div class="modal-wrapper">
+          <div class="modal-header">
+            <h2>Calculated EMI</h2>
+          </div>
+          <div class="modal-content">
+            <table>
+              <tr>
+                <td style="font-weight: bold; color: #f39c12">Monthly EMI:</td>
+                <td id="calculated-emi-cell">$4233.00</td>
+              </tr>
+              <tr>
+                <td style="font-weight: bold; color: #f39c12">
+                  Total Payable Amount
+                </td>
+                <td id="calculated-payable-amount-cell">$423233.00</td>
+              </tr>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button class="close-modal-btn" type="button">OK</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="modal-overlay" id="calculate-emi-modal">
+            <div class="modal-wrapper">
+                <div class="modal-header">
+                    <h2>Loan Request Received</h2>
+                </div>            
+                <div class="modal-content">
+                    <h3>Hello, John</h3>
+                    <p style="margin-top: 30px;">
+                        We have received your loan request and we 
+                        will contact you through your provided contact
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button class="close-modal-btn">OK</button>
+                </div>
+            </div>
+        </div> -->
+    </div>
+    <script>
+      /*
+                       let h2 = document.querySelector("h2");
+                       h2.textContent = "Welcome to our Bank";
+
+                       let h1 = document.querySelector("h1");
+                       h1.innerHTML = "<b>WE HAVE THE BEST LOAF OFFER FOR YOU.</b>";
+
+                       let bannerDiv = document.querySelector(".home-page-banner");
+                       bannerDiv.style.backgroundColor = "#FDEBD0";
+                       bannerDiv.style.color = "gray";
+
+                       // removing css class
+                       bannerDiv.classList.remove("home-page-banner");
+                       // adding css class
+                       bannerDiv.classList.add("home-page-banner");
+                       */
+      let modal = document.querySelector("#calculate-emi-modal");
+
+      function calculateEMI() {
+        let principal = document.querySelector("#amount").value;
+        let duration = document.querySelector("#duration").value;
+        let rate = document.querySelector("#roi").value / 100 / 12;
+
+        let emi = (
+          (principal * rate * Math.pow(1 + rate, duration)) /
+          (Math.pow(1 + rate, duration) - 1)
+        ).toFixed(2);
+
+        let totalPayable = (emi * duration).toFixed(2);
+
+        // return { emi: emi.toFixed(2), totalPayable: totalPayable.toFixed(2) };
+        showModal(emi, totalPayable);
+      }
+
+      function showModal(emi, totalPayable) {
+        modal.classList.remove("hide");
+
+        const emiCell = document.getElementById("calculated-emi-cell");
+        const payableCell = document.getElementById(
+          "calculated-payable-amount-cell"
+        );
+        // let emiResult = calculateEMI();
+        // emiCell.innerText = emiResult.emi;
+        // payableCell.innerText = emiResult.totalPayable;
+        emiCell.innerText = emi;
+        payableCell.innerText = totalPayable;
+      }
+
+      function hideModal() {
+        modal.classList.add("hide");
+      }
+
+      let closeBtn = document.querySelector(".close-modal-btn");
+      closeBtn.addEventListener("click", hideModal);
+
+      // const emiBtn = document.querySelector(".calculate-emi-button");
+      // not suitable
+      // emiBtn.addEventListener("click", calculateEMI);
+
+      // not suitable also
+      // emiBtn.onclick = calculateEMI;
+
+      let mainSectionArea = document.querySelector(".main-section-area");
+      let homePage = document.querySelector(".home-page");
+      let emiPage = document.querySelector(".emi-calculator-page");
+      let loanPage = document.querySelector(".apply-loan-page");
+
+      // so here since object get removed so it will not gone work so use event delegation on static element (it will work with inline event but that is not good approach)
+
+      mainSectionArea.addEventListener("click", function (e) {
+        if (e.target.classList.contains("calculate-emi-button")) {
+          calculateEMI();
+        }
+      });
+
+      function renderSection(selectedTab) {
+        mainSectionArea.innerHTML = "";
+
+        switch (selectedTab) {
+          case "home-page":
+            mainSectionArea.innerHTML = homePage.outerHTML;
+            break;
+          case "emi-calculator-page":
+            mainSectionArea.innerHTML = emiPage.outerHTML;
+            break;
+          case "apply-loan-page":
+            mainSectionArea.innerHTML = loanPage.outerHTML;
+            break;
+        }
+      }
+
+      // so here since object get removed so it will not gone work so use event delegation on static element
+
+      // const applyButton = document.querySelector(".apply-now-button");
+
+      // // click is event,onclick is event listener , function () is event handler
+      // applyButton.onclick = function () {
+      //   alert("Thank you for applying !");
+      // };
+
+      // applyButton.onmouseover = function () {
+      //   applyButton.style.backgroundColor = "transparent";
+      //   applyButton.style.border = "#F39C12 2px solid";
+      // };
+      // applyButton.onmouseout = function () {
+      //   applyButton.style.backgroundColor = "#f39c12";
+      //   applyButton.style.border = "solid 2px transparent";
+      // };
+
+      // const header = document.querySelector(".header-title");
+      // header.addEventListener("mouseover", function () {
+      //   header.style.color = "#000";
+      // });
+
+      // header.addEventListener("mouseout", function () {
+      //   header.style.color = "#fff";
+      // });
+
+      mainSectionArea.addEventListener("mouseover", function (event) {
+        if (event.target.classList.contains("apply-now-button")) {
+          event.target.style.backgroundColor = "transparent";
+          event.target.style.border = "#F39C12 2px solid";
+        }
+      });
+      mainSectionArea.addEventListener("mouseout", function (event) {
+        if (event.target.classList.contains("apply-now-button")) {
+          event.target.style.backgroundColor = "#f39c12";
+          event.target.style.border = "solid 2px transparent";
+        }
+      });
+
+      // since we are using button inside form so it act likes a submit button so your log will never in console either do button type as button or use preventdedfault
+      mainSectionArea.addEventListener("click", function (e) {
+        if (e.target.classList.contains("apply-loan-button")) {
+          e.preventDefault();
+          const fname = document.getElementById("fname").value;
+          const lname = document.getElementById("lname").value;
+          const email = document.getElementById("email").value;
+          const occupation = document.getElementById("occupation").value;
+          const dob = document.getElementById("dob").value;
+
+          const gender = document.querySelector("input[name='gender']:checked");
+          //   showMessage();
+          //   console.log(gender.value);
+
+          // const contact = [];
+          // const contactEl = document.getElementsByName("contact");
+          // contactEl.forEach((el) => {
+          //   if (el.checked) {
+          //     contact.push(el.value);
+          //   }
+          // });
+          // console.log(contact);
+        }
+      });
+      /*
+                      {
+                  type: "mouseout",
+                  target: <button.apply-now-button>,       // element where event originated
+                  currentTarget: undefined at creation,    // set when dispatching to a listener
+                  // ...other mouse coordinates etc.
+                  }
+                      */
+      /*
+                   <div class="modal-overlay" id="calculate-emi-modal">
+                  <div class="modal-wrapper">
+                      <div class="modal-header">
+                          <h2>Loan Request Received</h2>
+                      </div>
+                      <div class="modal-content">
+                          <h3>Hello, John</h3>
+                          <p style="margin-top: 30px;">
+                              We have received your loan request and we
+                              will contact you through your provided contact
+                          </p>
+                      </div>
+                      <div class="modal-footer">
+                          <button class="close-modal-btn">OK</button>
+                      </div>
+                  </div>
+              </div>
+
+                  */
+
+      // function showMessage() {
+      //   const overLayDiv = document.createElement("div");
+      //   overLayDiv.classList.add("modal-overlay");
+
+      //   const modalWrapper = document.createElement("div");
+      //   modalWrapper.classList.add("modal-wrapper");
+
+      //   const modalHeader = document.createElement("div");
+      //   modalHeader.classList.add("modal-header");
+      //   const header2 = document.createElement("h2");
+      //   header2.textContent = "Loan Request Recived";
+      //   modalHeader.appendChild(header2);
+
+      //   const modalContent = document.createElement("div");
+      //   modalContent.classList.add("modal-content");
+      //   const heading3 = document.createElement("h3");
+      //   const fname = document.getElementById("fname").value;
+      //   // alternate option for creating textcontent
+      //   const textNode = document.createTextNode(`Hellow ${fname}`);
+      //   heading3.appendChild(textNode);
+      //   modalContent.insertAdjacentElement("afterbegin", heading3);
+
+      //   const p = document.createElement("p");
+      //   p.style.marginTop = "30px";
+      //   p.textContent =
+      //     " We have received your loan request and we will contact you through your provided contact";
+      //   modalContent.insertAdjacentElement("beforeend", p);
+
+      //   const modalFooter = document.createElement("div");
+      //   modalFooter.classList.add("modal-footer");
+      //   closeBtn = document.createElement("button");
+      //   closeBtn.type = "button";
+      //   closeBtn.classList.add("close-dymodal-btn");
+      //   closeBtn.textContent = "Ok";
+
+      //   // alternate option for creating element
+      //   modalFooter.insertAdjacentElement("beforeend", closeBtn);
+
+      //   modalWrapper.appendChild(modalHeader);
+      //   modalWrapper.appendChild(modalContent);
+      //   modalWrapper.appendChild(modalFooter);
+      //   overLayDiv.appendChild(modalWrapper);
+
+      //   let mainContentArea = document.querySelector(".main-content-area");
+      //   mainContentArea.insertAdjacentElement("beforeend", overLayDiv);
+
+      //   const closeDymodalBtn = document.querySelector(".close-dymodal-btn");
+      //   closeDymodalBtn.addEventListener("click", function () {
+      //     overLayDiv.remove();
+      //   });
+      // }
+
+      // mainSectionArea.addEventListener("click", function (e) {
+      //   if (e.target.classList.contains("apply-loan-button")) {
+      //     showMessage();
+      //   }
+      // });
+      /*
+                   <div class="modal-overlay" id="calculate-emi-modal">
+                  <div class="modal-wrapper">
+                      <div class="modal-header">
+                          <h2>Loan Request Received</h2>
+                      </div>
+                      <div class="modal-content">
+                          <h3>Hello, John</h3>
+                          <p style="margin-top: 30px;">
+                              We have received your loan request and we
+                              will contact you through your provided contact
+                          </p>
+                      </div>
+                      <div class="modal-footer">
+                          <button class="close-modal-btn">OK</button>
+                      </div>
+                  </div>
+              </div
+      */
+      function showMessage() {
+        const modalOverlay = document.createElement("div");
+        modalOverlay.id = "apply-loan-modal";
+
+        const modalWrapper = document.createElement("div");
+        modalWrapper.classList.add("modal-wrapper");
+
+        const modalHeader = document.createElement("div");
+        modalHeader.classList.add("modal-header");
+
+        const header1 = document.createElement("h2");
+        header1.textContent = "Loan Request Recived";
+        modalHeader.appendChild(header1);
+
+        const modalContent = document.createElement("div");
+        modalContent.classList.add("modal-content");
+
+        const header2 = document.createElement("h3");
+        const headerTextNode = document.createTextNode("Hello, jhon");
+        header2.appendChild(headerTextNode);
+        modalContent.insertAdjacentElement("beforebegin", header2);
+
+        const p = document.createElement("p");
+        p.style.marginTop = "30px";
+        p.textContent =
+          "We have received your loan request and we will contact you through your provided contact";
+        modalContent.insertAdjacentElement("beforeend", p);
+
+        const modalFooter = document.createElement("div");
+        modalFooter.classList.add("modal-footer");
+
+        const closeBtn = document.createElement("button");
+        closeBtn.type = "button";
+        closeBtn.id = "close-btn";
+        closeBtn.textContent = "OK";
+        modalFooter.appendChild(closeBtn);
+
+        modalWrapper.appendChild(modalHeader);
+        modalWrapper.appendChild(modalContent);
+        modalWrapper.appendChild(modalFooter);
+
+        modalOverlay.appendChild(modalWrapper);
+
+        const mainContentArea = document.querySelector(".main-content-area");
+        mainContentArea.appendChild(modalOverlay);
+      }
+      const mainContentArea = document.querySelector(".main-content-area");
+
+      mainContentArea.addEventListener("click", function (e) {
+        if (e.target.id === "loan-btn") {
+          showMessage();
+          e.target.disabled = true;
+        }
+        if (e.target.id === "close-btn") {
+          const modalOverlay = document.querySelector("#apply-loan-modal");
+          modalOverlay.remove();
+          const loanBtn = document.querySelector("#loan-btn");
+          loanBtn.disabled = false;
+        }
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+          event.preventDefault(); // dont focus on outside
+
+          if (!modal.classList.contains("hide")) {
+            hideModal();
+            return;
+          }
+
+          const modalOverlay = document.getElementById("apply-loan-modal");
+          if (modalOverlay) {
+            modalOverlay.remove();
+            const loanBtn = document.querySelector("#loan-btn");
+            loanBtn.disabled = false;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

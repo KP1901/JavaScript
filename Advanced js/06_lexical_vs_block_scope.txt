@@ -1,0 +1,75 @@
+
+1️⃣ What is Lexical Scope?
+
+Definition:
+-Lexical scope (also called static scope) means that the scope of a  variable is determined by its     position in the source code (i.e., where it is written).
+
+-In JavaScript, functions remember the scope in which they were defined, not where they are called.
+
+-----------------------------------------------------------------------------------------------------
+
+2️⃣ Example 1: Basic Lexical Scope
+
+let globalVar = "I am global";
+
+function outer() {
+  let outerVar = "I am outer";
+
+  function inner() {
+    let innerVar = "I am inner";
+    console.log(globalVar); // ✅ can access global
+    console.log(outerVar);  // ✅ can access outer
+    console.log(innerVar);  // ✅ can access inner
+  }
+
+  inner();
+  // console.log(innerVar); // ❌ Error: innerVar not accessible here
+}
+
+outer();
+
+Explanation:
+
+-inner() can access outerVar and globalVar because of lexical scope.
+-outerVar and globalVar are in outer scopes.
+-Variables look up the chain of parent scopes until they find the variable or reach global.
+
+
+-----------------------------------------------------------------------------------------------------
+
+3. Scope Chain (Visual Concept)
+
+Global Scope
+ └─ outer()
+     └─ inner()
+
+inner() looks for variables:
+
+1.Inside itself (innerVar)
+2.Parent scope (outerVar)
+3.Global scope (globalVar)
+
+This chain is called the scope chain.
+
+✅ Key Points:
+
+1.Lexical scope = determined by where functions/variables are written.
+2.Functions can access variables from outer scopes.
+3.Call location does not matter; only definition location matters.
+
+-----------------------------------------------------------------------------------------------------
+
+“Lexical scope allows a function to access variables through the scope chain, based on where it is defined. A closure keeps those variables alive in memory even after the outer function has finished executing.”
+
+So:
+
+Lexical scope → access variables via the chain.
+
+Closure → preserves those variables for later use.
+
+You understood it perfectly.
+
+
+-----------------------------------------------------------------------------------------------------
+
+lexical scope is about how functions and blocks are defined in code and how they access identifiers (variables, functions, parameters) from their outer scope.

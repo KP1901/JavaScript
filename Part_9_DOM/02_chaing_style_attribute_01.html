@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .hi {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- changing attribute and style dynamically -->
+    <!-- when html webpage open/load the values was kiran and we are changing to ajit after load script.js file same for style-->
+    <input type="text" name="fname" value="kiran" />
+
+    <!-- we can also remove existing css class dynamically -->
+    <p class="para hi">
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis, iure.
+    </p>
+
+    <script>
+      let inputField = document.querySelector("input[type=text]");
+      inputField.value = "ajit";
+      inputField.style.background = "#ddd";
+      inputField.style.backgroundColor = "green";
+      inputField.style.color = "#000";
+
+      let firstPara = document.querySelector(".para");
+      firstPara.classList.remove("hi");
+      firstPara.classList.add("hi");
+    </script>
+  </body>
+</html>
+<script>
+  /*
+Notes on Code:
+
+1. Selecting element by attribute:
+   let inputField = document.querySelector("input[type=text]");
+
+2. Changing attribute (value):
+   inputField.value = "ajit";
+
+3. Changing inline styles:
+   inputField.style.background = "#ddd";
+   inputField.style.backgroundColor = "green";
+   inputField.style.color = "#000";
+
+4. Selecting element by class:
+   let firstPara = document.querySelector(".para");
+
+5. Changing classes:
+   firstPara.classList.remove("hi");
+   firstPara.classList.add("hi");
+*/
+</script>

@@ -1,0 +1,411 @@
+🔷 COMPLETE MEMOIZATION JOURNEY — STEP-BY-STEP SUMMARY
+
+This is not a tutorial recap.
+This is an engineering reasoning log.
+
+🔹 STEP 0 — Problem Definition
+
+Why we started
+
+Problem
+
+Same API data requested multiple times
+Causes repeated network calls
+Slows UI
+Increases server load
+
+Goal
+
+Fetch once → reuse safely → handle failures → handle concurrency → handle time
+
+This goal guided every decision afterward.
+----------------------------------------------------------------------------------------
+🔹 STEP 1 — Real API Fetch
+
+Why this step exists
+
+Before optimizing anything, we must:
+
+-prove the API works
+-understand the response shape
+-handle HTTP errors correctly
+
+What you did
+
+-Used a real API (jsonplaceholder)
+-Checked response.ok
+-Parsed JSON
+-Used try/catch
+
+Why this matters
+
+You cannot cache something you don’t fully understand.
+
+🔹 STEP 2 — Make Function Reusable
+
+Where beginners often fail
+
+Problem
+
+Hard-coded values break caching.
+
+Fix
+
+Accept id as an argument
+Let the caller decide what to fetch
+
+Rule learned
+
+Memoization requires stable inputs.
+----------------------------------------------------------------------------------------
+🔹 STEP 3 — Observe Inefficiency
+
+Why we didn’t optimize immediately
+
+You intentionally ran:
+
+loadData(1)
+loadData(1)
+loadData(1)
+
+Observation
+
+3 identical network requests
+Same data fetched repeatedly
+
+Why this step matters
+
+Never optimize blindly. Measure first.
+
+This justified memoization.
+----------------------------------------------------------------------------------------
+🔹 STEP 4 — Basic Memoization (Value Caching)
+
+What was added
+
+-In-memory cache ({})
+-if (key in cache) check
+
+What it solved
+
+-Repeated requests over time
+-Sequential calls reuse cached data
+
+Where you got stuck
+
+You initially:
+
+-used a for...in loop
+-returned the wrong cached value
+
+Fix
+
+-Cache lookup must be direct
+-Cache is a map, not a list
+
+Rule learned
+
+Memoization checks “THIS key”, not “ANY key”.
+----------------------------------------------------------------------------------------
+🔹 STEP 5 — Failure Safety
+
+This was your biggest conceptual block
+
+Problem discovered
+
+-Errors were caught but not re-thrown
+-Function returned undefined
+-Memoization cached undefined
+-Failure became permanent
+
+Why this is dangerous
+
+A temporary failure becomes a permanent bug.
+
+Fix
+
+-throw error in loadData
+-throw error in memoization
+-Never cache on failure
+
+Rule learned
+
+Errors must propagate upward until handled.
+Never convert errors into values.
+
+This step unlocked everything else.
+
+🔹 STEP 6 — In-Flight Request Deduplication
+
+This is where real-world thinking begins
+
+Your doubt (valid)
+
+“Is this really needed? JavaScript is single-threaded.”
+
+Clarification
+
+JS is single-threaded
+
+Async operations overlap
+
+Multiple callers can start before cache is filled
+
+Problem
+memoizedLoadData(1)
+memoizedLoadData(1)
+memoizedLoadData(1)
+
+
+→ multiple fetches start before cache is written
+
+Fix
+
+Cache the Promise immediately
+
+Share the same Promise among callers
+
+Rule learned
+
+Cache the work, not just the result.
+
+This solved concurrency waste.
+
+🔹 STEP 7 — TTL (Cache Expiration)
+
+Final foundational step
+
+Problem
+
+Cached data lived forever
+
+Real data changes
+
+Stale UI bugs
+
+Fix
+
+Add timestamp to cache
+
+Invalidate after TTL
+
+Refetch when expired
+
+Rule learned
+
+Do not trust cached data forever.
+
+This added time awareness to caching.
+
+🔺 FINAL ARCHITECTURE YOU BUILT
+
+Your cache now handles:
+
+Dimension	Solved by
+Repetition over time	STEP 4
+Temporary failures	STEP 5
+Concurrent requests	STEP 6
+Stale data	STEP 7
+
+This is production-grade logic.
+
+🔑 WHERE YOU GOT STUCK & HOW YOU FIXED IT
+1️⃣ Cache returning wrong values
+
+→ Learned direct key lookup
+
+2️⃣ Errors getting cached
+
+→ Learned throw vs return
+
+3️⃣ Parallel calls confusion
+
+→ Learned in-flight Promise caching
+
+4️⃣ “Why TTL?” doubt
+
+→ Learned data changes over time
+
+Each confusion was correct reasoning, not ignorance.
+--------------------------------------------------------------------------------------------------------------------------
+
+🔹 Execution Context (EC) walkthrough
+1️⃣ Global Execution Context (GEC)
+Memory Creation Phase
+
+JS scans the file and allocates memory:
+
+Global LE:
+{
+  loadData → function
+  memoization → function
+  memoizedLoadData → undefined
+  run → function (IIFE)
+}
+
+Execution Phase (Global)
+const memoizedLoadData = memoization(loadData);
+
+
+➡️ memoization(loadData) is called
+
+2️⃣ Execution Context: memoization(loadData)
+Memory Creation Phase
+memoization LE:
+{
+  fn → loadData
+  ttl → 5000
+  cache → undefined
+}
+outer → Global LE
+
+Execution Phase
+const cache = {};
+
+cache → {}
+
+return async function (key) { ... }
+
+
+➡️ A closure is created
+➡️ Returned function is assigned to memoizedLoadData
+
+Global LE:
+{
+  memoizedLoadData → async function (key) { ... }
+}
+
+
+📌 memoization EC is destroyed,
+but cache survives via closure.
+
+3️⃣ Execution Context: run() (Async IIFE)
+Memory Creation Phase
+run LE:
+{}
+outer → Global LE
+
+Execution Phase
+await memoizedLoadData(999);
+
+
+➡️ Calls memoizedLoadData(999)
+
+4️⃣ Execution Context: memoizedLoadData(999)
+Memory Creation Phase
+memoizedLoadData LE:
+{
+  key → 999
+  now → undefined
+}
+outer → memoization LE (closure)
+
+Execution Phase
+const now = Date.now();
+
+now → 169xxxxxxx
+
+if (key in cache && now - cache[key].time < ttl)
+
+
+cache is {} → ❌ false
+
+const promise = fn(key);
+
+
+➡️ loadData(999) is called
+➡️ fn(key) returns a pending Promise
+
+cache[999] = { promise, time: now };
+
+
+📌 IMPORTANT MOMENT
+
+cache = {
+  999: {
+    promise: Promise { <pending> },
+    time: 169xxxxxxx
+  }
+}
+
+return await promise;
+
+
+⏸️ memoizedLoadData PAUSES here
+
+5️⃣ Execution Context: loadData(999)
+Memory Creation Phase
+loadData LE:
+{
+  id → 999
+  response → undefined
+  data → undefined
+}
+outer → Global LE
+
+Execution Phase
+await fetch(...)
+
+
+⏸️ Function pauses
+➡️ Fetch request sent
+
+Fetch resolves (404)
+if (!response.ok) {
+  throw new Error("HTTP Error: 404");
+}
+
+
+➡️ Error thrown
+➡️ Control jumps to catch in loadData
+
+throw error;
+
+
+➡️ Promise returned by loadData becomes REJECTED
+
+6️⃣ Back to memoizedLoadData (catch block)
+
+The rejected Promise resumes here:
+
+return await promise;
+
+
+➡️ Error is thrown into memoizedLoadData
+
+catch (error) {
+  delete cache[key];
+  throw error;
+}
+
+
+📌 Cache cleanup:
+
+cache = {}
+
+
+➡️ Error rethrown
+
+7️⃣ Back to run()
+await memoizedLoadData(999);
+
+
+➡️ Promise rejected
+➡️ run() stops execution
+➡️ console.timeEnd("start") is never reached
+
+🔹 Final Execution Context picture
+Global EC
+ ├─ memoization EC (creates closure)
+ ├─ run EC
+ │   └─ memoizedLoadData EC
+ │       └─ loadData EC
+
+🧠 Key takeaways (lock these)
+
+-Each function call gets its own Execution Context
+-cache lives because of closure
+-Async functions pause, not disappear
+-Rejected Promise throws back into await
+-Cache is deleted on failure → retry possible
+-Execution stops unless caller catches error

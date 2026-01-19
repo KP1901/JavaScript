@@ -1,0 +1,151 @@
+🧠 JavaScript Inheritance — Everything You Need to Know
+1️⃣ Prototype Chain (The Core Idea)
+
+-Every object in JavaScript has a hidden property called [[Prototype]] (accessible via __proto__).
+-When you access a property on an object:
+         -JS first checks the object itself
+         -The lookup doesn’t go to the constructor function itself (which is empolyee,person). It only goes through prototype objects linked via __proto__.
+         -If not found → checks the parent prototype (__proto__).
+         -Continues up the chain until Object.prototype.
+         -Ends at null.
+
+✅ This lookup process is inheritance in JavaScript.
+
+----------------------
+2️⃣ Prototype vs __proto__
+
+
+1)prototype-
+Exists only on functions. It’s the blueprint object for all instances created using that function as a constructor.
+2)proto-	
+The hidden link on every object pointing to its parent’s prototype (or null).
+
+----------------------------
+3️⃣ Constructor Functions & new
+
+-new does three things (same also Object.create()):
+
+   -Creates a new empty object.
+   -Links its __proto__ to FunctionName.prototype.
+   -Calls the constructor with this bound to the new object.
+
+Example:
+function Product(name) {
+  this.name = name;
+}
+Product.prototype.getInfo = function() {
+  return `Product: ${this.name}`;
+};
+
+const p = new Product("Laptop");
+console.log(p.getInfo()); // "Product: Laptop"
+
+---------------------------------------
+4️⃣ Inheritance Between Constructors
+
+-Call parent constructor inside child: Parent.call(this, args)
+-Link prototypes: Child.prototype = Object.create(Parent.prototype)
+-Fix constructor reference: Child.prototype.constructor = Child
+
+Example:
+function Electronics(name, brand) {
+  Product.call(this, name); // inherit properties
+  this.brand = brand;
+}
+Electronics.prototype = Object.create(Product.prototype);
+Electronics.prototype.constructor = Electronics;
+
+-Properties come from the parent constructor
+-Methods are shared via prototype chain
+
+----------------------
+
+5️⃣ Prototype Chain Lookup
+
+For Laptop.getInfo():
+          1.Checks Laptop object itself
+          2.Not found → Electronics.prototype
+          3.Not found → Product.prototype
+          4.Not found → Object.prototype
+          5.Not found → undefine
+
+----------------------------
+
+6️⃣ Overriding & Extending Parent Methods
+
+Electronics.prototype.getInfo = function() {
+  return `${Product.prototype.getInfo.call(this)}, Brand: ${this.brand}`;
+};
+
+-.call(this) calls the parent method with child’s context
+-Allows extending functionality instead of replacing it
+
+----------------
+7️⃣ ES6 Classes (Syntactic Sugar)
+
+class Product {
+  constructor(name) {
+    this.name = name;
+  }
+  getInfo() {
+    return `Product: ${this.name}`;
+  }
+}
+
+class Electronics extends Product {
+  constructor(name, brand) {
+    super(name); // calls parent constructor
+    this.brand = brand;
+  }
+  getInfo() {
+    return `${super.getInfo()}, Brand: ${this.brand}`;
+  }
+}
+
+-extends sets up Child.prototype.__proto__ = Parent.prototype
+-super calls parent constructor or methods
+------------------------
+
+8️⃣ Direct Object Inheritance
+
+const parent = { greet() { return "Hi"; } };
+const child = Object.create(parent);
+console.log(child.greet()); // "Hi"
+
+-No constructor needed
+-Creates a direct prototype link
+-so  inside a child nothing is (properties) but therer is proto which linkd to parent that why we able to access
+
+---------------------------------
+9️⃣ Functions Are Objects Too
+
+-Every function has its own __proto__ pointing to Function.prototype
+-Prototype chain rules apply to functions as well
+
+--------------
+
+🔗 Prototype Chain Diagram (Example: Electronics Instance)
+
+Laptop (instance)
+   ↑ __proto__
+Electronics.prototype
+   ↑ __proto__
+Product.prototype
+   ↑ __proto__
+Object.prototype
+   ↑ __proto__
+null
+---------------------------
+🔑 Summary
+
+-Inheritance = property/method lookup through prototype chain
+-prototype = blueprint object on functions
+__proto__ = hidden link connecting object to parent prototype
+
+-Can use:
+      -Constructor functions + .call() + Object.create()
+      -ES6 class ... extends
+      -Direct object inheritance with Object.create()
+
+-Can override parent methods and call them using .call(this) or super()
+-Chain ends at Object.prototype → null

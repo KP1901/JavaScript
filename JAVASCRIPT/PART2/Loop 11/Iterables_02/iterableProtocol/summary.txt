@@ -1,0 +1,98 @@
+🧩 Question 1:
+
+In JavaScript, what does it mean when we say “an object is iterable”?
+Explain in your own words — don’t just give a definition.
+
+
+ans :
+An object is iterable if it has a [Symbol.iterator] method that returns an iterator object.
+That iterator object must have a next() method which returns { value, done }.
+This allows the object to work with for...of, the spread operator ..., or destructuring — anything that expects a sequence of values.
+
+---------------------------------------------------------------------------------------------
+🧩 Question 2:
+
+What is the iterator protocol in JavaScript?
+Explain how it works — especially what the next() method should return, and what happens when iteration ends.
+
+ANS : 
+The iterator protocol defines how an iterator object behaves.
+An iterator is an object returned by an iterable’s [Symbol.iterator]() method.
+It must have a next() method that returns an object with two properties:
+
+value: the next value in the sequence
+done: a boolean that’s false until the iteration finishes, and true when there are no more values.
+Iteration stops when done is true, not when the value becomes undefined.
+
+------------------------------------------------------------------------------------------
+
+🧩 Question 3:
+
+When you write a for...of loop like this:
+
+for (let x of arr) {
+  console.log(x);
+}
+
+=> 
+-When you use a for...of loop, JavaScript does the following internally:
+-It calls the iterable’s [Symbol.iterator]() method to get an iterator object.
+-It repeatedly calls iterator.next() to get the next { value, done } object.
+-It assigns the value to the loop variable (x in this case).
+-The loop continues as long as done is false.
+-When done becomes true, the loop stops automatically.
+
+---------------------------------------------------------------------------------
+
+🧩 Question 4:
+
+Suppose you have this object:
+
+const range = {
+  start: 1,
+  end: 3
+};
+
+
+Make this object iterable, so that when we use:
+
+for (let num of range) {
+  console.log(num);
+}
+
+
+it prints:
+
+1
+2
+3
+
+ANS :
+const range = {
+  [Symbol.iterator]() {
+    let start = 1;
+    let end = 3;
+    return {
+      next() {
+        if (start <= end) {
+          return { value : start++, done: false };
+        } else {
+          return { value: undefined, done: true };
+        }
+      },
+    };
+  },
+};
+
+for (let num of range) {
+  console.log(num);
+}
+----------------------------------------------------------------------------------
+🧩 Question 5:
+
+Explain the difference between an iterable and an iterator in JavaScript.
+
+
+ANS : 
+-Iterable: An object with a [Symbol.iterator]() method. Calling this method returns an iterator object. Iterables can be used in for...of, spread syntax, and other constructs that consume sequences.
+-Iterator: An object with a next() method that returns { value, done }. Iterators provide values one by one and can be consumed manually or by for...of.

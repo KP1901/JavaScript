@@ -1,0 +1,71 @@
+1️⃣ Definition
+
+-The call stack is a stack data structure that keeps track of execution contexts (global and function) in the order they are called.
+
+-Stack = LIFO (Last In, First Out)
+
+-The most recently called function is at the  top of the stack.
+
+--------------------------------------------------------------------------------------
+
+2️⃣ How It Works
+
+1.When the JS engine starts, it creates the global execution context and pushes it onto the call stack.
+2.When a function is called:
+   -JS creates a function execution context.
+   -Pushes it on top of the call stack.
+3.When a function finishes execution:
+   -Its execution context is popped off the stack.
+4.Execution continues with the context now on top of the stack.
+
+--------------------------------------------------------------------------------------
+
+3. Call Stack Sequence:
+
+1.Global Execution Context pushed → running console.log("Start")
+2.first() called → first() Execution Context pushed
+3.Inside first(), second() called → second() Execution Context pushed
+4.Inside second(), third() called → third() Execution Context pushed
+5.third() finishes → popped
+6.second() finishes → popped
+7.first() finishes → popped
+8.Global context continues → running console.log("End")
+
+--------------------------------------------------------------------------------------
+
+4️⃣ Key Points
+
+Global context is always at the bottom of the call stack.
+Function contexts are added on top when called and removed when finished.
+JS is single-threaded, so only one execution context runs at a time.
+
+--------------------------------------------------------------------------------------
+
+5️⃣ Error Example (Stack Overflow)
+
+If a function keeps calling itself without end:
+
+function recurse() {
+    recurse(); // infinite recursion
+}
+recurse();
+
+
+-----------------------------------------------------------------------------
+
+6️⃣ Relation with Lexical Environment
+
+Each execution context (local) has its Lexical Environment.
+
+When a context is popped, its LE is destroyed unless preserved by closures.
+
+-----------------------------------------------
+
+When a function finishes, its Lexical Environment is usually destroyed, but a closure can preserve it. This allows access to its variables even after the function has finished, similar to encapsulation.
+
+-----------------------------------------------
+
+🚩 Why We Exclude Global
+
+-The global execution context is created once at the start and stays until the program ends.
+-It is never popped/destroyed, so its Lexical Environment also never goes away.

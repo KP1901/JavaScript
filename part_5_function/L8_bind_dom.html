@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const app = {
+        count: 0,
+        increment() {
+          this.count++;
+          console.log("Clicked" + this.count + "Times");
+        },
+      };
+
+      const button = document.createElement("button");
+      const content = document.createElement("div");
+      document.body.appendChild(content);
+      button.textContent = "Click Me!";
+      document.body.appendChild(button);
+
+      button.addEventListener("click", function () {
+        app.increment();
+      });
+
+      // we are passing only refrenec in this thatsy why it looses this
+      //   button.addEventListener("click", app.increment);
+    </script>
+  </body>
+</html>

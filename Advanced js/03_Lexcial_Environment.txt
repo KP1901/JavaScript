@@ -1,0 +1,129 @@
+1️⃣ Definition
+
+A Lexical Environment (LE) is a structure that stores variables, functions, and a reference to its outer environment.
+ -Every execution context (global or function) has an LE.
+ -Lexical = determined by where the code is written, not where it runs.
+
+ -----------------------------------------------------------------------------
+
+ 2️⃣ Components
+
+1.Environment Record (ER)
+  -Stores the actual variables, functions, and parameters.
+
+2.Outer Environment Reference (OER)
+  -Points to the Lexical Environment of the outer scope.
+  -Used to look up variables not found in the current environment.
+
+-----------------------------------------------------------------------------
+
+
+3️⃣ Global Lexical Environment
+
+-Created when JS starts.
+-Outer reference = null (nothing outside).
+-Stores global variables and functions.
+
+
+var a = 10;
+
+function greet() {
+  console.log("Hello");
+}
+
+-LE stores a and greet()
+-Outer reference = null
+
+-----------------------------------------------------------------------------
+
+4️⃣ Function Lexical Environment
+
+-Created every time a function is called.
+-Outer reference = the LE of the scope where the function was defined (not called).
+
+var x = 5;
+
+function outer() {
+    var y = 10;
+
+    function inner() {
+        console.log(x + y); // accesses outer LE
+    }
+
+    inner();
+}
+outer(); // 15
+
+-inner() can access y and x because of outer environment reference.
+  
+-----------------------------------------------------------------------------
+5️⃣ Scope Chain
+
+JS searches variables using the scope chain:
+
+-Current LE → outer LE → ... → global LE → error if not found
+
+Inner LE: { } -> Outer LE: { y: 10 } -> Global LE: { x: 5 }
+
+-----------------------------------------------------------------------------
+
+6️⃣ Lexical Environment & Closures
+
+-Closures preserve the LE of the outer function even after it finishes.
+-Enables access to private variables.
+
+function outer(a) {
+  let b = 5;
+  return function inner(c) {
+    return a + b + c;
+  };
+}
+
+const fn = outer(10);
+console.log(fn(20)); // 35
+
+
+-------------------------------------------------------------------------
+
+Value Evaluation Step-by-Step
+
+1.Call outer(10)
+
+    -  a = 10 (argument passed)
+    -  b = 5 (initialized inside function)
+    - Returns inner function (which “remembers” a and b)
+
+2. Call fn(20) (this is inner(20))
+
+c = 20 (argument passed)
+
+a = 10 (from outer’s Lexical Environment via closure)
+
+3. b = 5 (from outer’s Lexical Environment via closure)
+
+   Evaluate a + b + c
+
+   10 + 5 + 20 = 35
+
+4. Return value
+
+   inner returns 35 → console.log prints 35
+
+✅ Summary of Value Lookup
+
+c → found inside inner
+
+b → not inside inner, found in outer’s closure
+
+a → not inside inner, found in outer’s closure
+
+So JS starts from the innermost scope and looks outward until it finds the variable (scope chain in action).
+
+-----------------------------------------------------------------------------
+
+✅ Key Takeaways
+
+1.LE = variables + outer reference.
+2.Scope chain = chain of LEs JS checks for variables.
+3.Closures preserve LE, allowing access after function ends.
+4.Global LE is always present; function LE is temporary.
