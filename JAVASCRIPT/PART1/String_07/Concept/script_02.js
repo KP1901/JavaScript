@@ -45,7 +45,7 @@ Note: even if it one side primitive and another side wrapper object then type co
 
 let c = new String("javascript");
 let d = new String("javascript");
-d = c;
+// d = c;
 console.log(c == d);
 console.log(c === d);
 

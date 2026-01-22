@@ -30,6 +30,7 @@ Is JavaScript multithreaded?
 -One thing executes at a time
 
 Event loop do NOT create threads.
+
 They create asynchronous callbacks that the event loop schedules on a single thread.
 
 so imp => you learn about cpu conecept concurrency this is then since js is an single threaded still we can handle muiltiple task one by one (buecase of context switching => one chief multiple dishes making by swtiching context)

@@ -7,7 +7,7 @@ const showMoreBtnEl = document.getElementById("show-more-btn");
 let page = 1;
 
 async function searchImage() {
-  let keyword = searchBoxEl.value;
+  let keyword = searchBoxEl.value.trim();
 
   const response = await fetch(
     `https://api.unsplash.com/search/photos?&query=${keyword}&page=${page}&client_id=${accessKey}&per_page=20`,
@@ -17,7 +17,7 @@ async function searchImage() {
 
   const results = data.results;
 
-  results.map((result) => {
+  results.foreach((result) => {
     const img = document.createElement("img");
     img.src = result.urls.small;
 
@@ -35,6 +35,8 @@ async function searchImage() {
 
 searchFormEl.addEventListener("submit", (e) => {
   e.preventDefault();
+  searchResultEl.innerHTML = "";
+  page = 1;
   searchImage();
 });
 

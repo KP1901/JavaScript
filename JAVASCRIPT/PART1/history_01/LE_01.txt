@@ -172,6 +172,7 @@ Everything happens inside the JavaScript engine (like V8).
 
 
 ✅ Before (Old JavaScript Engines — Only Interpreter)
+
 🔸 How repeated code worked:
 
 The interpreter executed line by line

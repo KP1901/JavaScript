@@ -92,18 +92,17 @@ console.log(a == b); // number == number
 let a = "0";
 let b = null;
 console.log(a == b);
+
 Step-by-step:
-"0" is a string
-null is a special primitive
-They are not both null or undefined
-So per spec → return false directly
-Step-by-step:
-"0" is a string
-null is a special primitive
-They are not both null or undefined
-So per spec → return false directly
+
+-"0" is a string
+-null is a special primitive
+-They are not both null or undefined
+-So per spec → return false directly
 
 ✔ Output: false
+
+imp : In loose equality (==), null and undefined are NEVER converted to string, number, or boolean. and one rule null == undefined // true
 */
 
 // ⭐ Type coercion = JavaScript automatically converts one data type into another.

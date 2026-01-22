@@ -53,3 +53,13 @@ let sm2 = Symbol();
 console.log(sm1 == sm2);
 console.log(sm1);
 console.log(sm2);
+
+/*
+| Aspect                      | Plain Object   | Wrapper Object            |
+| --------------------------- | -------------- | ------------------------- |
+| Created by                  | `{}`           | JS engine                 |
+| Purpose                     | Data structure | Add methods to primitives |
+| Exists permanently          | Yes            | No (auto-destroyed)       |
+| Should you create manually? | ✅ Yes          | ❌ No                      |
+
+*/

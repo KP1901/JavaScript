@@ -37,7 +37,7 @@ console.log();
 
 // 6 🔹 replace(search, replacement) works only on first occurrence
 
- //jajaja
+//jajaja
 console.log(k.replace("aja", "jaj"));
 
 // 7 🔹 replaceALL(search, replacement) works  on every occurrence
@@ -66,7 +66,7 @@ console.log();
 // compare two strings alphabetically (lexicographically)
 console.log("a".localeCompare("b")); // current string (a) comes before compared one
 console.log("b".localeCompare("b")); // both strings are equal
-console.log("b".localeCompare("a")); // current string (b) comes after compared one. 
+console.log("b".localeCompare("a")); // current string (b) comes after compared one.
 
 //localeCompare returns: negative → before, 0 → equal, positive → after
 

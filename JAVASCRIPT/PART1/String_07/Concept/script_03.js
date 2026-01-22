@@ -21,6 +21,7 @@ console.log(str.slice(0, 50));
 console.log(str.slice(-5));
 console.log(str.slice(-5, -1));
 console.log(str.slice(100)); // " "
+
 /*
 total length = 22;
 
