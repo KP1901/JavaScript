@@ -23,8 +23,7 @@ fullName("Kiran", "Patodekar");
 
 /*
 ✅ Key Points:
-
--Parameters are placeholders inside the  function.
+-Parameters are placeholders inside the function.
 -Arguments are actual values you pass.
 -Functions can perform tasks using these values without returning anything.
 -You can have multiple parameters separated by commas.

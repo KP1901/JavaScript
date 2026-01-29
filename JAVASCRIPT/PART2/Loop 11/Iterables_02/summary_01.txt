@@ -1,0 +1,78 @@
+
+-An iterable is an object that can be looped over element by element
+-It implements the Symbol.iterator method
+-It can produce values one at a time (on demand)
+
+✔️ Common Iterables in JS
+
+-Arrays
+-Strings
+-Maps
+-Sets
+
+🔁 What works on iterables?
+
+1️⃣ for...of loop
+
+for (let item of iterable) { }
+
+-Works with:
+-Arrays
+-Strings
+-Maps
+-Sets
+
+2️⃣ Spread operator ...
+
+[...iterable]
+
+Works with:
+
+-Arrays
+-Strings
+-Maps
+-Sets
+
+3️⃣ Destructuring
+
+let [a, b] = iterable;
+
+Works with:
+
+-Arrays
+-Strings
+-Sets
+-Map entries
+
+
+❌ What does NOT work on iterables?
+
+for...in ❌ (works on objects, not values)
+
+------------------------------------------------------------------------    
+
+What is an iterator?
+
+An iterator is an object that knows how to give values one at a time.
+
+It has one required method:
+
+next()
+
+What does next() return?
+
+Each call returns an object like this:
+
+{ value: ..., done: true/false }
+
+let arr = [10,20,30] 
+
+let iterator = arr[Symbol.iterator]() 
+
+console.log(iterator.next())
+
+-arr → iterable
+-iterator → stores the iterator object
+-arr[Symbol.iterator] → function
+-arr[Symbol.iterator]() → function call that returns the iterator object
+-iterator.next() → calls the next() method on the iterator

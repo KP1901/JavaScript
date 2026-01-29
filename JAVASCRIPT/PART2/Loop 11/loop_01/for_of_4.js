@@ -11,7 +11,7 @@ Concept:
 Use when:
 works on iterables
 -Arrays
--Strings
+-Stringss
 -Maps, Sets
 
 ❌ Not for objects
