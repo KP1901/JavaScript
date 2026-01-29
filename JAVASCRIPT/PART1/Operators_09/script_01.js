@@ -6,7 +6,8 @@
 let x = 10;
 let y = 3;
 
-console.log(x + y); // 13 → addition
+console.log(x +
+     y); // 13 → addition
 console.log(x - y); // 7  → subtraction
 console.log(x * y); // 30 → multiplication
 console.log(x / y); // 3.333... → division
@@ -87,7 +88,7 @@ console.log(defaultName); // "Guest"
 /*
 ✅ Key Takeaways
 
-Nullish = only null or undefined.
+Nullish =skip only null or undefined.
 
 It does not include other falsy values like 0, "", or false.
 

@@ -1,3 +1,4 @@
-let dk = "2025-09-15 2026-10-20";
-
-console.log(dk.match(/(\d{4})-(\d{2})-(\d{2})/));
+let arr = [10, 20, 30];
+let [n1, , n2] = arr;
+console.log(n1);
+console.log(n2);
