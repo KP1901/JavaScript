@@ -7,7 +7,6 @@ A nested function means a function defined inside another function.
 The inner function can access variables of the outer function, but not the other way around.
 
 
-
 Your example demonstrates both:
 
 -Lexical Environment (Lexical Scope)
@@ -30,13 +29,15 @@ outer();
 console.log();
 
 /*
-Most Imp => so it it just lexical environment of outer() that why we can can access outer variable not becuase of closure because closure means inner function will survive even after outers finish but here all is going inside outer function 
+Most Imp =>A closure is created whenever a function accesses variables from its outer lexical environment — regardless of whether the outer function has finished or not.
 
 ✅ Summary
 
-Your current code uses lexical scope, not a true closure.
+Your current code does create a closure.
 
-Closure is only visible when the inner function survives after the outer function has finished, like in function factories, currying, or returned functions.
+The inner function has access to the outer function’s variable because of lexical scope, so a closure exists even though the inner function is called inside the outer function.
+
+Closure becomes visible only when the inner function survives after the outer function finishes (like in function factories, currying, or returned functions).
 */
 
 // Example 2: Multiple Inner Functions
@@ -61,9 +62,8 @@ greet();
 
 Now the real magic:
 
-A closure happens when an inner function “remembers” the variables of its outer function — even after the outer function has finished running.
-
-This is one of the most powerful behaviors in JavaScript.
+A closure happens when an inner function “remembers” the variables of its outer function — even if the outer function is still running.
+The closure becomes especially visible when the inner function survives after the outer function has finished.
 */
 
 function outer() {
