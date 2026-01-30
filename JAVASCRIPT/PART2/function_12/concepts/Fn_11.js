@@ -11,8 +11,7 @@ Your example demonstrates both:
 
 -Lexical Environment (Lexical Scope)
 -Scope Chaining
-
-and NOT closure.
+-closures
 
 */
 
