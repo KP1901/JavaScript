@@ -1,4 +1,7 @@
-let arr = [10, 20, 30];
-let [n1, , n2] = arr;
-console.log(n1);
-console.log(n2);
+let calculator = {
+  add: (a, b) => a + b,
+  sub: (a, b) => a - b,
+  mul: (a, b) => a * b,
+};
+
+console.log(calculator.mul(10, 20));

@@ -13,7 +13,8 @@ function outer() {
 
 outer();
 
-/*sayHi(); // ❌ TypeError: sayHi is not a function
+/*
+sayHi(); // ❌ TypeError: sayHi is not a function
 
 var sayHi = function () {
   console.log("Hello!");
