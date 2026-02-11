@@ -1,4 +1,23 @@
-let min = 10;
-let max = 20;
+let fibonacci = {
+  limit: 100,
+  [Symbol.iterator]() {
+    let i = 0;
 
-console.log(Math.floor(Math.random() * (max - min + 1)) + min);
+    return {
+      next() {
+        while (i < this.limit) {
+          if (i < this.limit) {
+            i++;
+            return { value: i, done: false };
+          } else {
+            return { value: undefined, done: true };
+          }
+        }
+      },
+    };
+  },
+};
+
+for (const item of fibonacci) {
+  console.log(item);
+}
