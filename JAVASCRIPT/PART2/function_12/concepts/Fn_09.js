@@ -79,4 +79,48 @@ Scope Chain → inner → outer → global
 Closure → inner retains access to x
 
 ✔️ All three concepts work together.
+
+-------------------------------------
+
+*/
+
+/*
+=> concept 1 :
+
+Lexical scope => means a function can access variables based on where it is defined in the code, not where it is called.
+
+function outer() {
+  let x = 20;
+
+  function inner() {
+    console.log(x);
+  }
+  inner();
+}
+outer();
+console.log(x);
+
+Lexical scope means a function can access variables based on where it is defined in the code, not where it is called.
+In this example, x is defined inside the outer function, so it is accessible only inside outer and its inner functions, because inner functions have access to their outer scope.
+---------------------------------------------------
+
+Concept 2 : Lexical Envrionment  :
+
+A lexical environment consists of two components: an environment record (which stores variables and function declarations) and a reference to its outer lexical environment.
+
+1️⃣ Environment Record
+
+Stores:
+
+-Variables
+-Function declarations
+-Parameters
+
+2️⃣ Outer Reference
+
+Points to:
+
+-The parent lexical environment
+
+This is what creates the scope chain.
 */

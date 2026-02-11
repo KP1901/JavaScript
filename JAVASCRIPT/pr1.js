@@ -1,6 +1,11 @@
-function test() {
-  console.log(x);
+function sum(a) {
+  let total = a;
+  return function inner(b) {
+    if (b === undefined) {
+      console.log(total);
+    }
+    total += b;
+    return inner;
+  };
 }
-
-let x = 50;
-test();
+sum(10)(20)(30)(40)();

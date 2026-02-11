@@ -195,3 +195,17 @@ console.log(checkPass("abc123"));
 */
 
 // imp => function parameter always acts let
+
+/*
+Lexical Scope
+→ Defined by where function is written.
+
+Lexical Environment
+→ Internal structure storing variables + outer reference.
+
+Scope Chain
+→ Process of looking up variables through outer references.
+
+Closure
+→ Function + preserved lexical environment after outer function finishes.
+*/
