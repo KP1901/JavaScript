@@ -33,7 +33,7 @@ console.log(Math.random() * 21 + 1);
 // universal formula
 let min = 10;
 let max = 20;
-console.log(Math.floor(Math.random() * max - min + 1) + min);
+console.log(Math.floor(Math.random() * (max - min + 1)) + min);
 
 /*
 
