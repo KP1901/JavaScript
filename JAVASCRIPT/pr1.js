@@ -1,9 +1,10 @@
-const book = {
-  name: "Million of Word",
+const user = {
+  name: "kiran",
 };
 
-function description(author, price) {
-  console.log(`${this.name} ${author} ${price}`);
-}
+function description(...args) {
+  let [city, address] = args;
 
-description.call(book, "Kiran", 500);
+  console.log(`${this.name} live in ${city}in ${address}`);
+}
+description.apply(user, ["Udgir", "Shivaji Chowk"]);

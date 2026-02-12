@@ -1,7 +1,7 @@
 //  1. neseted scope
 
 let x = 10;
- 
+
 function outer() {
   let y = 20;
   function inner() {
@@ -33,7 +33,7 @@ When JS executes inner():
 
 📌 This step-by-step lookup path is called scope chaining.
 
-imp = so always scope chaining + lexical environment + closure + works together
+imp = so always scope chaining + lexical environment + closure + works together + lexical scope
 */
 
 /*
