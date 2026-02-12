@@ -243,3 +243,11 @@ or
 Normally, this refers to who calls the function.
 Using call, apply, or bind, we can explicitly control whom this refers to.
 */
+
+/*
+imp concepts : 
+
+1.Once a function is bound using bind(), its this value is permanently fixed and cannot be changed by call(), apply(), or another bind().
+2.When a bound function is called using new, the new keyword creates a fresh object and sets this to that new object, overriding the bound this.+
+
+*/
