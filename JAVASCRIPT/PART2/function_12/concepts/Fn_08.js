@@ -1,7 +1,7 @@
 //  1. neseted scope
 
 let x = 10;
-
+ 
 function outer() {
   let y = 20;
   function inner() {

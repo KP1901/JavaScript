@@ -1,11 +1,9 @@
-function sum(a) {
-  let total = a;
-  return function inner(b) {
-    if (b === undefined) {
-      console.log(total);
-    }
-    total += b;
-    return inner;
-  };
+const book = {
+  name: "Million of Word",
+};
+
+function description(author, price) {
+  console.log(`${this.name} ${author} ${price}`);
 }
-sum(10)(20)(30)(40)();
+
+description.call(book, "Kiran", 500);

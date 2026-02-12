@@ -166,4 +166,18 @@ Manual partial application is done using a function factory.
 | Partial Application | Technique | Presets some args            | ❌/✅          | Pre-filled args   |
 
 
+⚡ Very Important Understanding
+
+👉 bind() does NOT call the function
+
+👉 It just stores:
+-original function
+-fixed arguments
+-bound this
+
+👉 When the new function is called, it:
+
+-merges fixed arguments + new arguments
+-calls original function
+
 */
