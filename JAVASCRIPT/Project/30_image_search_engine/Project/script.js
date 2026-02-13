@@ -1,53 +1,67 @@
 const accessKey = "oCX97Q7IHPLLiyycGlZ3CNVNrqHH0fyG57TD9ilB7qw";
-const searchFormEl = document.getElementById("search-from");
+const searchFormEl = document.getElementById("search-form");
 const searchBoxEl = document.getElementById("search-box");
 const searchResultEl = document.getElementById("search-result");
 const showMoreBtnEl = document.getElementById("show-more-btn");
 
 let page = 1;
+let keyword = "";
 
 async function searchImage() {
-  let keyword = searchBoxEl.value.trim();
+  try {
+    if (!keyword) return;
 
-  const response = await fetch(
-    `https://api.unsplash.com/search/photos?&query=${keyword}&page=${page}&client_id=${accessKey}&per_page=20`,
-  );
+    const response = await fetch(
+      `https://api.unsplash.com/search/photos?query=${keyword}&page=${page}&client_id=${accessKey}&per_page=20`,
+    );
 
-  const data = await response.json();
+    if (!response.ok) {
+      throw new Error("Failed to fetch images");
+    }
+    const imageData = await response.json();
 
-  const results = data.results;
+    const images = imageData.results;
 
-  results.foreach((result) => {
-    const img = document.createElement("img");
-    img.src = result.urls.small;
+    if (images.length === 0) {
+      showMoreBtnEl.style.display = "none";
+      return;
+    }
 
-    const anchorLink = document.createElement("a");
-    anchorLink.href = result.links.html;
-    anchorLink.target = "_blank";
-    anchorLink.appendChild(img);
-    searchResultEl.append(anchorLink);
-  });
+    const fragment = document.createDocumentFragment();
 
-  showMoreBtnEl.style.display = "block";
+    images.forEach((image) => {
+      const img = document.createElement("img");
+      img.src = image.urls.small;
+      img.loading = "lazy";
+
+      const anchorLink = document.createElement("a");
+      anchorLink.href = image.links.html;
+      anchorLink.target = "_blank";
+
+      anchorLink.appendChild(img);
+      fragment.appendChild(anchorLink);
+    });
+
+    searchResultEl.appendChild(fragment);
+
+    showMoreBtnEl.style.display = "block";
+  } catch (error) {
+    console.log(error.message);
+  }
 }
-
-// searchFormEl.addEventListener("submit", searchImage);
 
 searchFormEl.addEventListener("submit", (e) => {
   e.preventDefault();
-  searchResultEl.innerHTML = "";
   page = 1;
+  keyword = searchBoxEl.value.trim();
+  searchResultEl.innerHTML = "";
   searchImage();
 });
 
 showMoreBtnEl.addEventListener("click", () => {
-  ++page;
+  page++;
   searchImage();
 });
-// searchFormEl.addEventListener("submit", (e) => {
-//   e.preventDefault();
-//   searchImage();
-// });
 
 /*
   Lesson 1
@@ -102,24 +116,26 @@ showMoreBtnEl.addEventListener("click", () => {
   so it works page 1 => 1-20 result
               page 2 => 21-40 result
 
- lesson 8 : 
+  Lesson 8:
 
- Yes. Ultra to-the-point version 👇
+  createDocumentFragment() => 
 
-dragstart → start drag, store element
-dragend → end drag, cleanup
+-create a lightweight temporary container in memory 
+-It is not part of the real DOM.
 
-Choose ONE based on behavior:
+When you normally do:
 
-Simple move (final placement only)
-→ use drop
-Live sorting / reordering
-→ use dragover
+searchResultEl.appendChild(anchorLink);
 
-Rule:
+👉 The browser updates the DOM every time
+👉 That causes reflow + repaint
 
-Live position change → dragover
-Final position only → drop
+When you normally do:
+
+searchResultEl.appendChild(anchorLink);
+
+👉 The browser updates the DOM every time
+👉 That causes reflow + repaint
 -----------------------------------------------------------------------------------------
 
 
@@ -138,7 +154,7 @@ await response.json()                → wait for parsed data
 
 data.results                         → array of images from API
 
-results.map(fn)                      → loop over results array
+results.forEach(fn)                      → loop over results array
 document.createElement("img")        → create image element
 img.src = url                        → set image source
 

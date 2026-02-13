@@ -15,9 +15,8 @@ body {
 }
 h1 {
   text-align: center;
-  margin: 100px auto 0;
+  margin: 100px auto 30px;
   font-weight: 600;
-  margin-bottom: 30px;
 }
 form {
   width: 90%;
@@ -69,14 +68,15 @@ form button {
   display: none;
 }
 #search-result {
-  margin-top: 100px;
+  width: 100%;
+  margin: 100px auto 0;
+  text-align: center;
 }
-
 #search-result a {
   display: inline-block;
   margin: 10px;
 }
-#search-result img {
+#search-result a img {
   width: 300px;
   height: 300px;
   object-fit: cover;
