@@ -1,7 +1,7 @@
 const circle = document.getElementById("circle");
 const number = document.getElementById("number");
 
-const radius = 70;
+const radius = circle.getAttribute("r");
 const circumference = 2 * Math.PI * radius;
 
 circle.style.strokeDasharray = circumference;
@@ -35,6 +35,7 @@ requestAnimationFrame(animate);
 /*
 setInterval -> requestAnimationFrame()
 
+requestAnimationFrame()
 -sync with monitor refresh rate
 -No unnecessary CPU usage
 -No timing mismatch
