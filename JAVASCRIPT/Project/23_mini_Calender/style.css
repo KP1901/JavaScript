@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(45deg, #20225a, #1f0507);
+}
+#calender {
+  display: flex;
+  width: 300px;
+  height: 200px;
+  align-items: center;
+  justify-content: center;
+}
+#left {
+  flex-basis: 60%;
+  background: #fff;
+  height: 100%;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  justify-items: center;
+  align-content: center;
+}
+#right {
+  flex-basis: 40%;
+  background: orange;
+  height: 100%;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  justify-items: center;
+  align-content: center;
+}
+#date {
+  font-size: 70px;
+  font-weight: 600;
+}
+#month {
+  font-size: 20px;
+}
