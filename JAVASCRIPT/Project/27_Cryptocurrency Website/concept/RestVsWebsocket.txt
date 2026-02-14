@@ -1,0 +1,78 @@
+/*
+🧠 Step 1: First Understand Client & Server
+
+Browser (your JS code) → Client
+Binance / API provider → Server
+
+They communicate through the internet.
+
+Now there are two main communication styles:
+
+-REST (Request–Response)
+-WebSocket (Persistent Connection)
+
+🔁 1️⃣ REST API (Normal HTTP Request)
+
+How it works:
+
+1.Client sends request
+2.Server sends response
+3.Connection closes
+
+Finished.
+
+Every time you want new data → you must ask again.
+
+Example :
+
+fetch("https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT")
+.then(res => res.json())
+.then(data => console.log(data))
+
+If you want price every second:
+
+setInterval(() => {
+  fetch(...);
+}, 1000);
+
+
+So your browser keeps asking:
+
+“Give price?”
+“Give price?”
+“Give price?”
+
+🔄 2️⃣ WebSocket (Live Connection)
+
+Now imagine different situation.
+
+-You connect once.
+-Connection stays open.
+-Server keeps sending updates automatically.
+
+No repeated asking.
+
+Example : 
+
+const socket = new WebSocket(
+  "wss://stream.binance.com:9443/ws/btcusdt@trade"
+);
+
+socket.onmessage = (event) => {
+  const data = JSON.parse(event.data);
+  console.log(data.p);
+};
+
+You did NOT ask again.
+Server pushed data.
+
+⚡ Core Difference
+
+| REST                  | WebSocket                    |
+| --------------------- | ---------------------------- |
+| Ask every time        | Connect once                 |
+| Request → Response    | Continuous flow              |
+| Good for normal data  | Good for live data           |
+| Used in most websites | Used in chats, crypto, games |
+
+*/

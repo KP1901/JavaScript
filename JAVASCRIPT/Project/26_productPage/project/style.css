@@ -1,0 +1,171 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  list-style: none;
+  text-decoration: none;
+}
+
+.container {
+  width: 100%;
+  background: #d0eaff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.product {
+  width: 90%;
+  max-width: 750px;
+  display: flex;
+}
+.gallery {
+  flex-basis: 47%;
+  background-color: #241e20;
+  transform: scale(1.05);
+  box-shadow: -10px 5px 10px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+.gallery img {
+  width: 100%;
+  display: block;
+  padding-top: 100px;
+}
+.details {
+  flex-basis: 53%;
+  background: #fff;
+  padding: 40px;
+  padding-left: 60px;
+  font-size: 13px;
+  color: #777;
+}
+.details h1 {
+  color: #333;
+  font-size: 35px;
+}
+.details h2 {
+  color: #555;
+  font-size: 30px;
+  font-weight: 600;
+}
+.details h3 {
+  color: #00d874;
+  margin-bottom: 20px;
+}
+.details form {
+  font-size: 15px;
+  font-weight: 400;
+}
+.size-select {
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+}
+.size-select p {
+  margin-right: 15px;
+  padding: 5px 0;
+}
+.size-select input {
+  display: none;
+}
+.size-select input:checked ~ span {
+  color: blue;
+  font-weight: 600;
+}
+.size-select span {
+  padding: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.color-select {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+.color-select p {
+  margin-right: 20px;
+}
+.color-select span {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.color-1 {
+  background: red;
+}
+
+.color-2 {
+  background: #00d874;
+}
+
+.color-3 {
+  background: blue;
+}
+
+.color-4 {
+  background: pink;
+}
+.color-select label {
+  display: flex;
+}
+.color-select input {
+  display: none;
+}
+.color-select input:checked ~ span {
+  transform: scale(0.7);
+  box-shadow:
+    0 0 5px 5px #fff,
+    0 0 5px 5px #000;
+}
+.quantity-select {
+  display: flex;
+  margin-top: 20px;
+}
+
+.quantity-select p {
+  margin-right: 10px;
+}
+
+.quantity-select input {
+  border: 0;
+  outline: 0;
+  background: hsl(0, 0%, 93%);
+  padding: 2px 2px 2px 15px;
+  width: 50px;
+  border-radius: 12px;
+  box-shadow: 0 0 2px #000;
+}
+form button {
+  background-color: #553ff0;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 50px;
+  box-shadow: 0 10px 10px rgba(85, 63, 240, 0.25);
+}
+.controls {
+  position: absolute;
+  bottom: 40px;
+  right: 20px;
+}
+.controls .btn {
+  display: block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  margin: 10px;
+}
+.btn.active {
+  background: #553ff0;
+}
