@@ -1,0 +1,44 @@
+SpeechSynthesisUtterance()
+→ Creates a speech object (container for speech data)
+
+speech
+→ The speech object you created
+
+speech.text
+→ The text content to be spoken
+
+speech.voice
+→ The selected voice to use
+
+speech.rate
+→ Speed of speaking
+
+speech.pitch
+→ Tone of voice
+
+speech.volume
+→ Loudness of voice
+
+window
+→ Global browser object
+
+window.speechSynthesis
+→ Browser speech engine controller
+
+speechSynthesis.getVoices()
+→ Returns available voices
+
+speechSynthesis.speak(speech)
+→ Starts speaking the speech object
+
+speechSynthesis.cancel()
+→ Stops all current and queued speech
+
+speechSynthesis.pause()
+→ Pauses speaking
+
+speechSynthesis.resume()
+→ Resumes paused speech
+
+onvoiceschanged
+→ Event that fires when voices are loaded

@@ -13,11 +13,11 @@ async function syncTime() {
     const response = await fetch("http://localhost:3000/time");
     const data = await response.json();
     serverOffset = data.serverTime - Date.now();
-    console.log(serverOffset);
   } catch (error) {
     console.error("Failed to sync time:", error);
   }
 }
+
 function updateCountdown() {
   let now = Date.now() + serverOffset;
   const distance = launchDate - now;

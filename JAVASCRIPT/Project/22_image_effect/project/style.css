@@ -9,6 +9,7 @@
   justify-content: center;
   align-items: center;
   display: flex;
+  background: #f3fbff;
 }
 .img-box {
   width: 60%;
@@ -25,18 +26,16 @@
   overflow: hidden;
 }
 span {
-  width: 1px;
-  height: 1px;
+  width: 0.001px;
+  height: 100%;
   cursor: ew-resize;
-  background: red;
+  background: #fff;
   position: absolute;
-  left: 0;
-  top: 40%;
-  transform: translate(-50%, -50%);
 }
 .arrow {
   width: 40px;
   position: absolute;
-  left: -40px;
-  top: -40px;
+  top: 50%;
+  margin-left: -20px;
+  margin-top: -20px;
 }
