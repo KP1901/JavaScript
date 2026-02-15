@@ -1,0 +1,77 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+.container {
+  width: 100%;
+  height: 100vh;
+  background-image: url(./images/background.png);
+  background-size: cover;
+  position: relative;
+  padding: 0 8%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.logo {
+  width: 120px;
+  padding: 20px 0;
+  cursor: pointer;
+}
+.content {
+  top: 50%;
+  position: absolute;
+  transform: translate(0, -50%);
+  color: #fff;
+  z-index: 1000;
+}
+.content h1 {
+  font-size: 64px;
+  font-weight: 600;
+}
+.content h1 span {
+  color: #ff3753;
+}
+.content button {
+  background: transparent;
+  border: 2px solid #fff;
+  padding: 12px 25px;
+  outline: none;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+.content button img {
+  width: 15px;
+  margin-left: 10px;
+}
+.launch-time {
+  display: flex;
+}
+.launch-time div {
+  margin-right: 30px;
+  text-align: center;
+}
+.launch-time div p {
+  font-size: 40px;
+  text-align: center;
+}
+.rocket {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 250px;
+  animation: rocketAnmi 4s linear infinite;
+}
+@keyframes rocketAnmi {
+  0% {
+    transform: translateY(10%);
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateY(-300%);
+  }
+}
