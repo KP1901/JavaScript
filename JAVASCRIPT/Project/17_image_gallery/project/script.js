@@ -16,6 +16,7 @@ nextBtn.addEventListener("click", () => {
   // scrollContainer.scrollLeft += 100;
   scrollContainer.scrollBy({
     left: getScrollAmount(),
+    behavior: "smooth",
   });
 });
 
@@ -23,5 +24,6 @@ backBtn.addEventListener("click", () => {
   // scrollContainer.scrollLeft += 100;
   scrollContainer.scrollBy({
     left: -getScrollAmount(),
+    behavior: "smooth",
   });
 });
