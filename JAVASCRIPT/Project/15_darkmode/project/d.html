@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="d.css">
+  </head>
+  <body>
+    <div>
+      <div class="navbar">
+        <img
+          src="data:image/svg+xml,%3csvg%20width='109'%20height='57'%20viewBox='0%200%20109%2057'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M68%2042.39C68%2041.3438%2068.9096%2040.53%2069.9493%2040.6459L101.251%2044.136C105.227%2044.5794%20108.591%2041.226%20108.161%2037.2483C107.713%2033.1161%20103.434%2030.5622%2099.5844%2032.1306L70.4171%2044.0151C69.2629%2044.4854%2068%2043.6363%2068%2042.39Z'%20fill='url(%23paint0_linear_2205_14)'/%3e%3cpath%20d='M0.9%2045L13.635%2013.365H18.63L31.32%2045H24.795L14.985%2019.035H17.235L7.29%2045H0.9ZM7.65%2039.105V33.975H24.66V39.105H7.65ZM34.778%2045V12.465H40.673V45H34.778ZM56.2911%2045.45C54.0111%2045.45%2051.9861%2044.97%2050.2161%2044.01C48.4461%2043.02%2047.0361%2041.67%2045.9861%2039.96C44.9661%2038.25%2044.4561%2036.3%2044.4561%2034.11C44.4561%2031.95%2044.9511%2030.03%2045.9411%2028.35C46.9611%2026.64%2048.3411%2025.29%2050.0811%2024.3C51.8211%2023.28%2053.7561%2022.77%2055.8861%2022.77C57.9861%2022.77%2059.8311%2023.25%2061.4211%2024.21C63.0411%2025.14%2064.3011%2026.43%2065.2011%2028.08C66.1311%2029.7%2066.5961%2031.545%2066.5961%2033.615C66.5961%2034.005%2066.5661%2034.41%2066.5061%2034.83C66.4761%2035.22%2066.4011%2035.67%2066.2811%2036.18L48.0111%2036.225V31.815L63.5361%2031.77L61.1511%2033.615C61.0911%2032.325%2060.8511%2031.245%2060.4311%2030.375C60.0411%2029.505%2059.4561%2028.845%2058.6761%2028.395C57.9261%2027.915%2056.9961%2027.675%2055.8861%2027.675C54.7161%2027.675%2053.6961%2027.945%2052.8261%2028.485C51.9561%2028.995%2051.2811%2029.73%2050.8011%2030.69C50.3511%2031.62%2050.1261%2032.73%2050.1261%2034.02C50.1261%2035.34%2050.3661%2036.495%2050.8461%2037.485C51.3561%2038.445%2052.0761%2039.195%2053.0061%2039.735C53.9361%2040.245%2055.0161%2040.5%2056.2461%2040.5C57.3561%2040.5%2058.3611%2040.32%2059.2611%2039.96C60.1611%2039.57%2060.9411%2039%2061.6011%2038.25L65.0661%2041.715C64.0161%2042.945%2062.7261%2043.875%2061.1961%2044.505C59.6961%2045.135%2058.0611%2045.45%2056.2911%2045.45ZM91.3918%2045L82.3018%2030.915H81.4018L69.0718%2013.365H76.3168L85.3618%2026.64H86.2618L98.5468%2045H91.3918ZM68.5318%2045L80.3668%2028.08L84.8668%2031.095L75.4618%2045H68.5318ZM86.5768%2029.97L82.0768%2026.955L91.0768%2013.365H98.0068L86.5768%2029.97Z'%20fill='white'/%3e%3cdefs%3e%3clinearGradient%20id='paint0_linear_2205_14'%20x1='219.1'%20y1='39.9983'%20x2='202.599'%20y2='91.4037'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20stop-color='%23DF8908'/%3e%3cstop%20offset='1'%20stop-color='%23B415FF'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e"
+          alt=""
+          class="logo"
+        /><img
+          src="data:image/svg+xml,%3csvg%20width='36'%20height='29'%20viewBox='0%200%2036%2029'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3crect%20width='35.9988'%20height='4'%20rx='2'%20fill='white'/%3e%3crect%20x='13.0898'%20y='12.5'%20width='22.9083'%20height='4'%20rx='2'%20fill='white'/%3e%3crect%20x='4.91016'%20y='25'%20width='31.0899'%20height='4'%20rx='2'%20fill='white'/%3e%3c/svg%3e"
+          alt=""
+          class="nav-mob-open"
+        />
+        <ul class="nav-menu">
+          <img
+            src="data:image/svg+xml,%3csvg%20width='15'%20height='15'%20viewBox='0%200%2015%2015'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M14.3216%200.678819C14.6963%201.05359%2014.6963%201.66113%2014.3216%202.0359L2.10786%2014.2521C1.73306%2014.627%201.1253%2014.627%200.750501%2014.2521V14.2521C0.375808%2013.8774%200.375807%2013.2698%200.750501%2012.8951L12.9642%200.678818C13.339%200.303939%2013.9468%200.30394%2014.3216%200.678819V0.678819Z'%20fill='white'/%3e%3cpath%20d='M14.2495%2014.3212C14.6242%2013.9464%2014.6242%2013.3389%2014.2495%2012.9641L2.03576%200.747858C1.66096%200.372979%201.0532%200.372981%200.678402%200.74786V0.74786C0.303708%201.12263%200.303708%201.73017%200.678402%202.10494L12.8921%2014.3212C13.2669%2014.6961%2013.8747%2014.6961%2014.2495%2014.3212V14.3212Z'%20fill='white'/%3e%3c/svg%3e"
+            alt=""
+            class="nav-mob-close"
+          />
+          <li>
+            <a class="anchor-link" href="#home"><p>Home</p></a
+            ><img
+              src="data:image/svg+xml,%3csvg%20width='37'%20height='12'%20viewBox='0%200%2037%2012'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M0%209.72421C0%208.80351%200.798853%208.08636%201.71422%208.18532L30.1637%2011.2609C33.6717%2011.6402%2036.6285%208.67298%2036.2369%205.16633C35.8336%201.55539%2032.1094%20-0.6855%2028.7302%200.649534L2.11659%2011.1638C1.10075%2011.5651%200%2010.8165%200%209.72421Z'%20fill='url(%23paint0_linear_2164_71)'/%3e%3cdefs%3e%3clinearGradient%20id='paint0_linear_2164_71'%20x1='136.358'%20y1='7.62354'%20x2='122.281'%20y2='52.8563'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20stop-color='%23DF8908'/%3e%3cstop%20offset='1'%20stop-color='%23B415FF'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e"
+              alt=""
+            />
+          </li>
+          <li>
+            <a class="anchor-link" href="#about"><p>About Me</p></a>
+          </li>
+          <li>
+            <a class="anchor-link" href="#services"><p>Services</p></a>
+          </li>
+          <li>
+            <a class="anchor-link" href="#work"><p>Portfolio</p></a>
+          </li>
+          <li>
+            <a class="anchor-link" href="#contact"><p>Contact</p></a>
+          </li>
+        </ul>
+        <div class="nav-connect">
+          <a class="anchor-link" href="#contact">Connect With Me</a>
+        </div>
+      </div>
+      <div id="home" class="hero">
+        <img
+          src="/portfolio/assets/profile_img-isMTF2gD.svg"
+          alt=""
+          class="profile-img"
+        />
+        <h1><span>I'm Alex Bennett,</span> frontend developer based in USA.</h1>
+        <p>
+          I am a frontend developer from California, USA with 10 years of
+          experience in multiple companies like Microsoft, Tesla and Apple.
+        </p>
+        <div class="hero-action">
+          <div class="hero-connect">
+            <a class="anchor-link" href="#contact">Connect with me</a>
+          </div>
+          <div class="hero-resume">My resume</div>
+        </div>
+      </div>
+      <div id="about" class="about">
+        <div class="title-box">
+          <h1>About me</h1>
+          <img
+            src="data:image/svg+xml,%3csvg%20width='227'%20height='72'%20viewBox='0%200%20227%2072'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M0%2061.1395C0%2055.1999%205.16729%2050.5816%2011.0696%2051.2459L187.039%2071.052C209.597%2073.591%20228.703%2054.5844%20226.282%2032.0133C223.76%208.50255%20199.379%20-6.00841%20177.511%202.98631L13.7433%2070.3471C7.19098%2073.0422%200%2068.2245%200%2061.1395Z'%20fill='url(%23paint0_linear_2160_23)'/%3e%3cdefs%3e%3clinearGradient%20id='paint0_linear_2160_23'%20x1='851.318'%20y1='47.553'%20x2='756.751'%20y2='339.402'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20stop-color='%23DF8908'/%3e%3cstop%20offset='1'%20stop-color='%23B415FF'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e"
+            alt=""
+          />
+        </div>
+        <div class="about-sections">
+          <div class="about-left">
+            <img src="/portfolio/assets/about_profile-kNAyOvDL.svg" alt="" />
+          </div>
+          <div class="about-right">
+            <div class="about-para">
+              <p>
+                I am an experienced Frontend Developer with over a decade of
+                professional expertise in the field. Throughout my career, I
+                have had the privilege of collaborating with prestigious
+                organizations, contributing to their success and growth.
+              </p>
+              <p>
+                My passion for frontend development is not only reflected in my
+                extensive experience but also in the enthusiasm and dedication I
+                bring to each project.
+              </p>
+            </div>
+            <div class="about-skills">
+              <div class="about-skill">
+                <p>HTML &amp; CSS</p>
+                <hr style="width: 50%" />
+              </div>
+              <div class="about-skill">
+                <p>React JS</p>
+                <hr style="width: 70%" />
+              </div>
+              <div class="about-skill">
+                <p>JavaScript</p>
+                <hr style="width: 60%" />
+              </div>
+              <div class="about-skill">
+                <p>Next JS</p>
+                <hr style="width: 50%" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="about-achievements">
+          <div class="about-achievement">
+            <h1>10+</h1>
+            <p>YEARS OF EXPERIENCE</p>
+          </div>
+          <hr />
+          <div class="about-achievement">
+            <h1>90+</h1>
+            <p>PROJECTS COMPLETED</p>
+          </div>
+          <hr />
+          <div class="about-achievement">
+            <h1>15+</h1>
+            <p>HAPPY CLIENTS</p>
+          </div>
+        </div>
+      </div>
+      <div id="services" class="services">
+        <div class="title-box">
+          <h1>My Services</h1>
+          <img
+            src="data:image/svg+xml,%3csvg%20width='227'%20height='72'%20viewBox='0%200%20227%2072'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M0%2061.1395C0%2055.1999%205.16729%2050.5816%2011.0696%2051.2459L187.039%2071.052C209.597%2073.591%20228.703%2054.5844%20226.282%2032.0133C223.76%208.50255%20199.379%20-6.00841%20177.511%202.98631L13.7433%2070.3471C7.19098%2073.0422%200%2068.2245%200%2061.1395Z'%20fill='url(%23paint0_linear_2160_23)'/%3e%3cdefs%3e%3clinearGradient%20id='paint0_linear_2160_23'%20x1='851.318'%20y1='47.553'%20x2='756.751'%20y2='339.402'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20stop-color='%23DF8908'/%3e%3cstop%20offset='1'%20stop-color='%23B415FF'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e"
+            alt=""
+          />
+        </div>
+        <div class="services-container">
+          <div class="services-format">
+            <h3>01</h3>
+            <h2>Web design</h2>
+            <p>Web development is the process of building, programming...</p>
+            <div class="services-readmore">
+              <p>Read More</p>
+              <img
+                src="data:image/svg+xml,%3csvg%20width='33'%20height='24'%20viewBox='0%200%2033%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M32.0607%2013.0607C32.6464%2012.4749%2032.6464%2011.5251%2032.0607%2010.9393L22.5147%201.3934C21.9289%200.807611%2020.9792%200.807611%2020.3934%201.3934C19.8076%201.97919%2019.8076%202.92893%2020.3934%203.51472L28.8787%2012L20.3934%2020.4853C19.8076%2021.0711%2019.8076%2022.0208%2020.3934%2022.6066C20.9792%2023.1924%2021.9289%2023.1924%2022.5147%2022.6066L32.0607%2013.0607ZM0%2013.5H31V10.5H0V13.5Z'%20fill='white'/%3e%3c/svg%3e"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="services-format">
+            <h3>02</h3>
+            <h2>Graphics design</h2>
+            <p>Web development is the process of building, programming...</p>
+            <div class="services-readmore">
+              <p>Read More</p>
+              <img
+                src="data:image/svg+xml,%3csvg%20width='33'%20height='24'%20viewBox='0%200%2033%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M32.0607%2013.0607C32.6464%2012.4749%2032.6464%2011.5251%2032.0607%2010.9393L22.5147%201.3934C21.9289%200.807611%2020.9792%200.807611%2020.3934%201.3934C19.8076%201.97919%2019.8076%202.92893%2020.3934%203.51472L28.8787%2012L20.3934%2020.4853C19.8076%2021.0711%2019.8076%2022.0208%2020.3934%2022.6066C20.9792%2023.1924%2021.9289%2023.1924%2022.5147%2022.6066L32.0607%2013.0607ZM0%2013.5H31V10.5H0V13.5Z'%20fill='white'/%3e%3c/svg%3e"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="services-format">
+            <h3>03</h3>
+            <h2>Social media</h2>
+            <p>Web development is the process of building, programming...</p>
+            <div class="services-readmore">
+              <p>Read More</p>
+              <img
+                src="data:image/svg+xml,%3csvg%20width='33'%20height='24'%20viewBox='0%200%2033%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M32.0607%2013.0607C32.6464%2012.4749%2032.6464%2011.5251%2032.0607%2010.9393L22.5147%201.3934C21.9289%200.807611%2020.9792%200.807611%2020.3934%201.3934C19.8076%201.97919%2019.8076%202.92893%2020.3934%203.51472L28.8787%2012L20.3934%2020.4853C19.8076%2021.0711%2019.8076%2022.0208%2020.3934%2022.6066C20.9792%2023.1924%2021.9289%2023.1924%2022.5147%2022.6066L32.0607%2013.0607ZM0%2013.5H31V10.5H0V13.5Z'%20fill='white'/%3e%3c/svg%3e"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="services-format">
+            <h3>04</h3>
+            <h2>App design</h2>
+            <p>Web development is the process of building, programming...</p>
+            <div class="services-readmore">
+              <p>Read More</p>
+              <img
+                src="data:image/svg+xml,%3csvg%20width='33'%20height='24'%20viewBox='0%200%2033%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M32.0607%2013.0607C32.6464%2012.4749%2032.6464%2011.5251%2032.0607%2010.9393L22.5147%201.3934C21.9289%200.807611%2020.9792%200.807611%2020.3934%201.3934C19.8076%201.97919%2019.8076%202.92893%2020.3934%203.51472L28.8787%2012L20.3934%2020.4853C19.8076%2021.0711%2019.8076%2022.0208%2020.3934%2022.6066C20.9792%2023.1924%2021.9289%2023.1924%2022.5147%2022.6066L32.0607%2013.0607ZM0%2013.5H31V10.5H0V13.5Z'%20fill='white'/%3e%3c/svg%3e"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="services-format">
+            <h3>05</h3>
+            <h2>Digital marketing</h2>
+            <p>Web development is the process of building, programming...</p>
+            <div class="services-readmore">
+              <p>Read More</p>
+              <img
+                src="data:image/svg+xml,%3csvg%20width='33'%20height='24'%20viewBox='0%200%2033%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M32.0607%2013.0607C32.6464%2012.4749%2032.6464%2011.5251%2032.0607%2010.9393L22.5147%201.3934C21.9289%200.807611%2020.9792%200.807611%2020.3934%201.3934C19.8076%201.97919%2019.8076%202.92893%2020.3934%203.51472L28.8787%2012L20.3934%2020.4853C19.8076%2021.0711%2019.8076%2022.0208%2020.3934%2022.6066C20.9792%2023.1924%2021.9289%2023.1924%2022.5147%2022.6066L32.0607%2013.0607ZM0%2013.5H31V10.5H0V13.5Z'%20fill='white'/%3e%3c/svg%3e"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="services-format">
+            <h3>06</h3>
+            <h2>Content writing</h2>
+            <p>Web development is the process of building, programming...</p>
+            <div class="services-readmore">
+              <p>Read More</p>
+              <img
+                src="data:image/svg+xml,%3csvg%20width='33'%20height='24'%20viewBox='0%200%2033%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M32.0607%2013.0607C32.6464%2012.4749%2032.6464%2011.5251%2032.0607%2010.9393L22.5147%201.3934C21.9289%200.807611%2020.9792%200.807611%2020.3934%201.3934C19.8076%201.97919%2019.8076%202.92893%2020.3934%203.51472L28.8787%2012L20.3934%2020.4853C19.8076%2021.0711%2019.8076%2022.0208%2020.3934%2022.6066C20.9792%2023.1924%2021.9289%2023.1924%2022.5147%2022.6066L32.0607%2013.0607ZM0%2013.5H31V10.5H0V13.5Z'%20fill='white'/%3e%3c/svg%3e"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="work" class="mywork">
+        <div class="title-box">
+          <h1>My latest work</h1>
+          <img
+            src="data:image/svg+xml,%3csvg%20width='227'%20height='72'%20viewBox='0%200%20227%2072'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M0%2061.1395C0%2055.1999%205.16729%2050.5816%2011.0696%2051.2459L187.039%2071.052C209.597%2073.591%20228.703%2054.5844%20226.282%2032.0133C223.76%208.50255%20199.379%20-6.00841%20177.511%202.98631L13.7433%2070.3471C7.19098%2073.0422%200%2068.2245%200%2061.1395Z'%20fill='url(%23paint0_linear_2160_23)'/%3e%3cdefs%3e%3clinearGradient%20id='paint0_linear_2160_23'%20x1='851.318'%20y1='47.553'%20x2='756.751'%20y2='339.402'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20stop-color='%23DF8908'/%3e%3cstop%20offset='1'%20stop-color='%23B415FF'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e"
+            alt=""
+          />
+        </div>
+        <div class="mywork-container">
+          <img src="/portfolio/assets/project_1-5xYOfh0z.svg" alt="" /><img
+            src="/portfolio/assets/project_2-ko3fLZz-.svg"
+            alt=""
+          /><img src="/portfolio/assets/project_3-G9x9U39U.svg" alt="" /><img
+            src="/portfolio/assets/project_4-KRxErSUy.svg"
+            alt=""
+          /><img src="/portfolio/assets/project_5-u53cBB9v.svg" alt="" /><img
+            src="/portfolio/assets/project_6-VGGcxYRF.svg"
+            alt=""
+          />
+        </div>
+        <div class="mywork-showmore">
+          <p>Show More</p>
+          <img
+            src="data:image/svg+xml,%3csvg%20width='33'%20height='24'%20viewBox='0%200%2033%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M32.0607%2013.0607C32.6464%2012.4749%2032.6464%2011.5251%2032.0607%2010.9393L22.5147%201.3934C21.9289%200.807611%2020.9792%200.807611%2020.3934%201.3934C19.8076%201.97919%2019.8076%202.92893%2020.3934%203.51472L28.8787%2012L20.3934%2020.4853C19.8076%2021.0711%2019.8076%2022.0208%2020.3934%2022.6066C20.9792%2023.1924%2021.9289%2023.1924%2022.5147%2022.6066L32.0607%2013.0607ZM0%2013.5H31V10.5H0V13.5Z'%20fill='white'/%3e%3c/svg%3e"
+            alt=""
+          />
+        </div>
+      </div>
+      <div id="contact" class="contact">
+        <div class="title-box">
+          <h1>Get in touch</h1>
+          <img
+            src="data:image/svg+xml,%3csvg%20width='227'%20height='72'%20viewBox='0%200%20227%2072'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M0%2061.1395C0%2055.1999%205.16729%2050.5816%2011.0696%2051.2459L187.039%2071.052C209.597%2073.591%20228.703%2054.5844%20226.282%2032.0133C223.76%208.50255%20199.379%20-6.00841%20177.511%202.98631L13.7433%2070.3471C7.19098%2073.0422%200%2068.2245%200%2061.1395Z'%20fill='url(%23paint0_linear_2160_23)'/%3e%3cdefs%3e%3clinearGradient%20id='paint0_linear_2160_23'%20x1='851.318'%20y1='47.553'%20x2='756.751'%20y2='339.402'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20stop-color='%23DF8908'/%3e%3cstop%20offset='1'%20stop-color='%23B415FF'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e"
+            alt=""
+          />
+        </div>
+        <div class="contact-section">
+          <div class="contact-left">
+            <h1>Let's talk</h1>
+            <p>
+              I'm currently avaliable to take on new projects, so feel free to
+              send me a message about anything that you want me to work on. You
+              can contact anytime.
+            </p>
+            <div class="contact-details">
+              <div class="contact-detail">
+                <img
+                  src="data:image/svg+xml,%3csvg%20width='38'%20height='28'%20viewBox='0%200%2038%2028'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M31.9853%200H5.15656C2.30882%200%200%202.30882%200%205.15656V22.1304C0%2024.9781%202.30882%2027.287%205.15656%2027.287H31.9853C34.833%2027.287%2037.1419%2024.9781%2037.1419%2022.1304V5.15656C37.1419%202.30882%2034.833%200%2031.9853%200ZM12.9247%2018.411L5.70375%2024.5713C5.19442%2025.006%204.42873%2024.9456%203.99413%2024.4357C3.55945%2023.9264%203.61988%2023.1607%204.12979%2022.7261L11.3507%2016.5658C11.8599%2016.1311%2012.6256%2016.1915%2013.0602%2016.7014C13.4949%2017.2107%2013.4345%2017.9764%2012.9247%2018.411ZM18.5709%2016.069C17.6051%2016.0666%2016.6689%2015.7457%2015.9369%2015.1127L15.9375%2015.1133L15.9352%2015.1115C15.9358%2015.1121%2015.9364%2015.1121%2015.9369%2015.1127L4.85761%205.49649C4.35126%205.05703%204.29736%204.29141%204.73617%203.78572C5.17556%203.27937%205.94125%203.22547%206.44687%203.66428L17.5293%2013.2829C17.7662%2013.4937%2018.1564%2013.6459%2018.5709%2013.6435C18.9849%2013.6447%2019.3685%2013.4967%2019.6185%2013.2787L19.6238%2013.274L30.6949%203.66435C31.2006%203.22554%2031.9663%203.27944%2032.4057%203.78579C32.8445%204.29141%2032.7906%205.0571%2032.2843%205.49656L21.2019%2015.1157C20.4724%2015.7421%2019.5374%2016.0678%2018.5709%2016.069ZM33.1483%2024.4357C32.7136%2024.9456%2031.9479%2025.006%2031.4387%2024.5713L24.2178%2018.411C23.708%2017.9763%2023.6476%2017.2107%2024.0822%2016.7014C24.5168%2016.1915%2025.2825%2016.1312%2025.7918%2016.5658L33.0127%2022.7261C33.5225%2023.1607%2033.5829%2023.9264%2033.1483%2024.4357Z'%20fill='%23D8D8D8'/%3e%3c/svg%3e"
+                  alt=""
+                />
+                <p>greatstackdev@gmail.com</p>
+              </div>
+              <div class="contact-detail">
+                <img
+                  src="data:image/svg+xml,%3csvg%20width='32'%20height='33'%20viewBox='0%200%2032%2033'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M20.3519%2021.5541L19.6136%2022.3313C19.6136%2022.3313%2017.8588%2024.1788%2013.0692%2019.1361C8.27955%2014.0935%2010.0343%2012.2461%2010.0343%2012.2461L10.4992%2011.7567C11.6444%2010.551%2011.7524%208.61524%2010.7532%207.20206L8.7093%204.31127C7.47262%202.56218%205.08295%202.33112%203.66549%203.82344L1.12139%206.50191C0.418552%207.24186%20-0.0524378%208.20107%200.00468137%209.26515C0.150802%2011.9874%201.31405%2017.8445%207.80503%2024.6783C14.6884%2031.9252%2021.147%2032.2132%2023.7882%2031.9526C24.6236%2031.8701%2025.3501%2031.4197%2025.9356%2030.8032L28.2382%2028.3791C29.7924%2026.7428%2029.3541%2023.9376%2027.3655%2022.793L24.2688%2021.0105C22.9631%2020.2589%2021.3723%2020.4797%2020.3519%2021.5541Z'%20fill='%23D8D8D8'/%3e%3cpath%20d='M16.6306%201.02087C16.7379%200.358117%2017.3644%20-0.091461%2018.0271%200.0158238C18.0682%200.023685%2018.2003%200.0483545%2018.2693%200.0637527C18.4077%200.0945652%2018.6006%200.141975%2018.8411%200.212045C19.3222%200.352153%2019.9942%200.582979%2020.8008%200.952747C22.4156%201.69309%2024.5646%202.98816%2026.7945%205.21814C29.0245%207.44812%2030.3196%209.59707%2031.0598%2011.2119C31.4297%2012.0185%2031.6605%2012.6905%2031.8006%2013.1715C31.8706%2013.4121%2031.9181%2013.605%2031.9489%2013.7433C31.9643%2013.8125%2031.9756%2013.868%2031.9834%2013.909L31.9928%2013.9596C32.0999%2014.6223%2031.6545%2015.2748%2030.9918%2015.3821C30.3309%2015.4891%2029.7084%2015.0416%2029.5985%2014.3821C29.5951%2014.3642%2029.5857%2014.3167%2029.5758%2014.2718C29.5557%2014.1821%2029.5212%2014.0397%2029.4664%2013.8514C29.3566%2013.4749%2029.1662%2012.9151%2028.8498%2012.2252C28.218%2010.8469%2027.0818%208.94374%2025.0753%206.93732C23.069%204.93092%2021.1658%203.79472%2019.7876%203.16286C19.0976%202.84653%2018.5379%202.65603%2018.1612%202.54633C17.973%202.49149%2017.7364%202.43718%2017.6466%202.41719C16.9869%202.30725%2016.5236%201.68173%2016.6306%201.02087Z'%20fill='%23D8D8D8'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M16.9963%206.6115C17.1807%205.96594%2017.8536%205.59214%2018.4991%205.77658L18.1652%206.94546C18.4991%205.77658%2018.4991%205.77658%2018.4991%205.77658L18.5016%205.77726L18.504%205.77797L18.5094%205.77954L18.522%205.7833L18.5541%205.79329C18.5784%205.8011%2018.609%205.81128%2018.6453%205.8242C18.7181%205.85003%2018.8144%205.88676%2018.9324%205.93733C19.1686%206.03854%2019.4911%206.19482%2019.8876%206.42938C20.6808%206.89891%2021.7639%207.67883%2023.0363%208.95116C24.3086%2010.2235%2025.0884%2011.3065%2025.558%2012.0999C25.7925%2012.4962%2025.9488%2012.8189%2026.0501%2013.055C26.1007%2013.173%2026.1375%2013.2692%2026.1632%2013.342C26.1762%2013.3784%2026.1862%2013.4089%2026.1942%2013.4334L26.2041%2013.4654L26.2078%2013.478L26.2094%2013.4834L26.2101%2013.4859C26.2101%2013.4859%2026.2109%2013.4882%2025.0419%2013.8222L26.2109%2013.4882C26.3953%2014.1338%2026.0214%2014.8066%2025.376%2014.991C24.7359%2015.1739%2024.0689%2014.808%2023.8778%2014.1725L23.8718%2014.1551C23.8632%2014.1307%2023.8454%2014.0828%2023.8154%2014.0127C23.7554%2013.8728%2023.6467%2013.6439%2023.4658%2013.3382C23.1043%2012.7276%2022.4516%2011.8049%2021.317%2010.6703C20.1826%209.53582%2019.2598%208.8831%2018.6492%208.5217C18.3435%208.34078%2018.1147%208.23202%2017.9746%208.17205C17.9046%208.14204%2017.8566%208.12415%2017.8323%208.11551L17.8148%208.10953C17.1794%207.91846%2016.8134%207.25156%2016.9963%206.6115Z'%20fill='%23D8D8D8'/%3e%3c/svg%3e"
+                  alt=""
+                />
+                <p>+772-825-524</p>
+              </div>
+              <div class="contact-detail">
+                <img
+                  src="data:image/svg+xml,%3csvg%20width='27'%20height='37'%20viewBox='0%200%2027%2037'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M13.494%200C6.05469%200%203.19006e-06%206.0571%200%2013.4964C-4.66239e-06%2026.5864%2012.7344%2036.5376%2012.7344%2036.5376C13.1817%2036.8939%2013.8159%2036.8939%2014.2632%2036.5376C14.2632%2036.5376%2027%2026.5864%2027%2013.4964C27%206.0571%2020.9333%200%2013.494%200ZM13.494%207.36407C16.8676%207.36407%2019.6359%2010.1228%2019.6359%2013.4964C19.636%2016.87%2016.8676%2019.6359%2013.494%2019.6359C10.1204%2019.6359%207.36166%2016.87%207.36168%2013.4964C7.36169%2010.1228%2010.1204%207.36407%2013.494%207.36407Z'%20fill='%23D8D8D8'/%3e%3c/svg%3e"
+                  alt=""
+                />
+                <p>CA, United States</p>
+              </div>
+            </div>
+          </div>
+          <form class="contact-right">
+            <input
+              type="hidden"
+              name="subject"
+              value="New Submission from Portfolio"
+            /><label for="">Your Name</label
+            ><input
+              type="text"
+              placeholder="Enter your name"
+              name="name"
+            /><label for="">Your Email</label
+            ><input
+              type="email"
+              placeholder="Enter your email"
+              name="email"
+            /><label for="">Write your message here</label
+            ><textarea
+              name="message"
+              rows="8"
+              placeholder="Enter your message"
+            ></textarea>
+            <div
+              class="h-captcha"
+              data-captcha="true"
+              data-sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2"
+            >
+              <iframe
+                src="https://newassets.hcaptcha.com/captcha/v1/cf4a5d4140f4bade58d5b003e5e849de31474a7b/static/hcaptcha.html#frame=checkbox&amp;id=0ysjm2ggy4nl&amp;host=greatstack.in&amp;sentry=true&amp;reportapi=https%3A%2F%2Faccounts.hcaptcha.com&amp;recaptchacompat=off&amp;custom=false&amp;hl=en&amp;tplinks=on&amp;andint=off&amp;pstissuer=https%3A%2F%2Fpst-issuer.hcaptcha.com&amp;sitekey=50b2fe65-b00b-4b9e-ad62-3ba471098be2&amp;theme=light&amp;origin=https%3A%2F%2Fgreatstack.in"
+                tabindex="0"
+                frameborder="0"
+                scrolling="no"
+                allow="private-state-token-redemption"
+                title="Widget containing checkbox for hCaptcha security challenge"
+                data-hcaptcha-widget-id="0ysjm2ggy4nl"
+                data-hcaptcha-response=""
+                style="
+                  pointer-events: auto;
+                  background-color: rgba(255, 255, 255, 0);
+                  border-radius: 4px;
+                  width: 302px;
+                  height: 76px;
+                  overflow: hidden;
+                "
+              ></iframe
+              ><textarea
+                id="h-captcha-response-0ysjm2ggy4nl"
+                name="h-captcha-response"
+                style="display: none"
+              ></textarea>
+            </div>
+            <button type="submit" class="contact-submit">Submit now</button>
+            <p></p>
+          </form>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="footer-top">
+          <div class="footer-top-left">
+            <img
+              src="data:image/svg+xml,%3csvg%20width='109'%20height='57'%20viewBox='0%200%20109%2057'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M68%2042.39C68%2041.3438%2068.9096%2040.53%2069.9493%2040.6459L101.251%2044.136C105.227%2044.5794%20108.591%2041.226%20108.161%2037.2483C107.713%2033.1161%20103.434%2030.5622%2099.5844%2032.1306L70.4171%2044.0151C69.2629%2044.4854%2068%2043.6363%2068%2042.39Z'%20fill='url(%23paint0_linear_2261_128)'/%3e%3cpath%20d='M0.9%2045L13.635%2013.365H18.63L31.32%2045H24.795L14.985%2019.035H17.235L7.29%2045H0.9ZM7.65%2039.105V33.975H24.66V39.105H7.65ZM34.778%2045V12.465H40.673V45H34.778ZM56.2911%2045.45C54.0111%2045.45%2051.9861%2044.97%2050.2161%2044.01C48.4461%2043.02%2047.0361%2041.67%2045.9861%2039.96C44.9661%2038.25%2044.4561%2036.3%2044.4561%2034.11C44.4561%2031.95%2044.9511%2030.03%2045.9411%2028.35C46.9611%2026.64%2048.3411%2025.29%2050.0811%2024.3C51.8211%2023.28%2053.7561%2022.77%2055.8861%2022.77C57.9861%2022.77%2059.8311%2023.25%2061.4211%2024.21C63.0411%2025.14%2064.3011%2026.43%2065.2011%2028.08C66.1311%2029.7%2066.5961%2031.545%2066.5961%2033.615C66.5961%2034.005%2066.5661%2034.41%2066.5061%2034.83C66.4761%2035.22%2066.4011%2035.67%2066.2811%2036.18L48.0111%2036.225V31.815L63.5361%2031.77L61.1511%2033.615C61.0911%2032.325%2060.8511%2031.245%2060.4311%2030.375C60.0411%2029.505%2059.4561%2028.845%2058.6761%2028.395C57.9261%2027.915%2056.9961%2027.675%2055.8861%2027.675C54.7161%2027.675%2053.6961%2027.945%2052.8261%2028.485C51.9561%2028.995%2051.2811%2029.73%2050.8011%2030.69C50.3511%2031.62%2050.1261%2032.73%2050.1261%2034.02C50.1261%2035.34%2050.3661%2036.495%2050.8461%2037.485C51.3561%2038.445%2052.0761%2039.195%2053.0061%2039.735C53.9361%2040.245%2055.0161%2040.5%2056.2461%2040.5C57.3561%2040.5%2058.3611%2040.32%2059.2611%2039.96C60.1611%2039.57%2060.9411%2039%2061.6011%2038.25L65.0661%2041.715C64.0161%2042.945%2062.7261%2043.875%2061.1961%2044.505C59.6961%2045.135%2058.0611%2045.45%2056.2911%2045.45ZM91.3918%2045L82.3018%2030.915H81.4018L69.0718%2013.365H76.3168L85.3618%2026.64H86.2618L98.5468%2045H91.3918ZM68.5318%2045L80.3668%2028.08L84.8668%2031.095L75.4618%2045H68.5318ZM86.5768%2029.97L82.0768%2026.955L91.0768%2013.365H98.0068L86.5768%2029.97Z'%20fill='white'/%3e%3cdefs%3e%3clinearGradient%20id='paint0_linear_2261_128'%20x1='219.1'%20y1='39.9983'%20x2='202.599'%20y2='91.4037'%20gradientUnits='userSpaceOnUse'%3e%3cstop%20stop-color='%23DF8908'/%3e%3cstop%20offset='1'%20stop-color='%23B415FF'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e"
+              alt=""
+            />
+            <p>
+              I am a frontend developer from, USA with 10 years of experience in
+              companies like Microsoft, Tesla and Apple.
+            </p>
+          </div>
+          <div class="footer-top-right">
+            <div class="footer-email-input">
+              <img
+                src="data:image/svg+xml,%3csvg%20width='24'%20height='27'%20viewBox='0%200%2024%2027'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20filter='url(%23filter0_d_2270_41)'%3e%3cpath%20d='M12.0007%2010.0003C14.3018%2010.0003%2016.1673%208.13485%2016.1673%205.83366C16.1673%203.53247%2014.3018%201.66699%2012.0007%201.66699C9.69946%201.66699%207.83398%203.53247%207.83398%205.83366C7.83398%208.13485%209.69946%2010.0003%2012.0007%2010.0003Z'%20stroke='white'%20stroke-opacity='0.72'%20stroke-width='1.25'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M19.1585%2018.3333C19.1585%2015.1083%2015.9501%2012.5%2012.0001%2012.5C8.05013%2012.5%204.8418%2015.1083%204.8418%2018.3333'%20stroke='white'%20stroke-opacity='0.72'%20stroke-width='1.25'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/g%3e%3cdefs%3e%3cfilter%20id='filter0_d_2270_41'%20x='-2'%20y='0'%20width='28'%20height='28'%20filterUnits='userSpaceOnUse'%20color-interpolation-filters='sRGB'%3e%3cfeFlood%20flood-opacity='0'%20result='BackgroundImageFix'/%3e%3cfeColorMatrix%20in='SourceAlpha'%20type='matrix'%20values='0%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%20127%200'%20result='hardAlpha'/%3e%3cfeOffset%20dy='4'/%3e%3cfeGaussianBlur%20stdDeviation='2'/%3e%3cfeComposite%20in2='hardAlpha'%20operator='out'/%3e%3cfeColorMatrix%20type='matrix'%20values='0%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200.25%200'/%3e%3cfeBlend%20mode='normal'%20in2='BackgroundImageFix'%20result='effect1_dropShadow_2270_41'/%3e%3cfeBlend%20mode='normal'%20in='SourceGraphic'%20in2='effect1_dropShadow_2270_41'%20result='shape'/%3e%3c/filter%3e%3c/defs%3e%3c/svg%3e"
+                alt=""
+              /><input type="email" placeholder="Enter your email" />
+            </div>
+            <div class="footer-subscribe">Subscribe</div>
+          </div>
+        </div>
+        <hr />
+        <div class="footer-bottom">
+          <p class="footer-bottom-left">
+            © 2023 Alex Bennett. All rights reserved.
+          </p>
+          <div class="footer-bottom-right">
+            <p>Term of Services</p>
+            <p>Privacy Policy</p>
+            <p>Connect with me</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
