@@ -21,6 +21,7 @@ const iconMap = {
   Drizzle: "drizzle.png",
   Snow: "snow.png",
 };
+let controller;
 
 async function getWeatherData(cityName) {
   try {
@@ -30,26 +31,30 @@ async function getWeatherData(cityName) {
       messageEl.textContent = "Please enter a city name";
       return;
     }
+    messageEl.textContent = "loading...";
 
-    if (!navigator.onLine) {
-      throw new Error("❌ No internet connection");
+    if (controller) {
+      controller.abort();
     }
+
+    controller = new AbortController();
 
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`
+      `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`,
+      { signal: controller.signal },
     );
 
-    if (!response.ok) {
-      throw new Error("City not found");
-    }
-
     const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
 
     // UI update
     weatherEl.classList.remove("hide");
     messageEl.textContent = "";
 
-    tempEl.textContent = `${Math.round(data.main.temp - 273.15)} °C`;
+    tempEl.textContent = `${Math.round(data.main.temp)} °C`;
     cityEl.textContent = data.name;
     humidityEl.textContent = `${data.main.humidity}%`;
     windEl.textContent = `${data.wind.speed} km/hr`;
@@ -57,26 +62,39 @@ async function getWeatherData(cityName) {
     const weatherDesc = data.weather[0].main;
     imgEl.src = `./Assets/${iconMap[weatherDesc] || "clear.png"}`;
   } catch (error) {
-    weatherEl.classList.add("hide");
-    if (error.message === "Failed to fetch") {
-      messageEl.textContent = error.message;
+    if (error.name == "AbortError") {
+      return;
     } else {
-      messageEl.textContent = error.message;
+      weatherEl.classList.add("hide");
+      messageEl.textContent = error.message || "Something Went Wrong";
     }
   }
 }
 
+function debounce(fn, delay) {
+  let timeoutId;
+  return function (...args) {
+    clearTimeout(timeoutId);
+
+    timeoutId = setTimeout(() => {
+      fn(...args);
+    }, delay);
+  };
+}
+const debounceWeather = debounce(getWeatherData, 400);
+
 // button click
 buttonEl.addEventListener("click", () => {
-  getWeatherData(inputEl.value.trim());
+  debounceWeather(inputEl.value.trim());
 });
 
 // Enter key support
-window.addEventListener("keydown", (e) => {
+inputEl.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
-    getWeatherData(inputEl.value.trim());
+    debounceWeather(inputEl.value.trim());
   }
 });
+
 /*
 async does three things:
 

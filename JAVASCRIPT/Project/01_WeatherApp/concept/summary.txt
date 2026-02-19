@@ -1,0 +1,167 @@
+🟢 1️⃣ try...catch → Handles Network Errors
+
+These happen when the request cannot reach the server.
+
+Examples:
+
+No internet
+
+Wrong domain
+
+DNS failure
+
+CORS blocked
+
+Server completely unreachable
+
+Example:
+
+try {
+  const response = await fetch(url);
+} catch (error) {
+  console.log("Network error:", error.message);
+}
+
+
+If network fails → Promise is rejected → goes to catch.
+
+🔵 2️⃣ response.ok → Handles HTTP Errors
+
+These happen when:
+
+✔ Server is reached
+✔ Server responds
+❌ But response status is error (404, 500, 401 etc.)
+
+Example:
+
+const response = await fetch(url);
+
+if (!response.ok) {
+  throw new Error(`HTTP error: ${response.status}`);
+}
+
+
+Fetch does NOT reject for 404 or 500.
+
+So you must manually check response.ok.
+
+Most Most Imp :
+there are three types of error while fetching 
+1.run time error (if anything is not defined)
+2.Network error (when promise is rejected)
+2.HTTP error (when promise is fullfil but response is not ok)
+--------------------------------------------
+✅ Final Correct Version
+
+There are three types of errors when using fetch():
+
+1️⃣ JavaScript Runtime Error
+
+Occurs before or outside the network request.
+
+Example: variable not defined (ReferenceError)
+
+Happens while building the URL or executing JS
+
+Not related to HTTP or network
+
+Thrown by the JavaScript engine
+
+2️⃣ Network Error (Promise Rejected)
+
+Occurs when the request cannot be completed.
+
+Example: no internet, DNS failure, wrong domain, CORS blocked
+
+fetch() promise is rejected
+
+No response object is created
+
+Error usually: TypeError: Failed to fetch
+
+3️⃣ HTTP Error (Promise Fulfilled but Not OK)
+
+Occurs when the server responds with an error status.
+
+Example: 404, 401, 500
+
+fetch() promise is fulfilled
+
+response.ok === false
+
+You must manually check and throw error
+
+Example:
+
+if (!response.ok) {
+  throw new Error(data.message);
+}
+
+-------------------------
+
+1️⃣ If it is a JavaScript runtime error
+
+Example:
+
+appid=${aiKey} // aiKey not defined
+
+
+✔ JavaScript engine creates an error object (ReferenceError)
+✔ fetch() never runs
+✔ No response object is created
+✔ Execution jumps directly to catch
+✔ Nothing after await fetch() runs
+
+So your statement is correct ✅
+
+2️⃣ If it is a Network error
+
+Example:
+
+No internet
+
+Wrong domain
+
+DNS failure
+
+CORS blocked
+
+✔ fetch() runs
+✔ Browser tries to make request
+✔ Promise is rejected
+✔ A TypeError is created (usually "Failed to fetch")
+✔ No response object exists
+✔ Code jumps to catch
+✔ Nothing after await fetch() runs
+
+Your statement is also correct ✅
+Just small correction:
+
+👉 It’s not exactly “JS creates error object”
+👉 The browser’s networking layer rejects the Promise with a TypeError
+
+But practically yes — it goes to catch.
+
+3️⃣ If it is an HTTP error
+
+Example:
+Server returns 404.
+
+✔ fetch() runs
+✔ Promise is fulfilled
+✔ response object IS created
+✔ response.ok === false
+✔ catch will NOT run automatically
+✔ You must manually check and throw error
+
+Example:
+
+if (!response.ok) {
+  throw new Error("HTTP error");
+}
+
+
+Only after you throw → it goes to catch.
+
+Your understanding here is correct ✅
