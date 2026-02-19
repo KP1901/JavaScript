@@ -6,6 +6,7 @@ const messageEl = document.querySelector(".message");
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 function addTask() {
+  messageEl.textContent = "";
   if (!inputEl.value) {
     messageEl.textContent = `* Type Something!`;
     return;
@@ -50,7 +51,8 @@ function renderData() {
     li.textContent = task.text;
     li.dataset.id = index;
 
-    const span = document.createElement("SPAN");
+    const span = document.createElement("span");
+
     span.textContent = "X";
 
     if (task.completed) {
