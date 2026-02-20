@@ -1,0 +1,129 @@
+Debounce Concept (JavaScript)
+
+Definition :
+
+Debounce is a technique that delays the execution of a function until a certain amount of time has passed since the last event trigger.
+
+In simple words:
+
+Debounce = Run function only after user stops triggering for X milliseconds.
+
+Why We Use Debounce
+
+Without debounce:
+
+-If user clicks 10 times → function runs 10 times
+-If user types 6 letters → API called 6 times
+-Wastes API quota
+-Slows application
+-Creates unnecessary server load
+
+With debounce:
+
+-Multiple rapid triggers are ignored
+-Only one execution happens after user stops
+-Improves performance
+-Makes UI professional
+
+How It Works Internally
+
+Debounce uses:
+
+setTimeout()
+clearTimeout()
+Closure
+
+Logic:
+
+Event happens
+Start timer
+If event happens again before timer finishes → cancel previous timer
+Start new timer
+Only when no event happens for given delay → function runs
+
+Important:
+
+The function runs X milliseconds after the LAST trigger, not the first.
+
+Basic Debounce Function : 
+
+function debounce(fn, delay) {
+  let timeout;
+
+  return function (...args) {
+    clearTimeout(timeout);
+
+    timeout = setTimeout(() => {
+      fn.apply(this, args);
+    }, delay);
+  };
+}
+
+Example Usage
+const debouncedFunction = debounce(myFunction, 500);
+
+button.addEventListener("click", () => {
+  debouncedFunction();
+});
+
+Meaning:
+
+If button is clicked many times quickly,
+myFunction will run only once after 500ms of no clicking.
+
+Real Timeline Example (Delay = 500ms)
+
+User clicks at:
+
+0ms
+200ms
+400ms
+600ms
+
+Timer resets each time.
+
+Final execution happens at:
+
+1100ms (600 + 500)
+
+Only one function call happens.
+
+Where Debounce Is Used
+
+-Search bars (Google, YouTube, Amazon)
+-Autocomplete inputs
+-Filtering dashboards
+-Window resize events
+-Scroll-based calculations
+-Important Clarification
+
+Debounce:
+
+Does NOT block the first click permanently
+Does NOT cancel already-started API requests
+It only delays execution until inactivity
+
+Key Rule to Remember
+
+Debounce =
+"Wait until the user stops for X milliseconds, then execute."
+-------------------------
+
+Yes ✅
+Debounce waits X milliseconds after the LAST trigger.
+
+If delay = 2000ms (2s)
+
+And user clicks 100 times…
+
+The function will execute:
+
+👉 2 seconds after the final click
+
+Not after the first click.
+Not after total time.
+Only after the last trigger.
+
+---------------------------
+Most IMp:
+Debounce avoids unnecessary calls. Abort avoids unnecessary results.

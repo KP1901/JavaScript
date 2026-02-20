@@ -1,0 +1,61 @@
+🔹 What is AbortController?
+
+👉 It is a tool that lets you stop an ongoing async operation (like fetch).
+
+That’s it.
+
+🔹 What Does abort() Actually Do?
+
+When you call:
+
+controller.abort();
+
+
+It does 3 simple things:
+
+1️⃣ It sends a signal saying: "Stop now!"
+2️⃣ fetch() immediately rejects the promise
+3️⃣ It throws an error called "AbortError"
+
+
+🔹 What AbortController DOES
+
+✅ Stops waiting for fetch result
+✅ Prevents old API response from updating UI
+✅ Helps avoid race conditions
+✅ Saves some browser processing
+
+🔹 What AbortController DOES NOT Do
+
+❌ It does NOT stop JavaScript execution
+❌ It does NOT cancel timers
+❌ It does NOT automatically cancel all async work
+❌ It does NOT work unless signal is passed to fetch
+--------------------------------
+
+🔹 Debounce
+
+Debounce delays function execution until user stops triggering it.
+
+It does NOT stop execution after it starts.
+
+It just says:
+
+“Wait… if user triggers again, reset the timer.”
+
+Example:
+
+User types:
+
+p
+pu
+pun
+pune
+
+
+Debounce:
+
+-Clears previous timer
+-Starts new timer
+-Executes function only once after 500ms
+-So debounce = delay + ignore rapid triggers
