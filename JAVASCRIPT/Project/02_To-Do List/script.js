@@ -5,70 +5,90 @@ const messageEl = document.querySelector(".message");
 
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
+/* ---------- Initial Full Render (ONLY ONCE) ---------- */
+tasks.forEach((task) => {
+  createTaskElement(task);
+});
+
+/* ---------- Add Task ---------- */
 function addTask() {
   messageEl.textContent = "";
-  if (!inputEl.value) {
-    messageEl.textContent = `* Type Something!`;
+
+  if (!inputEl.value.trim()) {
+    messageEl.textContent = "* Type Something!";
     return;
   }
-  tasks.push({
-    text: inputEl.value,
+
+  const newTask = {
+    id: Date.now(), // ✅ Unique ID
+    text: inputEl.value.trim(),
     completed: false,
-  });
+  };
+
+  tasks.push(newTask);
+
+  createTaskElement(newTask); // ✅ No index needed
+  saveData();
+
   inputEl.value = "";
-  updateUi();
 }
 
 addButtonEl.addEventListener("click", addTask);
 
+/* ---------- Toggle & Delete ---------- */
 listContainerEl.addEventListener("click", function (e) {
   const target = e.target;
 
+  // TOGGLE
   if (target.tagName === "LI") {
-    const index = Number(target.dataset.id);
-    tasks[index].completed = !tasks[index].completed;
-    updateUi();
+    const id = Number(target.dataset.id);
+
+    const task = tasks.find((task) => task.id === id);
+    if (task) {
+      task.completed = !task.completed;
+      target.classList.toggle("checked");
+      saveData();
+    }
   }
+
+  // DELETE
   if (
     target.tagName === "SPAN" &&
     target.parentElement.classList.contains("checked")
   ) {
-    const index = Number(target.parentElement.dataset.id);
-    tasks.splice(index, 1);
-    updateUi();
+    const li = target.parentElement;
+    const id = Number(li.dataset.id);
+
+    // Remove from array
+    tasks = tasks.filter((task) => task.id !== id);
+
+    // Remove from DOM
+    li.remove();
+
+    saveData();
   }
 });
 
+/* ---------- Utilities ---------- */
 function saveData() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-function renderData() {
-  listContainerEl.innerHTML = "";
+function createTaskElement(task) {
+  const li = document.createElement("li");
+  li.textContent = task.text;
 
-  tasks.forEach((task, index) => {
-    const li = document.createElement("li");
-    li.textContent = task.text;
-    li.dataset.id = index;
+  // ✅ Store unique ID in dataset
+  li.dataset.id = task.id;
 
-    const span = document.createElement("span");
+  li.classList.toggle("checked", task.completed);
 
-    span.textContent = "X";
+  const span = document.createElement("span");
+  span.textContent = "X";
 
-    if (task.completed) {
-      li.classList.toggle("checked");
-    }
-    li.appendChild(span);
-    listContainerEl.appendChild(li);
-  });
+  li.appendChild(span);
+  listContainerEl.appendChild(li);
 }
-
-function updateUi() {
-  saveData();
-  renderData();
-}
-
-renderData();
 
 /*
 

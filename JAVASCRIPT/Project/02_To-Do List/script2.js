@@ -1,4 +1,6 @@
-const TaskState = {
+// manage state properly
+
+const manageState = {
   tasks: [],
 
   load() {
@@ -21,7 +23,6 @@ const TaskState = {
     };
     this.tasks.push(newTask);
     this.save();
-    return newTask;
   },
 
   toggle(id) {
@@ -30,12 +31,10 @@ const TaskState = {
       task.completed = !task.completed;
       this.save();
     }
-    return task;
   },
 
   delete(id) {
     this.tasks = this.tasks.filter((t) => t.id !== id);
-
     this.save();
   },
 };
@@ -51,17 +50,16 @@ const TaskUI = {
     const li = document.createElement("li");
     li.textContent = task.text;
     li.dataset.id = task.id;
-    li.classList.toggle("checked", task.completed);
 
     const span = document.createElement("span");
     span.textContent = "X";
 
-    li.appendChild(span);
-    this.listContainer.appendChild(li);
+    li.append(span);
+    this.listContainerEl.append(li);
   },
 
   removeTask(id) {
-    const el = this.listContainer.querySelector(`[data-id="${id}"]`);
+    const el = this.listContainer.querySelector(`[data-id=${id}]`);
     if (el) el.remove();
   },
 
@@ -73,46 +71,7 @@ const TaskUI = {
   showMessage(text) {
     messageEl.textContent = text;
   },
-
   renderAll(tasks) {
     tasks.forEach((task) => this.renderTask(task));
   },
 };
-
-TaskState.load();
-TaskUI.renderAll(TaskState.tasks);
-
-addButtonEl.addEventListener("click", () => {
-  const text = inputEl.value.trim();
-  if (!text) {
-    TaskUI.showMessage("* Type Something");
-    inputEl.focus();
-    return;
-  }
-
-  const newTask = TaskState.add(text);
-  TaskUI.renderTask(newTask);
-
-  inputEl.value = "";
-  messageEl.textContent = "";
-});
-
-TaskUI.listContainer.addEventListener("click", (e) => {
-  const li = e.target.closest("li");
-  if (!li) return;
-
-  const id = Number(li.dataset.id);
-
-  // DELETE (only if span clicked AND li is checked)
-  if (e.target.tagName === "SPAN" && li.classList.contains("checked")) {
-    TaskState.delete(id);
-    TaskUI.removeTask(id);
-    return;
-  }
-
-  // TOGGLE (only when clicking the li itself, not the span)
-  if (e.target.tagName === "LI") {
-    TaskState.toggle(id);
-    TaskUI.toggleTask(id);
-  }
-});
