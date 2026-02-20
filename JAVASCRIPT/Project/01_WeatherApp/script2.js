@@ -70,4 +70,8 @@ const WeatherView = (() => {
     weatherEl.classList.add("hide");
     messageEl.textContent = "";
   }
+
+  return {
+    
+  }
 })();
