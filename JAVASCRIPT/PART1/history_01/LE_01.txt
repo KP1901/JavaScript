@@ -38,7 +38,6 @@ They could not do:
 
 🟩 Today (after JavaScript)
 
-
 ✔ Browsers became smart because of JavaScript.
 
 Now browsers can:

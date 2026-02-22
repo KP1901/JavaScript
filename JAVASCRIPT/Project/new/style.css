@@ -1,0 +1,93 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+ul li {
+  list-style: none;
+}
+body {
+  background: #12121254;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.app {
+  width: 100%;
+  max-width: 500px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  padding: 25px;
+}
+h1 {
+  margin: 30px;
+}
+.input-section {
+  display: flex;
+  width: 100%;
+  padding: 30px 20px;
+}
+.input-section input {
+  flex: 1;
+  width: 100%;
+  max-width: 500px;
+  border: 1px solid;
+  outline: 0;
+  height: 50px;
+  padding: 12px;
+}
+.input-section button {
+  width: 100%;
+  max-width: 100px;
+  border: 0;
+  outline: 0;
+  height: 50px;
+  padding: 12px;
+  background: #58a8ba;
+}
+.filter-section {
+  text-align: center;
+}
+.filter-section button {
+  width: max-content;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.filter-section button.active {
+  background: #58a8ba;
+  color: white;
+}
+#task-list {
+  width: 100%;
+}
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  margin: 20px 0;
+  border-bottom: 1px solid #111;
+  width: 100%;
+}
+.task-text {
+  flex-basis: 50%;
+  margin-left: 10px;
+  text-align: left;
+  max-width: 500px;
+}
+#task-list .actions {
+  flex-basis: 50%;
+}
+.task-item button {
+  width: max-content;
+  padding: 10px;
+  cursor: pointer;
+  margin: 0 5px;
+}
+.task-item.completed .task-text {
+  text-decoration: line-through;
+  opacity: 0.6;
+}

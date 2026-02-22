@@ -1,7 +1,6 @@
-let calculator = {
-  add: (a, b) => a + b,
-  sub: (a, b) => a - b,
-  mul: (a, b) => a * b,
-};
+let user1 = { name: "kiran", age: 26 };
 
-console.log(calculator.mul(10, 20));
+let { name, ...details } = user1;
+
+console.log(name);
+console.log(details);
