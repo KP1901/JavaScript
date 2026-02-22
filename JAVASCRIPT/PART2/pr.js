@@ -1,16 +1,28 @@
-  function createFunction() {
-    var arr = [];
+const range = {
+  name: "kiran",
+  [Symbol.iterator]() {
+    let i = 0;
+    let name = this.name;
+    return {
+      next() {
+        if (i < name.length) {
+          let ch = name[i];
+          i++;
+          return {
+            value: ch,
+            done: false,
+          };
+        } else {
+          return {
+            value: undefined,
+            done: true,
+          };
+        }
+      },
+    };
+  },
+};
 
-    for (var i = 0; i < 3; i++) {
-      arr.push(function () {
-        console.log(i);
-      });
-    }
-
-    return arr;
-  }
-  let funcs = createFunction();
-  funcs[0]();
-  funcs[1]();
-  funcs[2]();
-  console.log(funcs);
+for (const ch of range) {
+  console.log(ch);
+}

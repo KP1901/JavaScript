@@ -6,6 +6,7 @@ let powerOfTwo = {
       next() {
         if (start <= count) {
           let value = start * 2;
+          start++;
           return { value: value, done: false };
         } else {
           return { value: undefined, done: true };
@@ -17,7 +18,6 @@ let powerOfTwo = {
 for (const ele of powerOfTwo) {
   console.log(ele);
 }
-
 
 /*
 1️⃣ JS sees the for...of loop
