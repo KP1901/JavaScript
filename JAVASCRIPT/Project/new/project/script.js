@@ -16,7 +16,6 @@ const TaskModel = {
       completed: false,
     };
     this.tasks.push(newTask);
-    return newTask;
   },
 
   deleteTask(taskId) {
@@ -42,6 +41,7 @@ const TaskView = {
   addButton: document.getElementById("addBtn"),
   taskList: document.getElementById("task-list"),
   userInput: document.getElementById("userInput"),
+  filterSection: document.querySelector(".filter-section"),
 
   createTaskElement(task) {
     const taskElement = document.createElement("li");
@@ -73,63 +73,41 @@ const TaskView = {
     deleteButton.textContent = "Delete";
 
     taskElement.append(checkbox, taskText, actions);
-
     actions.append(editButton, deleteButton);
 
     this.taskList.append(taskElement);
   },
-
-  removeTaskElement(taskElement) {
-    taskElement.remove();
-  },
-
-  updateTaskText(taskId, newText) {
-    const textElement = this.taskList.querySelector(
-      `[data-id="${taskId}"] .task-text`,
-    );
-    if (textElement) textElement.textContent = newText;
-  },
-  toggleCompletedStyle(taskId, isCompleted) {
-    let taskElement = this.taskList.querySelector(`[data-id="${taskId}"]`);
-    if (!taskElement) return;
-    if (isCompleted) {
-      taskElement.classList.add("completed");
-    } else {
-      taskElement.classList.remove("completed");
-    }
-  },
-  render() {},
 };
 
 const TaskController = {
+  currentFilter: "all",
+  editingTaskId: null,
+
   init() {
-    let editingTaskId = null;
-    let currentFilter = "all";
-
     TaskModel.load();
-    TaskModel.tasks.forEach((task) => {
-      TaskView.createTaskElement(task);
-    });
+    this.render();
+    this.bindEvents();
+  },
 
-    // Add / Update
+  bindEvents() {
+    // ADD / UPDATE
     TaskView.addButton.addEventListener("click", () => {
       const text = TaskView.userInput.value.trim();
       if (!text) return;
 
-      if (!editingTaskId) {
-        const newTask = TaskModel.addTask(text);
-        TaskView.createTaskElement(newTask);
+      if (!this.editingTaskId) {
+        TaskModel.addTask(text);
       } else {
-        TaskModel.updateTaskText(editingTaskId, text);
-        TaskView.updateTaskText(editingTaskId, text);
-        editingTaskId = null;
+        TaskModel.updateTaskText(this.editingTaskId, text);
+        this.editingTaskId = null;
       }
 
       TaskView.userInput.value = "";
       TaskModel.save();
+      this.render();
     });
 
-    // Delete
+    // DELETE
     TaskView.taskList.addEventListener("click", (e) => {
       if (e.target.classList.contains("delete-btn")) {
         const taskElement = e.target.closest("li");
@@ -139,19 +117,19 @@ const TaskController = {
 
         if (task && task.completed) {
           TaskModel.deleteTask(taskId);
-          TaskView.removeTaskElement(taskElement);
           TaskModel.save();
+          this.render();
         } else {
           alert("You can only delete completed tasks.");
         }
       }
     });
 
-    // Edit
+    // EDIT
     TaskView.taskList.addEventListener("click", (e) => {
       if (e.target.classList.contains("edit-btn")) {
         const taskElement = e.target.closest("li");
-        editingTaskId = Number(taskElement.dataset.id);
+        this.editingTaskId = Number(taskElement.dataset.id);
 
         const currentText = taskElement.querySelector(".task-text").textContent;
 
@@ -160,7 +138,7 @@ const TaskController = {
       }
     });
 
-    // Toggle Complete
+    // TOGGLE COMPLETE
     TaskView.taskList.addEventListener("change", (e) => {
       if (e.target.classList.contains("toggle-checkbox")) {
         const taskElement = e.target.closest("li");
@@ -168,11 +146,38 @@ const TaskController = {
         const isCompleted = e.target.checked;
 
         TaskModel.updateTaskStatus(taskId, isCompleted);
-        TaskView.toggleCompletedStyle(taskId, isCompleted);
-
         TaskModel.save();
+        this.render();
       }
     });
+
+    // FILTER
+    TaskView.filterSection.addEventListener("click", (e) => {
+      const button = e.target.closest("button");
+      if (!button || !button.dataset.filter) return;
+
+      this.currentFilter = button.dataset.filter;
+
+      const buttons = TaskView.filterSection.querySelectorAll("button");
+      buttons.forEach((btn) => btn.classList.remove("active"));
+      button.classList.add("active");
+
+      this.render();
+    });
+  },
+
+  render() {
+    TaskView.taskList.innerHTML = "";
+
+    let filteredTasks = TaskModel.tasks;
+
+    if (this.currentFilter === "completed") {
+      filteredTasks = TaskModel.tasks.filter((task) => task.completed);
+    } else if (this.currentFilter === "active") {
+      filteredTasks = TaskModel.tasks.filter((task) => !task.completed);
+    }
+
+    filteredTasks.forEach((task) => TaskView.createTaskElement(task));
   },
 };
 
