@@ -61,8 +61,15 @@ greet();
 
 Now the real magic:
 
-A closure happens when an inner function “remembers” the variables of its outer function — even if the outer function is still running.
-The closure becomes especially visible when the inner function survives after the outer function has finished.
+A closure happens when:
+
+A function is defined inside another function
+
+The inner function uses variables from the outer function
+
+The inner function is returned OR used after the outer function finishes
+
+Because of this, JavaScript keeps the outer variables alive in memory.
 */
 
 function outer() {
@@ -141,9 +148,12 @@ Environment Record:
 outer → function outer() { ... }
 counter → <uninitialized> (TDZ)
 console → Console object
-this → window
 
 Outer Reference → null
+
+this : value
+
+this → window
 
 🔹 Execution Phase (Global)
 let counter = outer();
