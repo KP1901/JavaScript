@@ -1,9 +1,12 @@
-function test() {
-  for (var i = 0; i < 3; i++) {
-    setTimeout(function () {
-      console.log(i);
-    }, 1000);
-  }
+function add(a) {
+  let total = a;
+  return function inner(b) {
+    if (b === undefined) {
+      return total;
+    } else {
+      total += b;
+    }
+    return inner;
+  };
 }
-
-test();
+console.log(add(10)(20)(30)(40)());
