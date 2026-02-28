@@ -1,12 +1,15 @@
-function add(a) {
-  let total = a;
-  return function inner(b) {
-    if (b === undefined) {
-      return total;
-    } else {
-      total += b;
+function retry(operationFn, maxAttempts = 3) {
+  return function (message) {
+    let finalMessage = operationFn(message);
+    if (maxAttempts <= 3) {
+      maxAttempts--;
     }
-    return inner;
   };
 }
-console.log(add(10)(20)(30)(40)());
+
+function operationFn() {
+  return "success";
+}
+
+const count = retry(operationFn);
+count();

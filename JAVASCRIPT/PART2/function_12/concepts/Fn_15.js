@@ -211,4 +211,3 @@ document.getElementById("btn").addEventListener("click", function () {
 
 🧠 Here, this refers to the DOM element that triggered the event.
 */
-

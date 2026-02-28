@@ -1,5 +1,6 @@
 /*
 🌀 Higher-Order Functions (HOFs)
+
 💡 What It Means
 
 A higher-order function is simply a function that does one or both of these:
