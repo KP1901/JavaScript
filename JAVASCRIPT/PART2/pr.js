@@ -1,14 +1,35 @@
 function retry(operationFn, maxAttempts = 3) {
+  let attempts = 1; // closure variable controlled by retry
+
   return function (message) {
-    let finalMessage = operationFn(message);
-    if (maxAttempts <= 3) {
-      maxAttempts--;
+    while (attempts <= maxAttempts) {
+      const result = operationFn(attempts, message);
+
+      if (result === "success") {
+        console.log(`Attempt ${attempts} correct pin`);
+        return;
+      } else {
+        console.log(`Attempt ${attempts} wrong pin`);
+        attempts++;
+      }
     }
+
+    console.log(`Failed after ${maxAttempts} attempts`);
   };
 }
 
-function operationFn() {
-  return "success";
+// operationFn now receives attempt number
+function operationFn(attempt) {
+  switch (attempt) {
+    case 1:
+      return "fail";
+    case 2:
+      return "fail";
+    case 3:
+      return "success";
+    default:
+      return "fail";
+  }
 }
 
 const count = retry(operationFn);
