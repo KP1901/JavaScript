@@ -88,7 +88,7 @@ let cleaned = CompositionFn(
   trimSpaces,
   removeSpaces,
   convertToLower,
-  capitalFirst
+  capitalFirst,
 );
 
 console.log(cleaned(" kiran  ashok    patOdekar  "));

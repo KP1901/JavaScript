@@ -7,7 +7,7 @@ You call the returned function 3 times.
 */
 
 function outer() {
-  let count = 0;
+  var count = 0;
   function inner() {
     count++;
     console.log(count);
