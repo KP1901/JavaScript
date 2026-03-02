@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MVC E-Commerce Store</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- ================= TITLE ================= -->
+      <h1 class="main-title">E-Commerce Store</h1>
+
+      <!-- ================= PRODUCTS SECTION ================= -->
+      <section class="product-section">
+        <h2 class="section-title">Products</h2>
+
+        <!--
+        IMPORTANT (MVC View Rule):
+        This container stays EMPTY.
+
+        JavaScript (View renderer) will read data from:
+        model.products
+
+        And dynamically create this structure inside:
+      -->
+
+        <!-- <div class="product">
+          <div class="product-info">
+            <h3 class="product-name">Laptop</h3>
+            <p class="product-price">₹50000</p>
+          </div>
+
+          <button class="cart-button">Add to Cart</button>
+        </div> -->
+
+        <div class="product-list"></div>
+      </section>
+
+      <!-- ================= CART SECTION ================= -->
+      <section class="cart-section">
+        <h2 class="section-title">Your Cart</h2>
+
+        <!--
+        IMPORTANT (MVC View Rule):
+        This container stays EMPTY.
+
+        JavaScript will render cart items from:
+        model.cart
+
+        Reference structure (JS will create this):
+      -->
+
+        <div class="cart-product">
+          <div class="cart-product-top">
+            <div>
+              <div class="product-name">Laptop</div>
+              <div class="product-price">₹50000</div>
+            </div>
+
+            <button class="remove-button">Remove</button>
+          </div>
+
+          <div class="qty-section">
+            <button class="qty-btn decrement">-</button>
+
+            <span class="quantity">1</span>
+
+            <button class="qty-btn increment">+</button>
+          </div>
+
+          <div class="subtotal">Subtotal: ₹50000</div>
+        </div>
+
+        <div class="cart-list"></div>
+
+        <!-- ================= TOTAL ================= -->
+        <div class="total-section">
+          Total: ₹<span class="total-price">0</span>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
