@@ -6,7 +6,7 @@ function greet() {
   }, 2000);
 }
 greet();
-
+  
 /**
  Closure – Q7 Notes (Callback + Closure)
 

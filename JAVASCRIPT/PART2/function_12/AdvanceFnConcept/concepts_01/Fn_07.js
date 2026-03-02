@@ -169,5 +169,121 @@ fetchUserData();
 ❌ Both cannot happen
 ❌ Later calls are ignored
 ❗ fetch resolves on HTTP errors, rejects only on network errors
+-----------------------------------------
+*/
 
+// there are two ways to create the promise
+
+/*
+✅ 1️⃣ new Promise() → Manual Control
+
+Used when you want to control:
+
+-When it resolves
+-When it rejects
+-Based on async operation
+
+*/
+
+const p = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("Data Received");
+  }, 1000);
+});
+
+const fetchData = () => {
+  return new Promise((resolve, reject) => {
+    console.log("Fetching Data...");
+
+    setTimeout(() => {
+      const success = true;
+      if (success) {
+        resolve("Data received from server");
+      } else {
+        reject(new Error("Server Failed"));
+      }
+    }, 2000);
+  });
+};
+
+fetchData
+  .then((data) => {
+    if (data !== "Data received from server") {
+      throw new Error("data is not found accordingly");
+    }
+    console.log("Success", data);
+  })
+  .catch((error) => {
+    console.log(error.message);
+  });
+/*
+
+✅ 2️⃣ Promise.resolve() → Already Resolved Promise
+
+already have value just wrap it
+
+Promise.resolve("Immediate data");
+
+Is almost equal to:
+
+new Promise((resolve) => {
+  resolve("Immediate data");
+});
+
+But optimized by the engine.
+*/
+
+const p1 = Promise.resolve("data received");
+
+p1.then((data) => {
+  console.log(data);
+}).catch((error) => {
+  console.log(error.message);
+});
+
+/*
+🧠 Simple Rule For You
+
+| Situation                    | Use                 |
+| ---------------------------- | ------------------- |
+| You need async logic         | `new Promise()`     |
+| You already have value       | `Promise.resolve()` |
+| You want immediate rejection | `Promise.reject()`  |
+
+catch and then works asynchronusly even if promise is already settled 
+
+const p = Promise.reject("Failed");
+
+console.log("Start");
+
+p.catch((err) => {
+  console.log("Caught:", err);
+});
+
+console.log("End");
+
+Promises solve callback hell because:
+
+✔ They allow chaining instead of nesting
+✔ .then() returns a new promise
+✔ Errors automatically propagate
+✔ Code becomes flat and readable
+✔ Centralized error handling with .catch()
+
+callback hell :
+
+getUser(function (user) {
+  getOrders(user.id, function (orders) {
+    getOrderDetails(orders[0], function (details) {
+      console.log(details);
+    });
+  });
+});
+
+with promises :
+getUser()
+  .then(user => getOrders(user.id))
+  .then(orders => getOrderDetails(orders[0]))
+  .then(details => console.log(details))
+  .catch(err => console.log(err));
 */

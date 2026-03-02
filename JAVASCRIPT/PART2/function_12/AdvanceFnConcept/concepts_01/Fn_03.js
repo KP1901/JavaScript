@@ -260,3 +260,71 @@ function validateInput(value) {
 
 const checkValue = memoizeValidator(validateInput);
 checkValue("a");
+
+// using map
+
+function memoizationFn() {
+  let cache = new Map();
+  return function (basePrice, taxPer, discountPer) {
+    let key = `${basePrice},${taxPer},${discountPer}`;
+
+    if (cache.has(key)) {
+      console.log("from cache");
+      return cache.get(key);
+    }
+    console.log("from new call");
+
+    const taxAmount = (basePrice * taxPer) / 100;
+    const priceWithTax = basePrice + taxAmount;
+
+    const discountAmount = (priceWithTax * discountPer) / 100;
+
+    const finalPrice = priceWithTax - discountAmount;
+
+    let result = finalPrice;
+
+    cache.set(key, result);
+  };
+}
+
+const calculateFinalPrice = memoizationFn();
+
+console.log(calculateFinalPrice(1000, 18, 10));
+console.log(calculateFinalPrice(1000, 18, 10));
+console.log(calculateFinalPrice(1000, 18, 10));
+
+// using plain object
+
+/*
+
+function memoizationFn() {
+  let cache = {};
+  return function (basePrice, taxPer, discountPer) {
+    let key = `${basePrice},${taxPer},${discountPer}`;
+
+    if (key in cache) {
+      console.log("from cache");
+
+      return cache[key];
+    }
+    console.log("from new call");
+
+    const taxAmount = (basePrice * taxPer) / 100;
+    const priceWithTax = basePrice + taxAmount;
+
+    const discountAmount = (priceWithTax * discountPer) / 100;
+
+    const finalPrice = priceWithTax - discountAmount;
+
+    let result = finalPrice;
+    cache[key] = result;
+    return result;
+  };
+}
+
+const calculateFinalPrice = memoizationFn();
+
+console.log(calculateFinalPrice(1000, 18, 10));
+console.log(calculateFinalPrice(1000, 18, 10));
+console.log(calculateFinalPrice(1000, 18, 10));
+*/

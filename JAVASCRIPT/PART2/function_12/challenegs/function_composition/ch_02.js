@@ -27,7 +27,18 @@ function compose3(...fns) {
     return fns.reduceRight((acc, fn) => fn(acc), value);
   };
 }
-//Compose = right → left execution
 
 const fn = compose3(add2, multiple3, minus1);
+
+/*
+Compose = right → left execution
+pipe - left -> right execution
+
+above structure defines the function composition / pipeline — it does NOT execute immediately. It only creates a new composed function.
+
+-so ask yourself you want to process the data left to right or right to left according to this (add2, multiple3, minus1)
+- then call the function accordingly
+Compose = right → left execution
+pipe - left -> right execution
+*/
 console.log(fn(5));
