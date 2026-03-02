@@ -30,7 +30,7 @@ the promise chain stops and jumps directly to .catch().
 
 ✅ Final one-line answer (memorize this)
 
-err is just a variable name.
+err is just a reference variable that holds the Error object.
 message is just a property of the Error object.
-Neither is a reserved keyword.
+Neither err or message is a reserved keyword.
 */

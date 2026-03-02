@@ -55,7 +55,7 @@ function loadDashBoard() {
             throw new Error("HTTP : ", response.status);
           }
           return response.json();
-        })
+        }),
       );
     })
     .then(([user, orders, settings]) => {
@@ -77,10 +77,10 @@ async function loadDashboard() {
   try {
     const userRes = await fetch("https://jsonplaceholder.typicode.com/users/1");
     const ordersRes = await fetch(
-      "https://jsonplaceholder.typicode.com/posts/1"
+      "https://jsonplaceholder.typicode.com/posts/1",
     );
     const settingsRes = await fetch(
-      "https://jsonplaceholder.typicode.com/photos/1"
+      "https://jsonplaceholder.typicode.com/photos/1",
     );
 
     const user = await userRes.json();
@@ -229,3 +229,5 @@ response.json() // returns a Promise
 
 
 */
+
+Promise.all([]).then().catch();

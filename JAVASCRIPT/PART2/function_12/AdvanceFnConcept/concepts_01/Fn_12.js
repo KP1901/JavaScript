@@ -5,8 +5,10 @@
 Promise combinators help you handle MULTIPLE promises together.
 or
 When you want parallel Promise execution, we usually use Promise combinators.
-
 Real apps rarely wait for one async task.
+or
+All Promise combinators execute promises in parallel,
+but they behave differently in how they handle results.
 
 1️⃣ Promise.all() (MOST USED)
 
@@ -59,6 +61,14 @@ One fails → ❌ stop immediately
 
 “Promise.all resolves only when all promises are fulfilled.
 If any promise rejects, it rejects immediately.”
+
+Promise.all() is:
+
+-Parallel
+-Fail-fast
+-Returns first rejection reason
+-Does NOT wait for others after rejection
+
 ------------------------------------------------------------------------------------------------------
 */
 
@@ -122,12 +132,12 @@ It does not care if the first one is success or failure.
 const p1 = new Promise((res) =>
   setTimeout(() => {
     res("fast success");
-  }, 1000)
+  }, 1000),
 );
 const p2 = new Promise((res) =>
   setTimeout(() => {
     res("slow success");
-  }, 2000)
+  }, 2000),
 );
 
 Promise.race([p1, p2])

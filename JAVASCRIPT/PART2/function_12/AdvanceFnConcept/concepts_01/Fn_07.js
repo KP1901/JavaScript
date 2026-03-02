@@ -139,6 +139,12 @@ fetch("https://jsonplaceholder.typiode.cm/users/1")
     console.log(error.message);
   });
 
+/*
+1️⃣ .then() always returns a new Promise.
+2️⃣ If you start async work inside .then() and want proper chaining, you must return that Promise.
+  
+*/
+
 async function fetchUserData() {
   try {
     // Step 1: Call fetch (returns a Promise)

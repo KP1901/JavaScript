@@ -1,6 +1,7 @@
 /*
 
 🧩 STEP 5: EVENT LOOP (FOUNDATION OF ASYNC JS)
+
 1️⃣ THEORY: What is the Event Loop?
 
 The Event Loop is the mechanism that allows JavaScript (single-threaded) to handle asynchronous tasks.
@@ -36,6 +37,7 @@ There are 4 components:
 
 -------------------------------------------------------------------------------------
 3️⃣ Call Stack (THEORY + EXAMPLE)
+
 function a() {
   b();
 }

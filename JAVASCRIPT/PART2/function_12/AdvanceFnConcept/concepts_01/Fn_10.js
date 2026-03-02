@@ -80,7 +80,7 @@ loadUser();
 
 // 8️⃣ Sequential vs Parallel (VERY COMMON MISTAKE)
 
-// ❌ Slow (sequential)
+// ❌ Slow (sequential) 
 
 const a = await fetchA();
 const b = await fetchB();

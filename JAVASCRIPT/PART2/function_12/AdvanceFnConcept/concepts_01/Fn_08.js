@@ -32,8 +32,23 @@ getUserFromServer()
 /*
 most imp
 
-When we fetch data from the server and the promise is fulfilled, data comes into .then().
+1.When we fetch data from the server and the promise is fulfilled, data comes into .then().
 Then we check our condition (business logic).
 If the data is not according to our condition, we throw an error, which converts the fulfilled promise into a rejected one, and it is handled in .catch().
 If the promise itself is not fulfilled (server or network error), .catch() also handles it.
+
+2.Promise.resolve always creates an already fulfilled promise
+new Promise gives you manual control to resolve or reject
+
+Promise.resolve() :
+
+-Shortcut
+-Already fulfilled
+-No async logic inside
+
+new Promise() :
+
+-Runs executor immediately
+-You decide when to resolve/reject
+-Used for real async work (timers, fetch, DB, etc.)
 */
