@@ -95,25 +95,50 @@ function renderCart() {
 }
 
 function createCartElement(cartProduct) {
-  const cartProductElement = document.createElement("div");
+  let Subtotal = cartProduct.price * cartProduct.quantity;
 
-  const cartProductTop = document.createElement("div");
+  console.log(cartProduct);
+
+  const cartProductElement = document.createElement("div");
+  cartProductElement.className = "cart-product";
+
+  const cartProductTopEl = document.createElement("div");
+  cartProductTopEl.className = "cart-product-top";
 
   const productNameEl = document.createElement("div");
+  productNameEl.className = "product-name";
+  productNameEl.textContent = cartProduct.name;
 
   const productPriceEl = document.createElement("div");
+  productPriceEl.className = "product-price";
+  productPriceEl.textContent = `₹${cartProduct.price}`;
 
   const removeButtonEl = document.createElement("button");
+  removeButtonEl.className = "remove-button";
+  removeButtonEl.textContent = "Remove";
 
   const qtySectionEl = document.createElement("div");
+  qtySectionEl.className = "qty-section";
 
   const qtyIncrementBtnEl = document.createElement("button");
+  qtyIncrementBtnEl.className = "qty-btn increment";
+  qtyIncrementBtnEl.textContent = "+";
 
   const quantityEl = document.createElement("span");
+  quantityEl.textContent = cartProduct.quantity;
 
   const qtyDecrementBtnEl = document.createElement("button");
+  qtyDecrementBtnEl.className = "qty-btn decrement";
+  qtyDecrementBtnEl.textContent = "-";
 
-  const subTotal = document.createElement("div");
+  const subTotalEl = document.createElement("div");
+  subTotalEl.className = "subtotal";
+  subTotalEl.textContent = `Subtotal ${Subtotal}`;
+
+  qtySectionEl.append(qtyDecrementBtnEl, quantityEl, qtyIncrementBtnEl);
+  cartProductTopEl.append(productNameEl, productPriceEl, removeButtonEl);
+  cartProductElement.append(cartProductTopEl, qtySectionEl, subTotalEl);
+  cartList.append(cartProductElement);
 }
 
 /*
