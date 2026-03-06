@@ -66,7 +66,8 @@ const data = await loadData();
 
 🔑 FINAL RULE (MEMORIZE THIS)
 
--Async function = one responsibility
--Return clean data or throw error
--Let the caller decide
+1. Proper API response handling
+2. Async functions return data OR throw errors
+3. Errors propagate to callers
+4. Logging is different from throwing
 */

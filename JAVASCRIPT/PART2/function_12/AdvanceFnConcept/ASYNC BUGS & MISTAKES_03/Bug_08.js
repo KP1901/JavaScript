@@ -79,6 +79,7 @@ new Promise(executor)
                     Promise state → fulfilled
 --------------------------------------------------------------------------------------------------
 Constructor responsibility (very clear)
+
 1️⃣ Promise constructor
 new Promise((resolve) => {
   executor

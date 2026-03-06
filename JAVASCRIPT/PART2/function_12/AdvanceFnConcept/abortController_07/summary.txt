@@ -33,29 +33,3 @@ It does 3 simple things:
 ❌ It does NOT work unless signal is passed to fetch
 --------------------------------
 
-🔹 Debounce
-
-Debounce delays function execution until user stops triggering it.
-
-It does NOT stop execution after it starts.
-
-It just says:
-
-“Wait… if user triggers again, reset the timer.”
-
-Example:
-
-User types:
-
-p
-pu
-pun
-pune
-
-
-Debounce:
-
--Clears previous timer
--Starts new timer
--Executes function only once after 500ms
--So debounce = delay + ignore rapid triggers

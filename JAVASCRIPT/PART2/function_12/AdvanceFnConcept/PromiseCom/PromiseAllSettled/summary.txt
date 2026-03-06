@@ -1,0 +1,15 @@
+2️⃣ Promise.allSettled()
+
+📘 THEORY
+
+Waits for ALL promises — success OR failure.
+
+-Never rejects
+-Gives status for each promise
+
+✅ WHEN TO USE
+
+-Show partial data
+-Dashboard widgets
+-Logs / analytics
+-You don’t want one failure to kill everything

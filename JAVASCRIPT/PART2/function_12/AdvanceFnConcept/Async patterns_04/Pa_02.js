@@ -69,7 +69,7 @@ function memoizeAsync(fn) {
       return cache[key];
     }
 
-    const result = await fn(key);
+    const result = fn(key);
     cache[key] = result;
     return result;
   };

@@ -1,20 +1,20 @@
-function userInfo() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve({})
-    }, 1000);
-  });
-  return Promise.resolve({ name: "kiran", age: 26 });
+const clickEl = document.getElementById("btn");
+function greet() {
+  console.log("hi");
 }
-function orderDetails() {
-  // return Promise.resolve({ dish: "panipuri", cost: 30 });
-  return Promise.reject(new Error("data not found"));
+function debounce(fn, delay) {
+  let timeId = 0;
+
+  return function () {
+    clearTimeout(timeId);
+
+    timeId = setTimeout(() => {
+      fn();
+      console.log(delay);
+    }, delay);
+  };
 }
 
-Promise.all([userInfo(), orderDetails()])
-  .then(([user, order]) => {
-    console.log(user, order);
-  })
-  .catch((error) => {
-    console.log(error.message);
-  });
+let debounceFn = debounce(greet, 500);
+
+clickEl.addEventListener("click", debounceFn);

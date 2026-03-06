@@ -1,0 +1,32 @@
+1️⃣ Promise.all() (MOST USED)
+
+📘 THEORY
+
+Runs multiple promises in parallel and resolves when ALL succeed.
+
+If any one fails → whole thing fails ❌
+Result = array of resolved values (same order)
+
+✅ WHEN TO USE
+
+-Multiple API calls
+-All results required
+-Performance optimization
+
+Mental model (remember this)
+
+Promise.all = “ALL or NOTHING”
+All succeed → ✅ continue
+One fails → ❌ stop immediately
+
+✅ Your sentence (fixed English + logic)
+
+“Promise.all resolves only when all promises are fulfilled.
+If any promise rejects, it rejects immediately.”
+
+Promise.all() is:
+
+-Parallel
+-Fail-fast
+-Returns first rejection reason
+-Does NOT wait for others after rejection

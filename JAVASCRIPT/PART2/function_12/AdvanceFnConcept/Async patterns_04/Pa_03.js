@@ -1,13 +1,10 @@
-async function retry(fn, attempts = 3) {
-  for (let i = 0; i < attempts; i++) {
+async function retry(fn, attempt = 3) {
+  for (let i = 1; i <= attempt; i++) {
     try {
-      console.log(`Attempt ${i + 1}`);
       return await fn();
     } catch (error) {
-      console.log("Error:", error.message);
-
-      if (i === attempts - 1) {
-        throw error; // last attempt → fail
+      if (i === attempt) {
+        throw error;
       }
     }
   }
@@ -16,7 +13,6 @@ async function retry(fn, attempts = 3) {
 async function unstableApi() {
   return new Promise((resolve, reject) => {
     const success = Math.random() > 0.6;
-
     setTimeout(() => {
       if (success) {
         resolve("✅ API Success");
@@ -26,12 +22,13 @@ async function unstableApi() {
     }, 500);
   });
 }
+
 (async () => {
   try {
     const result = await retry(unstableApi, 3);
     console.log("FINAL RESULT:", result);
-  } catch (err) {
-    console.log("FINAL FAILURE:", err.message);
+  } catch (error) {
+    console.log("FINAL FAILURE:", error.message);
   }
 })();
 
@@ -43,9 +40,7 @@ You request data from a server.
 Sometimes it fails because:
 
 internet hiccup
-
 server busy
-
 temporary timeout
 
 Important:
@@ -114,4 +109,66 @@ These are outside your control.
 -flaky networks
 -payment retries
 -API instability
+
+Without retry
+
+Click
+  ↓
+API call
+  ↓
+Fail ❌
+User must click again
+
+With retry
+
+Click
+  ↓
+API call
+  ↓
+Fail
+  ↓
+Retry automatically
+  ↓
+Retry automatically
+  ↓
+Success / Fail
 */
+
+// REAL WORLD EXAMPLE
+
+// Retry function
+async function retry(fn, attempts = 3) {
+  for (let i = 1; i <= attempts; i++) {
+    try {
+      console.log(`Attempt ${i}`);
+      return await fn();
+    } catch (error) {
+      console.log(`Attempt ${i} failed:`, error.message);
+
+      if (i === attempts) {
+        throw error;
+      }
+    }
+  }
+}
+
+// API function
+async function fetchPost() {
+  const response = await fetch("https://jsonplaceholder.typicode.com/post/1");
+
+  if (!response.ok) {
+    throw new Error(`HTTP Error: ${response.status}`);
+  }
+
+  return await response.json();
+}
+
+// Run the retry logic
+(async () => {
+  try {
+    const data = await retry(fetchPost, 3);
+    console.log("FINAL RESULT:", data);
+  } catch (error) {
+    console.log("FINAL FAILURE:", error.message);
+  }
+})();
