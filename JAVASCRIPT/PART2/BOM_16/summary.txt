@@ -1,0 +1,7 @@
+Quick comparison
+
+| Property  | Measures From  | Includes Scroll |
+| --------- | -------------- | --------------- |
+| `clientX` | viewport       | ❌               |
+| `pageX`   | document       | ✔               |
+| `screenX` | monitor screen | ❌               |

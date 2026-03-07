@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Mouse Coordinate Demo</title>
+
+    <style>
+      body {
+        height: 3000px;
+        font-family: Arial;
+      }
+
+      .info {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        background: black;
+        color: white;
+        padding: 15px;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .box {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: red;
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="info">
+      <h3>Mouse Data</h3>
+
+      clientX: <span id="clientX">0</span><br />
+      clientY: <span id="clientY">0</span><br /><br />
+
+      pageX: <span id="pageX">0</span><br />
+      pageY: <span id="pageY">0</span><br /><br />
+
+      screenX: <span id="screenX">0</span><br />
+      screenY: <span id="screenY">0</span><br /><br />
+
+      scrollX: <span id="scrollX">0</span><br />
+      scrollY: <span id="scrollY">0</span><br /><br />
+
+      viewport width: <span id="viewportW"></span><br />
+      screen width: <span id="screenW"></span>
+    </div>
+
+    <script>
+      document.getElementById("viewportW").textContent = window.innerWidth;
+      document.getElementById("screenW").textContent = screen.width;
+
+      document.addEventListener("click", function (e) {
+        document.getElementById("clientX").textContent = e.clientX;
+        document.getElementById("clientY").textContent = e.clientY;
+
+        document.getElementById("pageX").textContent = e.pageX;
+        document.getElementById("pageY").textContent = e.pageY;
+
+        document.getElementById("screenX").textContent = e.screenX;
+        document.getElementById("screenY").textContent = e.screenY;
+
+        document.getElementById("scrollX").textContent = window.scrollX;
+        document.getElementById("scrollY").textContent = window.scrollY;
+
+        const dot = document.createElement("div");
+        dot.className = "box";
+
+        dot.style.left = e.pageX + "px";
+        dot.style.top = e.pageY + "px";
+
+        document.body.appendChild(dot);
+      });
+
+      window.document.addEventListener("scroll", (e) => {
+        console.log(window.scrollY);
+      });
+    </script>
+  </body>
+</html>
