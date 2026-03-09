@@ -10,6 +10,20 @@ There are two properties:
 | `scrollTop`  | vertical scroll position   |
 | `scrollLeft` | horizontal scroll position |
 
+1 scrollLeft
+
+Shows how many pixels the content moved Top.
+
+element.scrollTop
+
+Example:
+
+box.scrollTop = 100;
+
+Meaning:
+
+100px content moved Top
+
 2️⃣ scrollLeft
 
 Shows how many pixels the content moved left.
@@ -24,23 +38,13 @@ Meaning:
 
 100px content moved left
 
-2️⃣ scrollLeft
+window.scrollY → tells how much the document has been scrolled vertically relative to the viewport.
 
-Shows how many pixels the content moved left.
-
-element.scrollLeft
-
-Example:
-
-box.scrollLeft = 100;
-
-Meaning:
-
-100px content moved left
+element.scrollTop → tells how much the content inside an element has been scrolled relative to that element.
 */
 
 const box = document.querySelector(".box");
 
 box.addEventListener("scroll", () => {
-  console.log(box.scrollLeft);
+  console.log(box.scrollTop);
 });

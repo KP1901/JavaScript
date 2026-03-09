@@ -27,4 +27,4 @@ const box = document.querySelector(".box");
 let rect = box.getBoundingClientRect();
 
 let elementW = rect.bottom - rect.top;
-console.log(elementW);
+console.log(rect);

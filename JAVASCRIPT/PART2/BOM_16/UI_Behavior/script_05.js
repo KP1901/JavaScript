@@ -14,5 +14,5 @@ Meaning viewport width = 1366px.
 */
 
 document.addEventListener("click", (e) => {
-  console.log(window.innerHeight);
+  console.log(window.innerWidth);
 });

@@ -27,10 +27,6 @@ div
  ├── p
  └── button
 
-div
- ├── h1
- ├── p
- └── button 
 
 1️⃣ parentElement
 

@@ -36,3 +36,8 @@ box.addEventListener("mousemove", (e) => {
 });
 
 
+/*
+clientX → gives the mouse position relative to the viewport.
+
+offsetX → gives the mouse position relative to the target element where the event occurred.
+*/

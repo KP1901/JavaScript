@@ -1,6 +1,20 @@
 /*
 
-BOM Topic 1️⃣ — window Object
+
+BOM = Browser Object Model
+
+It allows JavaScript to interact with the browser itself, not just the webpage.
+
+So with BOM you can control things like:
+
+-Browser window
+-URL
+-Browser history
+-Screen information
+-Timers
+
+
+1️⃣ — window Object
 
 The window object is the top-level object in the browser.
 

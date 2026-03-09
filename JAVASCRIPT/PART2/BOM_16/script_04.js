@@ -9,7 +9,7 @@ window.navigator
 
 Usually written as:
 
-navigator
+navigator-
 
 1️⃣ navigator.userAgent
 

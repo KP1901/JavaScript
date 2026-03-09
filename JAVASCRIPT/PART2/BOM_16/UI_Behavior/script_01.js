@@ -15,3 +15,4 @@ It does NOT include page scroll.
 document.addEventListener("mousemove", (e) => {
   console.log(e.clientX, e.clientY);
 });
+
