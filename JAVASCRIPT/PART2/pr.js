@@ -1,20 +1,15 @@
-const clickEl = document.getElementById("btn");
-function greet() {
-  console.log("hi");
-}
-function debounce(fn, delay) {
-  let timeId = 0;
-
-  return function () {
-    clearTimeout(timeId);
-
-    timeId = setTimeout(() => {
-      fn();
-      console.log(delay);
-    }, delay);
-  };
+class Calculator {
+  add(...args) {
+    let total = 0;
+    for (const item of args) {
+      total += item;
+    }
+    return total;
+  }
 }
 
-let debounceFn = debounce(greet, 500);
+const calc = new Calculator();
 
-clickEl.addEventListener("click", debounceFn);
+console.log(calc.add(5, 10));
+console.log(calc.add(5, 10, 15));
+console.log(calc.add(5, 10, 15, 20));

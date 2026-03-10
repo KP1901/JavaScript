@@ -13,6 +13,14 @@ But getter/setter alone cannot guarantee true encapsulation.
 
 // Example Without Encapsulation (Bad)
 
+/*
+1. Create new object {}
+2. Set prototype → BankAccount.prototype
+3. Bind `this` to the new object
+4. Run constructor
+5. Return object
+*/
+
 class BankAccount {
   constructor(balance) {
     this.balance = balance;
@@ -31,6 +39,10 @@ console.log(account.balance);
 class SBIAccount {
   #balance = 0;
 
+  constructor(balance) {
+    this.#balance = balance;
+  }
+
   deposit(amount) {
     this.#balance += amount;
   }
@@ -44,7 +56,7 @@ class SBIAccount {
   }
 }
 
-const account1 = new SBIAccount();
+const account1 = new SBIAccount(1000);
 console.log(account1.getBalance());
 
 account1.deposit(20000);
