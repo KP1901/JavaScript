@@ -131,3 +131,60 @@ acc.balance = 300;
 
 console.log(acc.balance);
 console.log(acc.showBalance());
+
+/*
+Most IMp : 
+
+1.Summary
+
+With constructor functions, getters/setters are created using:
+
+Object.defineProperty()
+
+because get and set syntax belongs to objects and classes.
+
+
+*/
+
+function BankAccount(balance) {
+  this._balance = balance; // convention: "_" means private-like
+
+  Object.defineProperty(this, "balance", {
+    get: function () {
+      return this._balance;
+    },
+    set: function (value) {
+      if (value < 0) {
+        console.log("Invalid balance");
+      } else {
+        this._balance = value;
+      }
+    },
+  });
+}
+
+const bank = new BankAccount(1000);
+
+console.log(bank.balance); // getter → 1000
+
+bank.balance = 2000; // setter
+console.log(bank.balance); // 2000
+
+/*
+
+showBalance is:
+Accessor property (getter)
+defined on SBAccount.prototype
+
+It is not:
+
+instance method ❌
+prototype method ❌
+
+It is a prototype accessor property.
+
+✅ So the classification is:
+
+showBalance → prototype accessor property (getter)
+deposit     → prototype accessor property (setter)
+*/

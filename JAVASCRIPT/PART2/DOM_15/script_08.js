@@ -90,4 +90,3 @@ Correct explanation:
 2️⃣ Event reaches target element
 3️⃣ Event travels back up → document (bubbling phase)
 */
-

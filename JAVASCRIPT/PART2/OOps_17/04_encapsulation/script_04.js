@@ -77,4 +77,12 @@ console.log(acc3.getBalance === acc4.getBalance);
 - Outside constructor = single shared function on prototype
 - Rule of thumb: Always put methods outside constructor
   unless you need closure-based privacy.
+
+
+| Syntax                  | Method Type      |
+| ----------------------- | ---------------- |
+| `method() {}`           | prototype method |
+| `method = function(){}` | instance method  |
+| `method = () => {}`     | instance method  |
+
 */

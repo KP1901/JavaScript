@@ -10,6 +10,7 @@ User sees WHAT the system does
 User does not see HOW it works
 
 */
+
 // Example :
 
 class CoffeeMachine {
@@ -57,10 +58,10 @@ start()
 
 Abstraction vs Encapsulation 
 
-abstration => 
+abstraction => 
     -hide complex implementation 
     - show simple interface
 Encapsulation =>
     -hide data and protect it
-
+    -expose interactin method so we can inctract/modify only
 */

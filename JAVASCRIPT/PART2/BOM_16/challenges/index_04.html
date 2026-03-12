@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="script_04.js" defer></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+      }
+      body {
+        background: #000;
+        height: 200vh;
+      }
+      ul li {
+        list-style: none;
+        padding: 20px 20px;
+      }
+      ul li a {
+        text-decoration: none;
+        font-size: 18px;
+      }
+      nav {
+        position: fixed;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        background: #fff;
+        height: 80px;
+        transition: all 0.3s ease-in-out;
+      }
+      nav ul {
+        display: flex;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <nav id="navBar">
+      <img src="" class="logo" alt="" />
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Price</a></li>
+        <li><a href="#">Service</a></li>
+        <li><a href="#">Testimonial</a></li>
+        <li><a href="#">contact</a></li>
+      </ul>
+      <div class="sign-up">
+        <button>Sign Up</button>
+      </div>
+    </nav>
+  </body>
+</html>

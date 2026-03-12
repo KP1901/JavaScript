@@ -18,6 +18,7 @@ Javascript
 const el = document.getElementById("title");
 
 1️⃣ getElementById() => Selects an element using its id.
+
 2️⃣ getElementsByClassName() => Selects elements using class name.
 
 html:
@@ -100,6 +101,7 @@ But supports:
 forEach()
 
 What developers use most
+
 Modern JavaScript mostly uses:
 
 querySelector
@@ -109,5 +111,14 @@ Example:
 
 const btn = document.querySelector("#btn");
 const items = document.querySelectorAll(".item");
+
+5️⃣ Very Important Concept
+
+When DOM changes:
+
+HTMLCollection → updates automatically (live)
+NodeList → does NOT update automatically (static)
+
+forEach() has nothing to do with this behavior.
 
 */

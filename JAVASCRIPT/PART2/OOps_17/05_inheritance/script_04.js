@@ -87,5 +87,4 @@ JavaScript follows this prototype chain to access inherited properties and metho
 SO IMP :
 -✔ sq is a child of Square.prototype, which links to Rectangle.prototype.
 -Objects inherit from prototypes, not from other objects.
--so if 
 */

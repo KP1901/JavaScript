@@ -29,9 +29,10 @@ makeItSpeak(r);
 /*
 
 Duck typing means:
-If an object behaves like something (has required methods), we treat it as that type.
 
-Now duck typing is happening.
+If an object has the required methods, JavaScript will use it, even if it is not the expected class/type.
+
+Duck typing happens inside a function
 
 Why?
 
@@ -42,6 +43,12 @@ It only cares about this:
 Does the object have speak() ?
 
 4️⃣ Why It Is Called Duck Typing
+
+Duck Typing
+
+makeSpeak(r);
+
+A function accepts different object types based on behavior.
 
 Famous rule:
 "If it walks like a duck and quacks like a duck, it is a duck."

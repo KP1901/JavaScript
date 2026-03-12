@@ -1,5 +1,5 @@
 /*
-1) THIS IS AN EXAMPLE OF CLASS/constructor INHERITANCE (implicit)
+1) THIS IS AN EXAMPLE OF CLASS/constructor Fn INHERITANCE (implicit)
 
 Inheritance means:
 

@@ -1,0 +1,7 @@
+Q1 : key Difference :
+
+| Concept              | Meaning                                                         |
+| -------------------- | --------------------------------------------------------------- |
+| Object               | Actual instance with data and methods                           |
+| Constructor Function | Function used to create objects using `new`                     |
+| Class                | Modern syntax for creating constructor functions and prototypes |

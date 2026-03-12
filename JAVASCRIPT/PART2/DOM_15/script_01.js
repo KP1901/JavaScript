@@ -1,7 +1,9 @@
 /*
 
 1️⃣ What is DOM (Document Object Model)
+
 Core idea of that concept
+
 HTML → Browser parses → DOM Tree → JavaScript manipulates DOM
 
 Important points we covered:

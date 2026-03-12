@@ -22,6 +22,7 @@ const title = document.querySelector("#title");
 title.textContent = "Welcome";
 
 Result in browser:
+
 Welcome
 
 textContent treats everything as plain text.

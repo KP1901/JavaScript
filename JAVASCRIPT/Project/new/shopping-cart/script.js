@@ -1,4 +1,4 @@
-const products = [
+let products = [
   {
     id: 1,
     name: "laptop",
@@ -16,7 +16,7 @@ const products = [
   },
 ];
 
-const carts = [];
+let carts = [];
 
 const productList = document.querySelector(".product-list");
 const cartList = document.querySelector(".cart-list");
@@ -55,6 +55,7 @@ function createProductElement(product) {
   let cartButton = document.createElement("button");
   cartButton.className = "cart-button";
   cartButton.textContent = "Add to Cart";
+
   productInfo.append(productNameEl, productPriceEl);
   productEl.append(productInfo, cartButton);
   productList.append(productEl);
@@ -75,15 +76,14 @@ productList.addEventListener("click", (e) => {
 
     if (cartProduct) {
       cartProduct.quantity++;
-      renderCart();
     } else {
       let newCartProduct = {
         ...productObject,
         quantity: 1,
       };
       carts.push(newCartProduct);
-      renderCart();
     }
+    renderCart();
   }
 });
 function renderCart() {
@@ -95,12 +95,9 @@ function renderCart() {
 }
 
 function createCartElement(cartProduct) {
-  let Subtotal = cartProduct.price * cartProduct.quantity;
-
-  console.log(cartProduct);
-
   const cartProductElement = document.createElement("div");
   cartProductElement.className = "cart-product";
+  cartProductElement.dataset.id = cartProduct.id;
 
   const cartProductTopEl = document.createElement("div");
   cartProductTopEl.className = "cart-product-top";
@@ -132,8 +129,10 @@ function createCartElement(cartProduct) {
   qtyDecrementBtnEl.textContent = "-";
 
   const subTotalEl = document.createElement("div");
+
   subTotalEl.className = "subtotal";
-  subTotalEl.textContent = `Subtotal ${Subtotal}`;
+
+  subTotalEl.textContent = `Subtotal ₹${cartProduct.price}`;
 
   qtySectionEl.append(qtyDecrementBtnEl, quantityEl, qtyIncrementBtnEl);
   cartProductTopEl.append(productNameEl, productPriceEl, removeButtonEl);
@@ -141,6 +140,13 @@ function createCartElement(cartProduct) {
   cartList.append(cartProductElement);
 }
 
+cartList.addEventListener("click", (e) => {
+  if (e.target.classList.contains("remove-button")) {
+    let cartProduct = e.target.closest(".cart-product");
+    carts = carts.filter((pr) => pr.id !== Number(cartProduct.dataset.id));
+    renderCart();
+  }
+});
 /*
 IMP Notes:
 
