@@ -11,6 +11,7 @@ morph = forms
 So:
 one method → many behaviors
 
+
 Example Idea
 
 Animal.speak()

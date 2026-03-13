@@ -44,6 +44,14 @@ class Dog extends Animal {
   }
 }
 
+/*
+1. New object is created
+2. object's [[Prototype]] → Dog.prototype
+3. Dog constructor runs
+4. Dog constructor calls super()
+5. Animal constructor runs
+6. Object is returned
+*/
 const d = new Dog();
 
 d.eat();
@@ -54,6 +62,7 @@ d.bark();
 extends Keyword
 
 Inheritance is created using:
+
 extends
 
 Example:

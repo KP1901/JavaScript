@@ -98,6 +98,7 @@ function User(name) {
 const u = new User("Kiran")
 
 Needs:
+
 new
 
 Factory Function

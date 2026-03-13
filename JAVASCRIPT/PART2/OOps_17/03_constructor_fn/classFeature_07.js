@@ -3,7 +3,6 @@ class Feature 2 :static method
 
 Static methods belong to the class itself, not to the objects created from the class.
 
-Static methods belong to the class itself, not to the objects created from the class.
 */
 
 class MathHelper {

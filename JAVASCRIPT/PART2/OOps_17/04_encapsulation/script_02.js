@@ -25,4 +25,4 @@ function BankAccount(owner, balance) {
 const account = new BankAccount("kiran", 10000);
 console.log(account.getBalance());
 
-// only problem is if we have 100 account then 100 getbalancem methods are copied because they are created inside construction if you create outside constructor then they belongs to prototype which share same method to all instance 
+// only problem is if we have 100 account then 100 getbalancem methods are copied because they are created inside construction if you create outside constructor then they belongs to prototype which share same method to all instance

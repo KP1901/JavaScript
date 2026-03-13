@@ -8,9 +8,9 @@ this → the element that triggered the event (this === element)
 
 const btn = document.querySelector("button");
 
-// btn.addEventListener("click", function (e) {
-//   console.log(e.target);
-// });
+btn.addEventListener("click", function (e) {
+  console.log(this);
+});
 
 /*
 now using arrow function which take this from surrounding

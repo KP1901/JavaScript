@@ -1,31 +1,35 @@
-class Animal {
-  speak() {
-    console.log("Animal Makes Sound");
-  }
-}
-class Dog extends Animal {
-  speak() {
-    console.log("Dog Barking");
-  }
-}
-class Cat extends Animal {
-  speak() {
-    console.log("Cat Meow");
+class Human {
+  run() {
+    console.log("Human is running");
   }
 }
 
-class Robot {
-  speak() {
-    console.log("Robot Speaking");
+class Dog {
+  run() {
+    console.log("Dog is running");
   }
 }
 
-function makeItSpeak(entity) {
-  entity.speak();
+class Car {
+  drive() {
+    console.log("Car is driving");
+  }
 }
-const r = new Robot();
 
-makeItSpeak(r);
+const human = new Human();
+const dog = new Dog();
+const car = new Car();
+
+function startRunning(obj) {
+  if (typeof obj.run === "function") {
+    obj.run();
+  } else {
+    console.log("This Object cant run");
+  }
+}
+startRunning(human);
+startRunning(dog);
+startRunning(car);
 /*
 
 Duck typing means:
@@ -36,7 +40,7 @@ Duck typing happens inside a function
 
 Why?
 
-Because the function does NOT care about the class.
+Because the function does NOT care about the class/type.
 
 It only cares about this:
 

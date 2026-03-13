@@ -27,6 +27,14 @@
 ==========================================================
 */
 
+/*
+ - same method name
+ - different arguments
+ - but behavior is always same addition 
+ - which method overlaoding doesnot follow
+
+*/
+
 class Calculator {
   add(...args) {
     let total = 0;
@@ -37,11 +45,40 @@ class Calculator {
   }
 }
 
-const calc = new Calculator();
+const calc1 = new Calculator();
 
-console.log(calc.add(5, 10));
-console.log(calc.add(5, 10, 15));
-console.log(calc.add(5, 10, 15, 20));
+console.log(calc1.add(5, 10));
+console.log(calc1.add(5, 10, 15));
+console.log(calc1.add(5, 10, 15, 20));
+
+/*
+ - same method name
+ - different arguments
+ - different behavior 
+ - which method overlaoding  follows
+
+ | Case                      | Behavior                           | Concept                      |
+| ------------------------- | ---------------------------------- | ---------------------------- |
+| `add(...args)`            | Same logic for all arguments       | Variadic function            |
+| `arguments.length` checks | Different logic based on arguments | Simulated method overloading |
+
+
+*/
+
+class Calculator {
+  add() {
+    if (arguments.length === 2) {
+      return arguments[0] + arguments[1];
+    }
+    if (arguments.length === 3) {
+      return arguments[0] * arguments[1] * arguments[2];
+    }
+  }
+}
+const calc2 = new Calculator();
+
+console.log(calc2.add(2, 3));
+console.log(calc2.add(2, 3, 4));
 
 /*
 Important Concept

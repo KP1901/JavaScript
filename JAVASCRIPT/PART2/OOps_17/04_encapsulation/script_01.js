@@ -1,8 +1,8 @@
 /*
 Encapsulation means:
 
-Hide internal data
-Expose controlled methods to interact with it
+-Hide internal details
+-Expose only necessary functionality
 
 You can achieve true encapsulation using:
 Private fields (#) ✅
@@ -119,6 +119,9 @@ function NewBank(initialBalance) {
     },
   };
 }
+
+//✅ "Since the function explicitly returns an object, the new keyword is not necessary."
+
 const acc = NewBank(1000000);
 
 console.log(acc.showBalance());

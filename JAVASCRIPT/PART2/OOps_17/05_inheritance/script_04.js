@@ -47,9 +47,11 @@ function Square(color, side) {
 // Inheritance setup
 // Creates a new object for Square.prototype
 // and links its __proto__ to Rectangle.prototype
-Square.prototype = Object.create(Rectangle.prototype);
+// Square.prototype = Object.create(Rectangle.prototype);
 
-Square.prototype.constructor = Square;
+// Square.prototype.constructor = Square;
+
+Object.setPrototypeOf(Square.prototype, Rectangle.prototype);
 
 Square.prototype.describe = function () {
   return this.side * this.side;

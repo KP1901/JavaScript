@@ -9,7 +9,6 @@ The child method replaces (overrides) the parent version.
 
 */
 
-Example;
 class Animal {
   speak() {
     console.log("Animal speaking");

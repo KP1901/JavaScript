@@ -2,6 +2,8 @@
 class Feature 1 :
 -Instance methods are methods that every object (instance) can use.
 -They are written inside the class but outside the constructor.
+-Used by instance → instance method
+-Stored in prototype → prototype method
 */
 
 class User {

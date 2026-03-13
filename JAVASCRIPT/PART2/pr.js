@@ -1,5 +1,9 @@
-let parent = document.querySelector(".parent");
+function Animal(name) {
+  this.name = name;
+}
 
-parent.addEventListener("click", (e) => {
-  console.log(e.target);
-});
+const dog = new Animal("TOmmy");
+const cat = new Animal("Jay");
+
+console.log(dog.name);
+console.log(cat.name);

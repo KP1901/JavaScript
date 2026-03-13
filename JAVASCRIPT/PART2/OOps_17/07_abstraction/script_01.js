@@ -1,67 +1,44 @@
 /*
 Abstraction means:
 
-Hide complex internal implementation
-Expose only the necessary interface
+-exposing only the required interface and hiding the internal implementation.
+-User knows what to do, but not how it is done.
 
-In simple words:
+Example:
 
-User sees WHAT the system does
-User does not see HOW it works
+Pay money
+
+User doesn't care whether it is:
+
+-Credit Card
+-UPI
+-Net Banking
+-Wallet
+
+They just call pay().
 
 */
 
 // Example :
 
-class CoffeeMachine {
-  start() {
-    this.#heatWater();
-    this.#brewCoffee();
-    console.log("Coffee Ready");
-  }
-
-  #heatWater() {
-    console.log("Heating Water");
-  }
-
-  #brewCoffee() {
-    console.log("Brewing Coffee");
+class Payment {
+  pay(amount) {
+    throw new Error("child class must implemented");
   }
 }
-const machine = new CoffeeMachine();
-machine.start();
+class CreditCardPayment extends Payment {
+  pay(amount) {
+    console.log(`${amount} paid using Credit Card`);
+  }
+}
+class UpiPayment extends Payment {
+  pay(amount) {
+    console.log("payment done");
+  }
+}
+const cr = new CreditCardPayment();
+const upi = new UpiPayment();
 
-/*
+cr.pay(100);
+upi.pay(100);
 
-Output :
-
-Heating water
-Brewing coffee
-Coffee ready
-
-The user only calls:
-
-machine.start()
-
-They do not see the internal steps.
-
-Visual Model
-
-CoffeeMachine
- ├ start()        ← public interface
- ├ #heatWater()   ← hidden logic
- └ #brewCoffee()  ← hidden logic
-
-User only interacts with:
-
-start()
-
-Abstraction vs Encapsulation 
-
-abstraction => 
-    -hide complex implementation 
-    - show simple interface
-Encapsulation =>
-    -hide data and protect it
-    -expose interactin method so we can inctract/modify only
-*/

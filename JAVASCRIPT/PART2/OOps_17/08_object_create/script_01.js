@@ -94,3 +94,12 @@ Object.prototype
  ↓
 null
 */
+
+/*
+Most IMP :
+
+function → has prototype
+class → has prototype
+object → NO prototype property
+
+*/

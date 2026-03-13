@@ -24,6 +24,7 @@ Think of a family tree:
 function Person(name) {
   this.name = name;
 }
+
 Person.prototype.sayHi = function () {
   console.log("Hi, I'm " + this.name);
 };
@@ -57,3 +58,10 @@ emp1.sayHi();
 // prototype chain check
 console.log(emp1.__proto__ === Employee.prototype);
 console.log(emp1.__proto__.__proto__ === Person.prototype);
+
+/*
+MOST MOST MOST MOST MOST MOST MOST IMP : 
+
+Prototype chains connect objects, not functions as constructors.
+
+*/

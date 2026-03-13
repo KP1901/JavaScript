@@ -73,3 +73,41 @@ const tommy = new Dog("Tommy");
 // Now Dog explicitly inherits from Animal
 tommy.eat(); // ✅ Dog is eating
 tommy.bark(); // ✅ Tommy says Woof!
+
+
+/*
+MOST IMP : 
+
+🔑 Difference Between Them
+
+✅ Object.create()
+
+Creates a new object and assigns it as prototype.
+
+Employee.prototype = Object.create(Person.prototype);
+
+Meaning:
+
+Employee.prototype ---> Person.prototype
+
+But it replaces the old Employee.prototype.
+
+So we must fix constructor:
+
+Employee.prototype.constructor = Employee;
+
+✅ Object.setPrototypeOf()
+
+This does not create a new object.
+
+It changes the prototype of an existing object.
+
+Object.setPrototypeOf(Employee.prototype, Person.prototype);
+
+Meaning:
+
+Employee.prototype.__proto__ = Person.prototype
+
+So constructor remains correct automatically.
+
+*/

@@ -67,4 +67,9 @@ Object.prototype
 null    
 
 This is the Prototype Chain.
+
+IMP : this is an just the example of function constrcutor
+-here is no inheritance
+-it tell how can we create multiple objects
+-it tells how prototype chain works 
 */

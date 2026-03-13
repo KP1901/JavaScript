@@ -5,6 +5,10 @@ Getters and setters allow us to control how properties are accessed and modified
 
 Instead of calling a function, we can use properties like normal variables.
 
+Getters and setters allow a property to behave like a normal property access, but internally they execute functions.
+
+So instead of calling a function, you access a property, and JavaScript automatically calls the function.
+
 */
 
 class Person {
