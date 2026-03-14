@@ -1,9 +1,23 @@
-function Animal(name) {
-  this.name = name;
-}
+const cart = [
+  { name: "apple", price: 30 },
+  { name: "banana", price: 10 },
+  { name: "mango", price: 50 },
+];
 
-const dog = new Animal("TOmmy");
-const cat = new Animal("Jay");
+const totalPrice = cart.reduce((acc, currObj) => acc + currObj.price, 0);
 
-console.log(dog.name);
-console.log(cat.name);
+console.log(totalPrice);
+
+const numbers = [1, 2, 3, 4, 5, 6];
+
+const res = numbers.reduce(
+  (acc, currVal) => {
+    currVal % 2 == 0 ? acc.even.push(currVal) : acc.odd.push(currVal);
+    return acc;
+  },
+  {
+    even: [],
+    odd: [],
+  },
+);
+console.log(res);

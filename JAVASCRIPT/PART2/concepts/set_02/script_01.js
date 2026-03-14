@@ -1,15 +1,15 @@
 /*
 
 1️⃣ SET
+
 🔹 What is a Set?
 
-A Set is a collection of unique values.
 
 let s = new Set([1, 2, 2, 3]);
 console.log(s); // {1, 2, 3}
 
 ✅ Rules
-
+s
 -❌ No duplicate values
 -✅ Order is preserved (insertion order)
 -✅ this is an Iterable

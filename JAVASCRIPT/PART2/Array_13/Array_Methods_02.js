@@ -49,5 +49,3 @@ console.log(arr5);
  start Index => where to start
  delete count => how many elment wants to delete
 */
-
-

@@ -1,5 +1,6 @@
 /*
 STEP 16: Prototypes & Prototype Chain
+
 1️⃣ First truth (LOCK THIS 🔒)
 
 Every JavaScript object has a hidden parent object called a prototype.
@@ -35,7 +36,6 @@ When you access:
 
 obj.someKey
 
-
 JavaScript searches in this order:
 
 🔍 Object itself
@@ -47,8 +47,8 @@ This chain is called the Prototype Chain.
 
 
 5️⃣ Visual mental model
-const obj = {};
 
+const obj = {};
 
 Internally:
 
@@ -117,6 +117,7 @@ typeof Object.prototype // "object"
 Your statement (cleaned & corrected)
 
 If we create a child object ourselves using a parent object, then
+
 child.__proto__ === parent
 
 ✅ Correct (when you use Object.create(parent))
@@ -163,7 +164,7 @@ const mammalBaby = Object.create(mammal);
 
 console.log(mammalBaby.eats);
 
-// check 
+// check
 console.log(mammalBaby.__proto__ === mammal);
 console.log(mammal.__proto__ === animal);
 console.log(mammalBaby.__proto__.__proto__ === animal);

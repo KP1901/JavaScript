@@ -39,11 +39,13 @@ Changing through any reference affects the same object.
 /*
 
 4️⃣ Real-world bug example
+
 function updateUser(user) {
   user.age = 30;
 }
 
 const user = { name: "Kiran", age: 28 };
+
 updateUser(user);
 
 console.log(user.age); // 30 (changed!)
@@ -67,20 +69,66 @@ console.log(original.a); // because both are different
 
 // 2. using Object.assign()
 
-const copy1 = Object.assign({}, original);
+/*
 
-// 6️⃣ Shallow copy problem ⚠️
+Object.assign() is a built-in JavaScript method used to copy properties from one or more source objects into a target object.
 
-const user = {
-  name: "Kiran",
-  address: { city: "Pune" },
+syntax of Object.assign()
+
+Object.assign(target, source1, source2, ...)
+
+target → object where properties will be copied
+sources → objects whose properties will be copied
+
+It copies enumerable own properties from source → target.
+
+*/
+
+// Example 1
+
+const obje1 = { a: 1 };
+const obje2 = { b: 2 };
+
+const result = Object.assign({}, obje1, obje2);
+
+console.log(result);
+
+// Example 2
+
+const user1 = {
+  a: 1,
+  b: { name: "kiran" },
 };
 
-const copy = { ...user };
+const copy = Object.assign({}, user1);
 
-copy.address.city = "Mumbai";
+// copy.a = 30; // changes only in copy
+copy.b.name = "ajit"; // changes both in original and copy
 
-console.log(user.address.city); // "Mumbai" ❌
+console.log(user1);
+console.log(copy);
+
+// Example 3
+
+const bos1 = {
+  a: 1,
+  v: { name: "kiran" },
+};
+
+const bos2 = {
+  b: 2,
+  k: { name: "Ajit" },
+};
+
+const result1 = Object.assign({}, bos1, bos2);
+
+result1.a = 30;
+result1.b = 50;
+result1.k.name = "Joe";
+
+console.log(bos1);
+console.log(bos2);
+console.log(result1);
 
 /*
 Correct statement (your line refined)
@@ -90,14 +138,80 @@ Only the top level is copied
 -address is shared (means pointing same reference) even though user is not give to copy
 - copy.address.city === user.address.city
 ✔️ 100% correct
+
+Shallow copy means:
+
+Only the first level properties are copied, but nested objects (level 2, level 3, etc.) still reference the same object, so changes in nested objects affect both.
 */
 
 // 7️⃣ Deep copy (safe)
 
-const obj2 = {
+// so there are three ways to achieve deep copy
+
+// 1. structuredClone()
+
+const ob1 = {
   name: "Alexander",
   age: 30,
+  details: { location: "udgir" },
 };
-const deepCopy = structuredClone(obj2);
 
-// so now obj2 and deepCopy are both different reference so they are not pointing each other they just copied 
+const deepCopy = structuredClone(ob1);
+
+deepCopy.name = "AJ";
+deepCopy.details.location = "latur";
+
+console.log(ob1);
+console.log(deepCopy);
+
+// Now they are completely separate objects.
+
+// 2 . Json method
+
+const ob2 = {
+  name: "Alexander",
+  age: 30,
+  details: { location: "udgir" },
+};
+const deepCopy1 = JSON.parse(JSON.stringify(ob2));
+
+deepCopy1.name = "Bay";
+deepCopy1.details.location = "sydney";
+
+console.log(ob2);
+console.log(deepCopy1);
+
+/*
+⚠️ But this fails for
+
+-functions
+-Date
+-Map
+-Set
+-undefined
+*/
+
+// 3.manual deep copy method
+
+const ob3 = {
+  a: 1,
+  b: {
+    name: "kiran",
+    d: { location: "delhi" },
+  },
+};
+
+const deepCopy2 = {
+  ...ob3,
+  b: {
+    ...ob3.b,
+    d: { ...ob3.b.d },
+  },
+};
+
+deepCopy2.a = 30;
+deepCopy2.b.name = "ajit";
+deepCopy2.b.d.location = "Singapur";
+
+console.log(ob3);
+console.log(deepCopy2);

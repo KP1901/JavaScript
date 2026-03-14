@@ -49,7 +49,7 @@ let k = [1, 2, 3, 4];
 k.length = 2;
 console.log(k);
 
-// 5️⃣ Array is Reference Type
+// 5️⃣ Array is Reference Type chaging one will affect other so alwyas use ...spread opeartor
 
 const d = [1, 2];
 const e = d;
@@ -68,4 +68,13 @@ console.log(copy);
 -for loop 
 -for... of 
 -forEach() 
+
+| Feature        | `for`          | `for...of`    | `forEach()`  |
+| -------------- | -------------- | ------------- | ------------ |
+| Type           | loop statement | iterator loop | array method |
+| Access index   | ✅              | ❌             | ✅            |
+| Access value   | manual         | automatic     | automatic    |
+| break/continue | ✅              | ✅             | ❌            |
+| Works on       | anything       | iterable      | arrays only  |
+
 */

@@ -113,4 +113,7 @@ console.log(result6);
 
 /*
 ✅ Both return the same thing if no separator is provided, but join() gives you control over the separator.
+
+Mutating → modifies the original object/array
+Non-mutating → returns a new value without changing the original
 */

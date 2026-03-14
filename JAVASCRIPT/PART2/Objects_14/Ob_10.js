@@ -133,3 +133,33 @@ Illegal object mutations fail silently in non-strict mode,
 but THROW errors in strict mode.
 
 */
+
+// since freeze is a shallow (imutable only one level) so we have to freeze every nested object recursively
+
+function deepFreeze(obj) {
+  Object.freeze(obj);
+
+  Object.getOwnPropertyNames(obj).forEach((prop) => {
+    if (
+      obj[prop] !== null &&
+      typeof obj[prop] === "object" &&
+      !Object.isFrozen(obj[prop])
+    ) {
+      deepFreeze(obj[prop]);
+    }
+  });
+
+  return obj;
+}
+
+const obj = {
+  value: 10,
+  a: {
+    location: "udgir",
+  },
+};
+
+deepFreeze(obj);
+
+obj.a.location = "Pune"; // ❌ cannot change
+console.log(obj.a.location);

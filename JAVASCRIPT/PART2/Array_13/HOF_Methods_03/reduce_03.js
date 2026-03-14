@@ -58,21 +58,21 @@ console.log(result);
 
 let res = num.reduce(
   (acc, currValue) => (currValue > acc ? currValue : acc),
-  num[0]
+  num[0],
 );
 
 console.log(res);
 
 //Example: Count occurrences
 
-let fruits = ["apple", "banana", "apple"];
+// let fruits = ["apple", "banana", "apple"];
 
-let count = fruits.reduce((acc, fruit) => {
-  acc[fruit] = (acc[fruit] || 0) + 1;
-  return acc;
-}, {});
+// let count = fruits.reduce((acc, fruit) => {
+//   acc[fruit] = (acc[fruit] || 0) + 1;
+//   return acc;
+// }, {});
 
-console.log(count);
+// console.log(count);
 
 /*
 | Step | acc (before)              | fruit      | Operation           | acc (after)               |
@@ -97,8 +97,6 @@ let userInfo = users.reduce((acc, user) => {
 
 console.log(userInfo);
 
-
-
 /*
 | Step | acc (before)                  | user                   | Operation                       | acc (after)                                            |
 | ---- | ----------------------------- | ---------------------- | ------------------------------- | ------------------------------------------------------ |
@@ -107,11 +105,6 @@ console.log(userInfo);
 
 
 */
-
-
-
-
-
 
 /*
 Common Mistakes ❌
@@ -128,3 +121,45 @@ Common Mistakes ❌
 | `reduce()`  | Combine to one value |
 
 */
+
+// real world challenge with pattern descp
+
+// 1.summation => acc + value
+
+const cart = [
+  { name: "apple", price: 30 },
+  { name: "banana", price: 10 },
+  { name: "mango", price: 50 },
+];
+
+const totalPrice = cart.reduce((acc, currObj) => acc + currObj.price, 0);
+
+console.log(totalPrice);
+
+//2.counting => acc[key] = (acc[key]||0)+1
+
+let fruits = ["apple", "banana", "apple"];
+
+let count = fruits.reduce((acc, fruit) => {
+  acc[fruit] = (acc[fruit] || 0) + 1;
+  return acc;
+}, {});
+
+console.log(count);
+
+
+//3.Grouping => acc.group.push(value)
+
+const numbers = [1, 2, 3, 4, 5, 6];
+
+const res1 = numbers.reduce(
+  (acc, currVal) => {
+    currVal % 2 == 0 ? acc.even.push(currVal) : acc.odd.push(currVal);
+    return acc;
+  },
+  {
+    even: [],
+    odd: [],
+  },
+);
+console.log(res1);

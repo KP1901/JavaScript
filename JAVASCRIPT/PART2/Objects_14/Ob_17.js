@@ -105,7 +105,6 @@ class Dog extends Animal {
   constructor(name, height, lifespan) {
     super(name, height); // / ✅ initialize parent part
     this.lifespan = lifespan;
-    this.lifespan = lifespan;
   }
   bark() {
     return "Woof";

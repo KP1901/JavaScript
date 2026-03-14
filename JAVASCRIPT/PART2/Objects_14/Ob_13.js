@@ -80,17 +80,30 @@ Used in maps, caches
 
 // 7️⃣ Adding properties at creation time
 
-const userProfile = Object.create(animal, {
-  name: {
-    value: "Kiran",
+let Animal = {
+  eat() {
+    console.log("animal Eating");
+  },
+};
+
+let Dog = Object.create(Animal, {
+  eat: {
+    value: function () {
+      console.log("Dog eating");
+    },
+    writable: true,
+    enumerable: true,
+    configurable: true,
+  },
+  color: {
+    value: "Brown",
     writable: true,
     enumerable: true,
     configurable: true,
   },
 });
 
-console.log(userProfile.name);
-console.log(userProfile.eats);
+console.log(Animal);
 
 // userProfile is a child object whose prototype is animal
 

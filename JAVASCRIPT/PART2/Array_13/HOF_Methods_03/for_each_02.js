@@ -102,7 +102,6 @@ Key Points
 -Mostly useful in older code / function syntax
 */
 
-
 /*
 
 -When we use arrow function (does not need thisArg)

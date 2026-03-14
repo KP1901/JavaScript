@@ -1,5 +1,6 @@
 /*
 TEP 17: Prototype Inheritance & Method Sharing
+
 1️⃣ Core idea (LOCK THIS 🔒)
 
 Methods should live on the prototype, not inside each object.
