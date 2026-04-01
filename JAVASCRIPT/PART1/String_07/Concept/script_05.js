@@ -38,6 +38,7 @@ console.log();
 // 6 🔹 replace(search, replacement) works only on first occurrence
 
 //jajaja
+let k = "ajaaja"; //jajjaj
 console.log(k.replace("aja", "jaj"));
 
 // 7 🔹 replaceALL(search, replacement) works  on every occurrence

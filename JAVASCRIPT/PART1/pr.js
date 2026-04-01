@@ -1,6 +1,4 @@
-let user1 = { name: "kiran", age: 26 };
-
-let { name, ...details } = user1;
-
-console.log(name);
-console.log(details);
+let nb = "javaScript";
+console.log(nb.lastIndexOf("a"));
+console.log(nb.lastIndexOf("a", 0));
+console.log(nb.lastIndexOf("a", 2));

@@ -3,6 +3,7 @@
     🧩 Challenge 10 (Final)
 
 Question:
+
 Match a valid simple email address.
 
 "test.user@gmail.com"
@@ -15,6 +16,7 @@ true*/
 let email = "kir@gmail.com";
 
 console.log(/^[a-zA-Z0-9]{5,}@[a-zA-Z]+\.[a-zA-Z]{2,}$/.test(email));
+
 // or
 
 console.log(/^\w+@[a-zA-Z]+\.(in|com|org)$/.test(str));

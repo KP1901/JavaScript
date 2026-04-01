@@ -69,10 +69,10 @@ console.log("typeof String =>" + typeof "hi");
 console.log("typeof String Object =>" + typeof new String("hi"));
 
 // 8.---------------------conversion-----------------
-
-console.log(typeof 12);
-console.log(typeof String(12));
-console.log(typeof toString(12));
+let age = 30;
+console.log(typeof age);
+console.log(typeof String(age));
+console.log(typeof age.toString());
 
 // 9.---character storage ------------
 

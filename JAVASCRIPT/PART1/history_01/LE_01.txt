@@ -1,13 +1,10 @@
 history-----------------------------------------------------
 
-1.netscape (browser) => it was first browser which needs to talk server 
-    todays open on browser  and previously need to talk server 
+1.“Netscape Navigator was an early web browser. It connected to servers so people could open websites. Now, browsers do this automatically.”
 
-
-2.in order to do a simple math browser needs to talk servers 
-like today calculator can run through your script but previously need to talk server
-http req => server => response => then display answer (for math)
-
+2.“Earlier, to perform even simple calculations, the browser sometimes needed to communicate with the server. But today, a calculator can run directly in the browser using scripts.
+In Past 
+browser -> req -> server -> response -> browser
 
 ✅ Before JavaScript (Pre-1995): How Browsers Worked
 
@@ -27,6 +24,7 @@ They could not do:
 ❌ Dynamic UI updates
 
 ✔ So how were calculations done before JavaScript?
+
 ⏳ Old Workflow (before JS):
 
 -If a user wanted to calculate something (even simple math like 10+20):
@@ -89,7 +87,9 @@ All browsers follow ECMAScript to ensure consistent JavaScript behavior.
 
 
 ✔ Then Node.js Was Created (2009)
+
 Node.js did NOT extract JavaScript from the browser.
+
 Instead:
 
 🔹 Node.js took the V8 JavaScript engine (from Google Chrome)
@@ -99,6 +99,7 @@ V8 = the engine inside Chrome that runs JS fast
 🔹 And placed it outside the browser
 
 So JavaScript could run:
+
 -On your computer
 -On servers
 -In backend systems
@@ -118,12 +119,10 @@ So JavaScript could run:
 Node.js = real file system access.
 HTML file input = user chooses a file, browser just gives JS a safe preview, no full access.(so it just preview not access nor anything)
 
-
-
 These do not exist inside browsers.
 
-
 ✅ Was JavaScript originally interpreted?
+
 ✔ Yes.
 
 -When JavaScript was created in 1995, it was a pure interpreted language.
@@ -187,12 +186,11 @@ Every time = slow, repeated work.
 
 
 ✅ Today (Modern Engines — Interpreter + JIT Compiler)
+
 🔸 How repeated code works now:
 
 Interpreter runs the code once
-
 Engine watches: “Is this code running many times?”
-
 If yes → JIT compiler converts that part into machine code
 ---------------------------------------------------------------------------------------------
 
@@ -221,6 +219,7 @@ BROWSER (Environment)
 |   ├── promises
 │   ├── queue Microtask
 │   ├── MutationObserver
+|   |
 └── Event Loop  👈 (Browser control logic)
 
 

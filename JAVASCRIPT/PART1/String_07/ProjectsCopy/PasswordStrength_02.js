@@ -6,7 +6,9 @@ function checkPasswordStrength(password) {
   const hasLower = /[a-z]/.test(password);
   const hasNumber = /\d/.test(password);
   const hasSymbol = /[^A-Za-z0-9]/.test(password);
-  const types = [hasUpper, hasLower, hasNumber, hasSymbol].filter(Boolean).length;
+  const types = [hasUpper, hasLower, hasNumber, hasSymbol].filter(
+    Boolean,
+  ).length;
 
   let strength = "";
   if (!lengthValid) {

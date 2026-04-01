@@ -1,5 +1,5 @@
 function textAnalyzer(text) {
-  text = text.trim();
+  let text = text.trim();
 
   let Characters = text.length;
 
@@ -24,6 +24,6 @@ ReadingTime (min) : ${readingTime}
 
 console.log(
   textAnalyzer(
-    "JavaScript makes text processing fast! Let's test our analyzer."
-  )
+    "JavaScript makes text processing fast! Let's test our analyzer.",
+  ),
 );

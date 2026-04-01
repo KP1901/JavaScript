@@ -31,6 +31,7 @@ b = 8;
 console.log(a);
 console.log(b);
 console.log(a == b);
+
 //This is NOT type coercion; it is simply comparing two numbers.
 
 /*
