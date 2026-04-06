@@ -107,20 +107,41 @@ const badWords = [
   "zoophile",
   "zoophilia",
 ];
-function censorText(text) {
-  text = text.trim();
 
-  let arr = text.split(/\s+/g);
+let text = "You are stuPid! What the fucK is this aSs-hole behavior?";
 
-  let res1 = arr.map((wr) => {
-    let cleanWord = wr.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
 
-    if (!badWords.includes(cleanWord)) {
-      return wr;
-    }
+function processWord(word) {
+  let lowerWord = word.toLowerCase();
+  if (badWords.includes(lowerWord)) {
+    return "*".repeat(word.length);
+  }
 
-    return wr.replace(/[a-z]/gi, "*");
-  });
-  return res1.join(" ");
+  return word;
 }
-console.log(censorText("Your are fucking ass and stupid dumb!"));
+
+function censorText(text, badWords) {
+  let currentWord = "";
+  let result = "";
+  for (let i = 0; i < text.length; i++) {
+    let ch = text[i];
+    if (/[a-zA-Z]/.test(ch)) {
+      currentWord += ch;
+    } else {
+      if (currentWord.length > 0) {
+        result += processWord(currentWord);
+        currentWord = "";
+      }
+      result += ch;
+    }
+  }
+  if (currentWord.length > 0) {
+    result += processWord(currentWord);
+  }
+
+  return result;
+}
+
+console.log(censorText(text, badWords));
+
+// let text = "You are stuPid! What the fucK is this aSs-hole behavior?";

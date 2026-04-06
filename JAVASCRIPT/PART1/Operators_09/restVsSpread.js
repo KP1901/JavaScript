@@ -51,11 +51,12 @@ console.log(...arr);
 // Example 5: spread In Array Context
 
 let k = [1, 2, 3];
-let v = [10, ...k]; // first 10 remaining collect
+let v = [10, ...k]; // first 10 remaining spread
 console.log(v);
 
 /*
 2️⃣ rest Operator (...)
+
 Meaning
 
 👉  Collects / packs values into one

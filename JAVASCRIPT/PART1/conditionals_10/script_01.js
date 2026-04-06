@@ -1,11 +1,9 @@
 // 1 .if
 
-let age = 20;
+let age = 30;
 
 if (age > 20) {
   console.log("+18");
-} else {
-  console.log("not +18");
 }
 
 // 1 .if_else
@@ -45,8 +43,9 @@ if (personAge >= 18) {
     } else {
       console.log("dont have licenese");
     }
+  } else {
+    console.log("you dont have rc book");
   }
-  console.log("you dont have rc book");
 } else {
   console.log("your are not 18+");
 }
