@@ -142,7 +142,10 @@ fetch("https://jsonplaceholder.typiode.cm/users/1")
 /*
 1️⃣ .then() always returns a new Promise.
 2️⃣ If you start async work inside .then() and want proper chaining, you must return that Promise.
-  
+3.YOU BIG DOUBT :
+-then returns promise
+-res.json () return promise
+-so the nested promise will be flatten by js here so it will become one promise
 */
 
 async function fetchUserData() {

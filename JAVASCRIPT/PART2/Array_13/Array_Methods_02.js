@@ -42,7 +42,7 @@ console.log(arr3);
 // 2. splice() ⚠️ (Dangerous) => Add/remove in middle (mutates) =>  change in original array
 
 let arr5 = [1000, 2000, 3000];
-arr5.splice(1, 1);
+arr5.splice(0, 2);
 console.log(arr5);
 
 /*

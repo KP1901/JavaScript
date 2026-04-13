@@ -1,4 +1,4 @@
-function memoizeFetch(fn) {
+-function memoizeFetch(fn) {
   const cache = {};
 
   return async function (id) {

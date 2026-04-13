@@ -7,8 +7,8 @@ const user = {
       next() {
         if (i < data.length) {
           let ch = data[i];
-          i++;
           return { value: ch, done: false };
+          i++;
         } else {
           return { value: undefined, done: true };
         }

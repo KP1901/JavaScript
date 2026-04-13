@@ -128,6 +128,7 @@ do not need each other’s result
 So they can run in parallel.
 
 Correct real-world code (professional pattern)
+
 async function loadDashboard() {
   1️⃣ DEPENDENT step (must finish first)
   const token = await loginUser();

@@ -31,5 +31,40 @@ It does 3 simple things:
 ❌ It does NOT cancel timers
 ❌ It does NOT automatically cancel all async work
 ❌ It does NOT work unless signal is passed to fetch
---------------------------------
 
+
+RealWorld Example :
+
+
+--------------------------------
+Simple Example
+
+User searches:
+react
+
+Request starts.
+
+Then user types:
+react js
+
+Now the previous request becomes useless.
+
+So we:
+
+Abort previous request
+Start new request
+
+Key Idea
+AbortController = stop a running async operation
+
+Not:
+prevent starting
+
+
+AbortController is used to cancel an ongoing async operation.
+
+Example situations:
+
+cancel previous API request
+cancel fetch when user leaves page
+cancel request after timeout

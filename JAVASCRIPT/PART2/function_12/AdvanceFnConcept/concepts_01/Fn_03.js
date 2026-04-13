@@ -99,7 +99,7 @@ cube = function (n) {
 Because of two concepts working together:
 
 | Concept               | Role              |
-| --------------------- | ----------------- |
+| ------s-------------- | ----------------- |
 | First-class functions | Return a function |
 | Closure               | Remember `cache`  |
 
@@ -327,4 +327,69 @@ const calculateFinalPrice = memoizationFn();
 console.log(calculateFinalPrice(1000, 18, 10));
 console.log(calculateFinalPrice(1000, 18, 10));
 console.log(calculateFinalPrice(1000, 18, 10));
+*/
+
+// -------------------------------
+
+function add(a, b) {
+  console.log("computing...");
+  return a + b;
+}
+
+function multiple(a, b) {
+  console.log("computing...");
+  return a * b;
+}
+
+function sub(a, b) {
+  console.log("computing...");
+  return a - b;
+}
+
+function memoization(fn, isCommutative = false) {
+  let cache = {};
+  return function (a, b) {
+    let key;
+    if (!isCommutative) {
+      key = `${a},${b}`;
+    } else {
+      key = [a, b].sort((a, b) => a - b).join(",");
+    }
+
+    if (key in cache) {
+      console.log("from cache...");
+      return cache[key];
+    } else {
+      let result = fn(a, b);
+      cache[key] = result;
+      console.log(cache);
+      return result;
+    }
+  };
+}
+
+const memoizedData = memoization(sub, false);
+
+function run() {
+  let a = memoizedData(10, 4);
+  console.log(a);
+
+  let b = memoizedData(5, 4);
+  console.log(b);
+
+  let c = memoizedData(4, 6);
+  console.log(c);
+
+  let d = memoizedData(4, 4);
+  console.log(d);
+
+  let e = memoizedData(6, 4);
+  console.log(e);
+}
+run();
+
+/*
+👉 Commutative means:
+
+Changing the order of inputs does NOT change the result
 */

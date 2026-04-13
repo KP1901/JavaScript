@@ -11,7 +11,8 @@ But — its value depends on how the function is called, not where it’s writte
  🧠 Step 1: Global Context
 
 outside of function or object => refers to window (browser)
-outside of function or object => refers to {} (node js)
+outside of function or object => refers to {} (node js) (with out strict)
+refer to undefined (node js) (with use strict)
 */
 
 console.log(this);
@@ -34,7 +35,7 @@ user.greet();
 When a function is called standalone (not as an object’s method), this refers to:
 -window (in browsers)
 -undefined (in strict mode)
--{} (in node js)
+-node global object 
 */
 function show() {
   console.log(this);

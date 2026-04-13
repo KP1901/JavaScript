@@ -88,6 +88,7 @@ console.log(res);
 let users = [
   { id: 1, name: "A" },
   { id: 2, name: "B" },
+  { id: 2, name: "B" },
 ];
 
 let userInfo = users.reduce((acc, user) => {
@@ -146,7 +147,6 @@ let count = fruits.reduce((acc, fruit) => {
 }, {});
 
 console.log(count);
-
 
 //3.Grouping => acc.group.push(value)
 

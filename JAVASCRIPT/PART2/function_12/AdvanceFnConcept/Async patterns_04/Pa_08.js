@@ -31,60 +31,56 @@ Browser/network choking
 ✔ Used in production systems
 */
 
-// function loadUser() {
-//   return new Promise((resolve) => {
-//     setTimeout(() => {
-//       resolve({ id: 1, name: "kiran" });
-//     }, 1000);
-//   });
-// }
-
-// function loadSettings() {
-//   return new Promise((resolve) => {
-//     setTimeout(() => {
-//       resolve({ theme: "dark" });
-//     }, 1000);
-//   });
-// }
-
-// function loadPayment() {
-//   return new Promise((resolve) => {
-//     setTimeout(() => {
-//       resolve({ status: "done" });
-//     }, 1000);
-//   });
-// }
+let tasks = [1, 2, 3, 4, 5, 6];
 
 function fakeApi(id) {
-  return new Promise((resolve) => {
-    const delay = Math.floor(Math.random() * 2000) + 500;
-    console.log(`🚀 Start API ${id} (delay ${delay}ms)`);
+  return new Promise((resolve, reject) => {
+    let delay = Math.floor(Math.random() * 2000) + 500;
     setTimeout(() => {
-      console.log(`✅ Done API ${id}`);
+      console.log("Task " + id + " done");
       resolve(id);
     }, delay);
   });
 }
 
-async function limitedParallel(ids, limit = 2) {
-  console.time("limited");
+function controlledParallelism(tasks, limit) {
+  return new Promise((resolve) => {
+    let index = 0;
+    let running = 0;
+    let total = tasks.length;
+    let completed = 0;
 
-  const running = [];
+    function next() {
+      if (running < limit && index < total) {
+        running++;
 
-  for (let id of ids) {
-    const p = await fakeApi(id);
-    running.push(p);
+        tasks[index++]()
+          .then(() => {})
+          .catch(() => {})
+          .finally(() => {
+            running--;
+            completed++;
 
-    if (running.length == limit) {
-      await Promise.race(running);
-      running.splice(0, 1);
+            if (completed === total) {
+              resolve();
+            } else {
+              next();
+            }
+          });
+      }
     }
-  }
-  await Promise.all(running);
 
-  console.timeEnd("limited");
+    for (let i = 0; i < limit; i++) {
+      next();
+    }
+  });
 }
-limitedParallel([1, 2, 3, 4, 5], 2);
+
+let newTask = tasks.map((id) => () => fakeApi(id));
+
+controlledParallelism(newTask, 2).then(() => {
+  console.log("All tasks finished");
+});
 
 /*
 
@@ -92,25 +88,24 @@ limitedParallel([1, 2, 3, 4, 5], 2);
 
 running = currently running API calls
 limit = 2 → max 2 APIs at a time
-Promise.race() → waits for any one to finish
-splice(0,1) → removes one finished slot
 
 
-| Step | ID | Action         | running array | Await?     |
-| ---- | -- | -------------- | ------------- | ---------- |
-| 1    | 1  | Start API 1    | `[P1]`        | ❌          |
-| 2    | 2  | Start API 2    | `[P1, P2]`    | ✅ `race()` |
-| →    |    | API 2 finishes | `[P1, P2]`    |            |
-| →    |    | `splice(0,1)`  | `[P2]`        |            |
-| 3    | 3  | Start API 3    | `[P2, P3]`    | ✅ `race()` |
-| →    |    | API 1 finishes | `[P2, P3]`    |            |
-| →    |    | `splice(0,1)`  | `[P3]`        |            |
-| 4    | 4  | Start API 4    | `[P3, P4]`    | ✅ `race()` |
-| →    |    | API 3 finishes | `[P3, P4]`    |            |
-| →    |    | `splice(0,1)`  | `[P4]`        |            |
-| 5    | 5  | Start API 5    | `[P4, P5]`    | ✅ `race()` |
-| →    |    | API 4 finishes | `[P4, P5]`    |            |
-| →    |    | `splice(0,1)`  | `[P5]`        |            |
+
+| Step | Task | Action          | running | index | completed |
+| ---- | ---- | --------------- | ------- | ----- | --------- |
+| 1    | 1    | Start Task 1    | 1       | 1     | 0         |
+| 2    | 2    | Start Task 2    | 2       | 2     | 0         |
+| →    |      | Task 2 finishes | 1       | 2     | 1         |
+| 3    | 3    | Start Task 3    | 2       | 3     | 1         |
+| →    |      | Task 1 finishes | 1       | 3     | 2         |
+| 4    | 4    | Start Task 4    | 2       | 4     | 2         |
+| →    |      | Task 3 finishes | 1       | 4     | 3         |
+| 5    | 5    | Start Task 5    | 2       | 5     | 3         |
+| →    |      | Task 4 finishes | 1       | 5     | 4         |
+| 6    | 6    | Start Task 6    | 2       | 6     | 4         |
+| →    |      | Task 5 finishes | 1       | 6     | 5         |
+| →    |      | Task 6 finishes | 0       | 6     | 6         |
+
 
 🏁 After Loop Ends
 

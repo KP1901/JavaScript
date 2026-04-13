@@ -73,7 +73,7 @@ so chain becomes :
 
 sq
  ↓
-Square.prototype
+Square.prototype  
  ↓
 Rectangle.prototype
  ↓

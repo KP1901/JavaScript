@@ -5,7 +5,7 @@ Functions are treated like values.
 
 You can:
 
--Assign to variables
+-Assign to variables 
 -Pass as arguments
 -Return from functions
 
@@ -22,7 +22,9 @@ console.log(sayHello());
 
 /*
 ✅ Examples
+
 1️⃣ Assign function to variable
+
 function greet() {
   return "Hello";
 }
@@ -31,6 +33,7 @@ let sayHello = greet;
 console.log(sayHello()); // Hello
 
 2️⃣ Pass function as argument
+
 function execute(fn) {
   return fn();
 }
@@ -38,6 +41,7 @@ function execute(fn) {
 execute(() => "Hi"); // Hi
 
 3️⃣ Return function
+
 function outer() {
   return function inner() {
     return "I am inner";

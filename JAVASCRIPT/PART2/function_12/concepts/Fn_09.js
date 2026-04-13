@@ -25,10 +25,10 @@ JavaScript creates a lexical environment for outer:
 
 outer Lexical Environment
 -------------------------
-x → 10
+y → 20
 inner → function
 
-This is where x lives.
+This is where y lives.
 
 When inner() is called:
 
@@ -36,23 +36,23 @@ JavaScript creates a lexical environment for inner:
 
 inner Lexical Environment
 -------------------------
-(no x here)
+(no y here)
 
 So:
-x does NOT live inside inner.
+y does NOT live inside inner.
 It lives in outer’s lexical environment.
 
 
 2️⃣ “Who can access the variables?”
 
-console.log(x);
+console.log(y);
 
 JavaScript checks:
 
 Step-by-step lookup (scope chain):
 1. Look inside inner’s lexical environment ❌
 2. Go to outer’s lexical environment ✅
-3. Find x = 10
+3. Find y = 20
 
 📌 Because:
 
@@ -74,9 +74,9 @@ function outer() {
   inner();
 }
 
-Lexical Environment → x is stored in outer LE
+Lexical Environment → y is stored in outer LE
 Scope Chain → inner → outer → global
-Closure → inner retains access to x
+Closure → inner retains access to y
 
 ✔️ All three concepts work together.
 

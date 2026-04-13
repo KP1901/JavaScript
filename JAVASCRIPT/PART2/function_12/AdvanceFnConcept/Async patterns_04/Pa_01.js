@@ -33,7 +33,6 @@ async function loadData() {
 
     // 3️⃣ Return clean data
     console.log(data);
-    
   } catch (err) {
     // 4️⃣ Centralized error handling
     console.error("loadData error:", err.message);

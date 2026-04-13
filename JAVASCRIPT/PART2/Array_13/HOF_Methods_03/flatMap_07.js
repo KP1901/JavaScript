@@ -1,3 +1,38 @@
+/*
+SteP 1 : what is Array.flat() ?
+
+-Array.flat() only works when there are nested arrays inside the array.
+
+-If there is no nested array, it will look like it is doing nothing.
+
+-its work is flatten the nested array according depth (default = 1)
+
+*/
+
+const arr = [1, 2, [3, 4, [5, 6]]];
+
+const nmap = arr.flat(2);
+
+console.log(nmap);
+
+/* 
+1️⃣ What is flatMap()
+
+flatMap() = map() + flat(1)
+
+It:
+
+-maps each element (like map())
+-flattens the result by 1 level only
+
+Syntax
+
+array.flatMap(callback)
+
+Example :
+
+*/
+
 // map vs flatmap
 
 const arr1 = [1, 2];
@@ -27,6 +62,7 @@ let newArr1 = hotel.floors.flatMap((floor) => floor.rooms);
 console.log(newArr1);
 
 // 2. Mapping each element to multiple values
+
 const numbers = [1, 2, 3];
 const result = numbers.flatMap((n) => [n, n * 10]);
 // const result = numbers.flatMap((n) => n, n * 10);
@@ -50,7 +86,7 @@ console.log(result);
 const words = ["hi", "hello", "hey"];
 
 let vowels = words.flatMap((word) =>
-  word.split("").filter((ch) => "aeiou".includes(ch))
+  word.split("").filter((ch) => "aeiou".includes(ch)),
 );
 console.log(vowels);
 

@@ -10,6 +10,8 @@ A function has a side effect if it:
 -Modifies DOM
 -Makes API calls
 
+side effect - the function does something other than returning and storing which hits external system
+
 */
 
 // example of sideeffect

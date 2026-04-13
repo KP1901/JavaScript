@@ -1,4 +1,5 @@
-📌 Fetch behavior — COMPLETE LIST
+📌 Fetch behavior — COMPLETE LIST]
+
 1️⃣ Network-level failures (Promise ❌ rejected)
 
 These are real failures where the request cannot be made.
@@ -30,6 +31,7 @@ Request reached the server, server replied with an error code.
 👉 These NEVER reject automatically
 
 3️⃣ Successful responses (Promise ✅ fulfilled)
+
 | Situation  | HTTP status | Promise state | `response.ok` |
 | ---------- | ----------- | ------------- | ------------- |
 | Success    | 200         | ✅ fulfilled   | ✅ true        |

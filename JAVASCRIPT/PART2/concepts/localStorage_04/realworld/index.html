@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+
+    <script>
+      let theme = localStorage.getItem("theme") ?? "light";
+      document.documentElement.classList.add(theme);
+
+ 
+    </script>
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>Kiran Patodekar</h1>
+        <button id="btn">dark</button>
+      </div>
+
+      <p>Frontend Developer | JavaScript Learner</p>
+
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Skills</a>
+        <a href="#">Projects</a>
+        <a href="#">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h2>Hello, I'm Kiran 👋</h2>
+      <p>I build web applications using HTML, CSS and JavaScript.</p>
+    </section>
+
+    <section class="about">
+      <h2>About Me</h2>
+      <p>
+        I am a passionate developer learning modern JavaScript and building
+        projects to improve my problem solving skills.
+      </p>
+    </section>
+
+    <section class="skills">
+      <h2>Skills</h2>
+
+      <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+        <li>Git</li>
+        <li>Responsive Design</li>
+      </ul>
+    </section>
+
+    <section class="projects">
+      <h2>Projects</h2>
+
+      <div class="project">
+        <h3>Theme Toggle Project</h3>
+        <p>A website where users can change page theme and save preference.</p>
+      </div>
+
+      <div class="project">
+        <h3>Todo App</h3>
+        <p>A simple JavaScript application to manage daily tasks.</p>
+      </div>
+    </section>
+
+    <section class="contact">
+      <h2>Contact</h2>
+      <p>Email: patodekarkiran@gmail.com</p>
+    </section>
+
+    <footer>
+      <p>© 2026 Kiran Patodekar</p>
+    </footer>
+  </body>
+</html>

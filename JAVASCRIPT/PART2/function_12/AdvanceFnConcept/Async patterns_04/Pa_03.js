@@ -117,6 +117,7 @@ Click
 API call
   ↓
 Fail ❌
+
 User must click again
 
 With retry
@@ -137,38 +138,38 @@ Success / Fail
 // REAL WORLD EXAMPLE
 
 // Retry function
-async function retry(fn, attempts = 3) {
-  for (let i = 1; i <= attempts; i++) {
+async function retry(fn, attempt = 3) {
+  while (attempt >= 1) {
     try {
-      console.log(`Attempt ${i}`);
       return await fn();
     } catch (error) {
-      console.log(`Attempt ${i} failed:`, error.message);
-
-      if (i === attempts) {
+      if (attempt === 1) {
         throw error;
       }
+
+      console.log("Retrying...");
+      attempt--;
     }
   }
 }
 
-// API function
-async function fetchPost() {
-  const response = await fetch("https://jsonplaceholder.typicode.com/post/1");
+async function loadData() {
+  let response = await fetch("https://jsonplaceholder.typicode.com/posts/1");
 
   if (!response.ok) {
-    throw new Error(`HTTP Error: ${response.status}`);
+    throw new Error("HTTP " + response.status);
   }
 
   return await response.json();
 }
 
-// Run the retry logic
-(async () => {
+async function main() {
   try {
-    const data = await retry(fetchPost, 3);
-    console.log("FINAL RESULT:", data);
+    const data = await retry(loadData, 3);
+    console.log(data);
   } catch (error) {
-    console.log("FINAL FAILURE:", error.message);
+    console.log("Failed:", error.message);
   }
-})();
+}
+
+main();
