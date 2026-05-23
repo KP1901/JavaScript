@@ -3,39 +3,47 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather App</title>
+    <title>Weather-App</title>
+    <link rel="shortcut icon" href="./Assets/snow.png" type="image/x-icon" />
     <link rel="stylesheet" href="style.css" />
-    <script src="script2.js" defer></script>
+    <script src="script.js" type="module" defer></script>
   </head>
   <body>
-    <div class="card">
-      <div class="search">
-        <input
-          type="text"
-          name="input"
-          placeholder="Enter City Name"
-          id="input"
-        />
-        <button><img src="./Assets/search.png" width="16" alt="" /></button>
-      </div>
-      <div class="message"></div>
-      <div class="weather hide">
-        <img src="./Assets/clear.png" class="weather-icon" width="100" alt="" />
-        <h1 class="temp"></h1>
-        <h2 class="city"></h2>
-        <div class="details">
-          <div class="col">
-            <img src="./Assets/humidity.png" width="50" alt="" />
-            <div>
-              <p class="humidity"></p>
-              <p>humidity</p>
-            </div>
+    <div class="weather-app">
+      <div class="weather-app-container">
+        <form class="weather-input-form">
+          <div class="search-bar">
+            <input
+              type="text"
+              name="city"
+              id="cityInput"
+              placeholder="Enter City"
+            />
           </div>
-          <div class="col">
-            <img src="./Assets/wind.png" width="50" alt="" />
-            <div>
-              <p class="wind"></p>
-              <p>Wind Speed</p>
+          <div class="search-icon">
+            <img src="./Assets/search.png" alt="search-image" />
+          </div>
+        </form>
+        <div class="weather-hide-container">
+          <div class="temperature-details">
+            <img id="weather-img" src="./Assets/clear.png" alt="" />
+            <div class="temperature">30°C</div>
+            <div class="city">Dubai</div>
+          </div>
+          <div class="weather-details">
+            <div class="humidity-detail">
+              <img src="./Assets/humidity.png" alt="" />
+              <div>
+                <div class="humidity">21%</div>
+                <span>humidity</span>
+              </div>
+            </div>
+            <div class="wind-detail">
+              <img src="./Assets/wind.png" alt="" />
+              <div>
+                <div class="wind">23 km/hr</div>
+                <span>Wind Speed</span>
+              </div>
             </div>
           </div>
         </div>

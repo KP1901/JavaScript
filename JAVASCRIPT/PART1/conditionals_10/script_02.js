@@ -94,6 +94,7 @@ let user = {
   name: "Alice",
   role: "admin",
 };
+
 switch (user.role) {
   case "admin":
     console.log("has full access");

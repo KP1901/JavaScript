@@ -1,0 +1,87 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: sans-serif;
+  background: #121212d7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100vh;
+  color: #fff;
+}
+.weather-app {
+  border-radius: 20px;
+  padding: 20px 40px;
+  background: linear-gradient(
+    145deg,
+    rgba(86, 177, 182, 0.669) 50%,
+    rgba(167, 61, 156, 0.514)
+  );
+}
+.weather-app .search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+.weather-app .search-bar input[type="text"] {
+  border: 0;
+  outline: 0;
+  padding: 10px;
+  border-radius: 30px;
+  height: 40px;
+  max-width: 300px;
+  flex: 1;
+}
+.weather-app .search-bar button {
+  outline: 0;
+  border: 0;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+.weather-app .search-bar button img {
+  width: 15px;
+}
+.weather-details {
+  margin: 30px 10px;
+}
+.temperature-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+.weather-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px 0;
+  gap: 20px;
+}
+.weather-content .humidity-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.humidity-desc .humidity {
+  font-size: 30px;
+}
+.wind-desc .wind {
+  font-size: 30px;
+}
+
+.weather-content .wind-info {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+#message {
+  margin: 10px;
+}

@@ -12,8 +12,6 @@ tasks.forEach((task) => {
 
 /* ---------- Add Task ---------- */
 function addTask() {
-  messageEl.textContent = "";
-
   if (!inputEl.value.trim()) {
     messageEl.textContent = "* Type Something!";
     return;

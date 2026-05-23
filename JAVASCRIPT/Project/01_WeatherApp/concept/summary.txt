@@ -4,15 +4,11 @@ These happen when the request cannot reach the server.
 
 Examples:
 
-No internet
-
-Wrong domain
-
-DNS failure
-
-CORS blocked
-
-Server completely unreachable
+-No internet
+-Wrong domain
+-DNS failure
+-CORS blocked
+-Server completely unreachable
 
 Example:
 
