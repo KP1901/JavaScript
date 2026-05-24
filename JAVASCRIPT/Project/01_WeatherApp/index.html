@@ -6,6 +6,7 @@
     <title>Weather-App</title>
     <link rel="shortcut icon" href="./Assets/snow.png" type="image/x-icon" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="media.css" />
     <script src="script.js" type="module" defer></script>
   </head>
   <body>
@@ -20,19 +21,25 @@
               placeholder="Enter City"
             />
           </div>
-          <div class="search-icon">
-            <img src="./Assets/search.png" alt="search-image" />
-          </div>
+          <button type="submit" class="search-icon">
+            <img width="15px" src="./Assets/search.png" alt="search-image" />
+          </button>
         </form>
+        <div id="message"></div>
         <div class="weather-hide-container">
           <div class="temperature-details">
-            <img id="weather-img" src="./Assets/clear.png" alt="" />
+            <img
+              width="35px"
+              id="weather-img"
+              src="./Assets/clear.png"
+              alt=""
+            />
             <div class="temperature">30°C</div>
             <div class="city">Dubai</div>
           </div>
           <div class="weather-details">
             <div class="humidity-detail">
-              <img src="./Assets/humidity.png" alt="" />
+              <img width="35px" src="./Assets/humidity.png" alt="" />
               <div>
                 <div class="humidity">21%</div>
                 <span>humidity</span>
