@@ -47,7 +47,7 @@ console.log(a === b);
 
 === (strict equality)
 ❌ No type coercion
-✔ Compares type first if true + then value 
+✔ Compares type first if true + then compare value 
 ✔ "5" stays a string
 ✔ 5 stays a number
 ----------------------------------------------

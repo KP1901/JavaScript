@@ -1,8 +1,7 @@
 history-----------------------------------------------------
 
-1.“Netscape Navigator was an early web browser. It connected to servers so people could open websites. Now, browsers do this automatically.”
+“Netscape Navigator was one of the first web browsers. It allowed users to connect to web servers and view websites. Today, modern browsers handle this process automatically in the background, making it seamless for users.”
 
-2.“Earlier, to perform even simple calculations, the browser sometimes needed to communicate with the server. But today, a calculator can run directly in the browser using scripts.
 In Past 
 browser -> req -> server -> response -> browser
 
@@ -47,7 +46,6 @@ Now browsers can:
 -Handle user interactions
 -Build full apps (like Gmail, YouTube)
 
-
 Modern Workflow:
 
 You type 10 + 20, and JavaScript calculates instantly:
@@ -85,7 +83,6 @@ All browsers follow ECMAScript to ensure consistent JavaScript behavior.
 -JS was meant only for client-side (front-end) code
 -You could NOT create servers or backend logic with JS
 
-
 ✔ Then Node.js Was Created (2009)
 
 Node.js did NOT extract JavaScript from the browser.
@@ -98,7 +95,7 @@ V8 = the engine inside Chrome that runs JS fast
 
 🔹 And placed it outside the browser
 
-So JavaScript could run:
+So nodejs could run:
 
 -On your computer
 -On servers
@@ -134,7 +131,7 @@ These do not exist inside browsers.
 
 ✅ What is JavaScript today?
 
-Today, JavaScript is interpreted + compiled through JIT (Just-In-Time) compilation.
+Today,JavaScript is interpreted + compiled through JIT (Just-In-Time) compilation.
 
 🟦 Modern JS engines (V8, SpiderMonkey, JavaScriptCore) do this:
 -Parse the JS code

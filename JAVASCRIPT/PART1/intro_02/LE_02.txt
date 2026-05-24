@@ -6,7 +6,6 @@
 ⭐ FINAL SIMPLE STATEMENT
 ✔ Browser console mostly does: Read → Evaluate → Print
 ❌ It does not implement the full REPL loop system like Node.js.
-4
 
 -----------------------------------------------------------------
 

@@ -31,7 +31,7 @@ Is JavaScript multithreaded?
 
 Event loop do NOT create threads.
 
-They create asynchronous callbacks that the event loop schedules on a single thread.
+Web APIS create asynchronous callbacks that the event loop schedules on a single thread.
 
 so imp => you learn about cpu conecept concurrency this is then since js is an single threaded still we can handle muiltiple task one by one (buecase of context switching => one chief multiple dishes making by swtiching context)
 
@@ -98,11 +98,8 @@ setTimeout is NOT JS engine
 What happens:
 
 JS engine encounters setTimeout
-
 Sends it to Web API
-
 Timer starts (0 ms ≠ immediate)
-
 JS engine moves on
 
 ❌ No execution context created now
