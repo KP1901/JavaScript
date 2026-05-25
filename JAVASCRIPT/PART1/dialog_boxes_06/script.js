@@ -18,3 +18,12 @@ console.log(age);
 
 let score = prompt("enter score");
 console.log(score);
+
+let age = 30;
+
+let confirmAge = window.confirm("is my age above 18");
+
+if(age > 18)
+{
+
+}
