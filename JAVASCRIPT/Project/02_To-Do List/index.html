@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do App</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="todo-app">
+      <div class="todo-container">
+        <header>
+          <h2>TO-DO List</h2>
+          <img src="./assets/to-do-list.png" width="30" alt="to do img" />
+        </header>
+        <main>
+          <div class="input-area">
+            <input
+              type="text"
+              id="taskInput"
+              username="task"
+              placeholder="Add your task"
+            />
+            <button id="addBtn">Add</button>
+          </div>
+          <div class="todo-lists">
+            <div class="list">
+              <img src="./assets/unchecked.png" width="25" alt="uncheck img" />
+              <p class="text">Create a Javascript project</p>
+              <button class="delete-btn">X</button>
+            </div>
+            <div class="list">
+              <img src="./assets/unchecked.png" width="25" alt="uncheck img" />
+              <p class="text">Create a Javascript project</p>
+              <button class="delete-btn">X</button>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
