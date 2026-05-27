@@ -45,6 +45,10 @@ header {
   border-bottom-left-radius: 10px;
   font-size: 16px;
 }
+.input-area input:focus {
+  border: solid 0.005px;
+}
+
 .input-area button {
   border: 0;
   outline: 0;
@@ -83,4 +87,8 @@ header {
 }
 .todo-lists .list button:hover {
   background: lightgray;
+}
+.toggle {
+  display: flex;
+  align-items: center;
 }

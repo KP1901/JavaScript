@@ -2,12 +2,13 @@ const addBtn = document.getElementById("addBtn");
 const taskInput = document.getElementById("taskInput");
 const todoLists = document.querySelector(".todo-lists");
 
-function runTodoApp() {
-  let lists = localStorage.getItem("task", JSON.parse(task)) || [];
+let lists = JSON.parse(localStorage.getItem("tasks")) || [];
 
+function runTodoApp() {
   addBtn.onclick = (e) => {
     let inputText = taskInput.value;
     createListElement(inputText);
+
     let listObject = {
       id: crypto.randomUUID().slice(0, 4),
       text: inputText,
@@ -19,8 +20,20 @@ function runTodoApp() {
     saveListObject(listObject);
   };
 
+  todoLists.addEventListener("click", (e) => {
+    if (
+      e.target.classList.contains("img") ||
+      e.target.classList.contains("text")
+    ) {
+    }
+  });
+
+  function render(lists) {
+    lists.forEach((element) => createListElement(element.text));
+  }
+
   function saveListObject(listObject) {
-    localStorage.setItem("task", JSON.stringify(list));
+    localStorage.setItem("tasks", JSON.stringify(lists));
   }
 
   function createListElement(inputText) {
@@ -31,6 +44,7 @@ function runTodoApp() {
     imgEl.src = "./assets/unchecked.png";
     imgEl.width = "25";
     imgEl.alt = "uncheck image";
+    imgEl.className = "img";
 
     const textEl = document.createElement("p");
     textEl.textContent = inputText;
@@ -40,8 +54,13 @@ function runTodoApp() {
     btnEl.textContent = "X";
     btnEl.className = "delete-btn";
 
-    listEl.append(imgEl, textEl, btnEl);
+    const toggleDivEl = document.createElement("div");
+    toggleDivEl.className = "toggle";
+
+    toggleDivEl.append(imgEl, textEl);
+    listEl.append(toggleDivEl, btnEl);
     todoLists.append(listEl);
   }
+  render(lists);
 }
 runTodoApp();
