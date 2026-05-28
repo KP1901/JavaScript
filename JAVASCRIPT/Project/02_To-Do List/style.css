@@ -73,8 +73,11 @@ header {
   justify-content: space-between;
   padding-block: 10px;
 }
-.todo-lists .list .text {
+.todo-lists .list .toggle {
   flex: 1;
+}
+.todo-lists .list .text {
+  width: 100%;
   text-align: left;
   padding-left: 10px;
 }
@@ -91,4 +94,8 @@ header {
 .toggle {
   display: flex;
   align-items: center;
+}
+
+.line-through {
+  text-decoration: line-through;
 }
