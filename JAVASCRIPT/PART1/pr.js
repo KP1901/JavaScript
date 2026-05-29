@@ -1,7 +1,3 @@
-let age = window.prompt("enter age");
+let dk = "2025-09-15 2026-10-20";
 
-if (age > 18) {
-  console.log("good");
-} else {
-  console.log("bad");
-}
+
