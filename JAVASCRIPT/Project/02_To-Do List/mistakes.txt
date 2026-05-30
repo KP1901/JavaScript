@@ -1,0 +1,163 @@
+1. checked variable not defined
+
+Mistake:
+
+createListElement(inputText, listObject.id, checked);
+
+Fix:
+
+createListElement(
+  listObject.text,
+  listObject.id,
+  listObject.checked
+);
+
+Explanation:
+`checked` variable did not exist in scope. It was a property inside `listObject`, so it must be accessed using `listObject.checked`.
+
+--------------------------------------------------
+
+2. Delete did not update UI
+
+Mistake:
+
+lists = lists.filter(...);
+saveListObject();
+
+Fix (optimized):
+
+listEl.remove();
+
+Explanation:
+Changing array/localStorage does not automatically update DOM. DOM must be updated separately.
+
+--------------------------------------------------
+
+3. Mixed style and class for line-through
+
+Mistake:
+
+toggleDivEl.style.textDecoration =
+  checked && "line-through";
+
+But checking:
+
+toggleEL.classList.contains("line-through");
+
+Fix:
+
+if (checked) {
+  toggleDivEl.classList.add("line-through");
+}
+
+Explanation:
+Render logic used inline styles while toggle logic used classes. Both should use the same approach.
+
+--------------------------------------------------
+
+4. Delete all completed todos instead of one
+
+Mistake:
+
+lists = lists.filter(
+ (list) => list.checked === false
+);
+
+Fix:
+
+deleteTodo(listEl.dataset.id);
+
+Explanation:
+Filtering only by checked state removes all completed todos. Passing the clicked ID targets only one todo.
+
+--------------------------------------------------
+
+5. Removed unchecked todo from UI only
+
+Mistake:
+
+listEl.remove();
+
+always executed.
+
+Fix:
+
+let beforeLength = lists.length;
+
+if (beforeLength !== lists.length) {
+  listEl.remove();
+}
+
+Explanation:
+Your rule was:
+Delete only completed todos.
+
+If nothing was deleted from array, DOM should also remain unchanged.
+
+--------------------------------------------------
+
+6. Weak ID generation
+
+Mistake:
+
+crypto.randomUUID().slice(0,4)
+
+Fix:
+
+crypto.randomUUID()
+
+Explanation:
+4 characters increase duplicate chances. Full UUID gives safer unique IDs.
+
+--------------------------------------------------
+
+7. No null safety
+
+Mistake:
+
+item.checked = !item.checked;
+
+Fix:
+
+if (item) {
+  item.checked = !item.checked;
+}
+
+Explanation:
+find() can return undefined. Checking first prevents crashes.
+
+--------------------------------------------------
+
+8. Input spaces accepted
+
+Mistake:
+
+if (!inputText.trim()) return;
+
+but original text stored.
+
+Fix:
+
+let inputText = taskInput.value.trim();
+
+Explanation:
+Trim once while taking input so stored values are also cleaned.
+
+--------------------------------------------------
+
+Optimization Reminder
+
+Brute-force:
+
+todoLists.innerHTML = "";
+render(lists);
+
+Explanation:
+Removes and recreates every DOM node.
+
+Better:
+
+listEl.remove();
+
+Explanation:
+Updates only one DOM node → fewer operations and better performance.
