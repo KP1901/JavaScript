@@ -18,3 +18,43 @@ The Most Important Escape Characters
 | `\r`   | Carriage return | moves to start of line     |
 | `\b`   | Backspace       | removes previous character |
 | `\f`   | Form feed       | rare (old printers)        |
+
+-------------------------------------------------
+
+IMP Rule :
+
+Rule 1: Object vs Primitive (==)
+
+let a = new Number(0);
+let b = "";
+
+console.log(a == b);
+
+a -> object 
+b -> primitive String
+
+a -> 0 (type number)
+b -> "" 
+
+again different (loose equalilty) convert to number
+
+0 == 0
+
+2.
+let a = 0;
+let b = "";
+
+(loose equalilty) convert to number
+
+a -> 0 
+b -> 0
+
+0 == 0
+
+First conversion:
+object → primitive
+(because object vs primitive rule)
+
+Second conversion:
+any type (except null and undefined) → number
+(because loose equality rules)

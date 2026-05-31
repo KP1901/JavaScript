@@ -1,7 +1,8 @@
 function textAnalyzer(text) {
   let text = text.trim();
 
-  let Characters = text.length;
+  let Characters = tex
+  t.length;
 
   let wordCount = text.split(/\s+/).filter((word) => word !== "").length;
 

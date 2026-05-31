@@ -1,3 +1,2 @@
-let dk = "2025-09-15 2026-10-20";
-
-
+let str = "9876543210";
+console.log(str.replace(/\d/g, "*"));
