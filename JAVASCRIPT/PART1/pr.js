@@ -1,2 +1,14 @@
-let str = "9876543210";
-console.log(str.replace(/\d/g, "*"));
+let usr = {
+  name: "kiran",
+  contact: {
+    address: "udgir",
+    details: {
+      age: 26,
+      greet() {
+        console.log("hi");
+      },
+    },
+  },
+};
+
+user?.contact?.details?.greet?.() ?? "not exist";

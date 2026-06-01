@@ -7,13 +7,13 @@
 2️⃣ Spread Operator (...)
 
 Meaning
-,     
+     
 👉 Expands / opens values
 => ... is on the left side of assignment
   let [a,...arr] = [1,2,3] => rest operator
    
 => ... is on the right side of assignment
-   a = ...arr => spread operator
+   a = ...arr => spread operator 
 Used when
 
 👉 You want to send values out
