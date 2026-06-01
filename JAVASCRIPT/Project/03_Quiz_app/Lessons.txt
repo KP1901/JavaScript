@@ -1,0 +1,25 @@
+Mistake:
+Expected currentQuestionIndex++ to show next question.
+
+Why it happened:
+Thought variable updates automatically update UI.
+
+Fix:
+Created showQuestion() and called it after updating index.
+
+Rule:
+Changing variables does not automatically update DOM.
+
+--------------------------------------------------------------------------------------------
+
+Mistake:
+Added addEventListener inside showQuestion().
+
+Why it happened:
+showQuestion() runs multiple times.
+
+Fix:
+Move event listeners outside and attach once.
+
+Rule:
+Do not attach listeners inside repeatedly called functions.
