@@ -1,3 +1,51 @@
+Mistake 1 :
+
+Mistake:
+Only checked clicked button.
+
+Why:
+Did not check other answer buttons.
+
+Fix:
+Loop through all buttons and find the correct one.
+
+Rule:
+Sometimes you must check all related elements, not just clicked one.
+------------------------
+Mistake 2 :
+
+Mistake:
+Expected one button variable to represent all buttons.
+
+Why:
+answerBtn refers to only one button from forEach.
+
+Fix:
+When wrong answer happens, loop through answersBtn and compare each button text with correct answer.
+
+Rule:
+A variable from forEach represents one item, not the whole collection.
+
+---------------------------
+
+Mistake 3 :
+
+Mistake:
+Disabled only clicked button after correct answer.
+
+Why:
+Used single button variable instead of all buttons.
+
+Fix:
+Disable every answer button after selection.
+
+Rule:
+When question ends, lock all related interactions, not one element.
+
+------------------------------------------------
+
+Mistake 4 : 
+
 Mistake:
 Expected currentQuestionIndex++ to show next question.
 
@@ -11,6 +59,7 @@ Rule:
 Changing variables does not automatically update DOM.
 
 --------------------------------------------------------------------------------------------
+Mistake 5:
 
 Mistake:
 Added addEventListener inside showQuestion().
@@ -23,3 +72,61 @@ Move event listeners outside and attach once.
 
 Rule:
 Do not attach listeners inside repeatedly called functions.
+
+--------------------------------------------------------------------------------------------
+Mistake 6 :
+
+
+Mistake:
+Added event listeners inside showQuestion().
+
+Why:
+showQuestion() runs multiple times, so listeners get added repeatedly.
+
+Fix:
+Move event listeners outside showQuestion() and add them once.
+
+Rule:
+Attach events once, update UI many times.
+-------------------------------------------
+Mistake 7 :
+
+
+Mistake:
+Checked question limit outside click event.
+
+Why:
+Condition runs once at startup, not after index changes.
+
+Fix:
+Check limit after increasing index inside Next button logic.
+
+Rule:
+Conditions depending on changing values should run where value changes.
+
+
+mistake : 
+
+if (currentQuestionIndex < quizData.length) {
+  nextBtn.addEventListener("click", () => {
+    currentQuestionIndex++;
+    showQuestion();
+    console.log(currentQuestionIndex);
+  });
+} else {
+  nextBtn.disabled = true;
+}
+
+
+
+nextBtn.addEventListener("click", () => {
+  currentQuestionIndex++;
+  if (currentQuestionIndex <= quizData.length - 1) {
+    showQuestion();
+  } else {
+    nextBtn.disabled = true;
+  }
+});
+
+Rule:
+Conditions depending on changing values should run where value changes.
