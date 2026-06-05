@@ -38,7 +38,7 @@ console.log(str.slice(4, 1)); // returns empty
 //5 🔹 substring(start, end)
 
 console.log(str.substring(0, 4));
-console.log(str.substring(-4)); // no negative
+console.log(str.substring(-4)); // treat as zero
 console.log(str.substring(4, 1)); // if start > end swap
 
 /*

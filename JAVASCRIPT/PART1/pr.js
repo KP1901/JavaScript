@@ -1,14 +1,10 @@
-let usr = {
-  name: "kiran",
-  contact: {
-    address: "udgir",
-    details: {
-      age: 26,
-      greet() {
-        console.log("hi");
-      },
-    },
-  },
-};
+let vk = "1902-12-12 1230-12-43"
 
-user?.contact?.details?.greet?.() ?? "not exist";
+let res = vk.match(/(\d{4})-(\d{2})-(\d{2})/g);
+console.log(res);
+
+console.log(res[0]);
+console.log(res[1]);
+console.log(res[2]);
+console.log(res[3]);
+console.log();

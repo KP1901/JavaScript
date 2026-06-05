@@ -1,4 +1,7 @@
-let user = [{ category: "beauty" }, { category: "shepard" }];
+let user = [
+    { category: "beauty" }, 
+    { category: "shepard" }
+];
 
 user = [...user].sort((a, b) => a.category.localeCompare(b.category));
 
