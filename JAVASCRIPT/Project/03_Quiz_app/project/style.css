@@ -67,3 +67,7 @@ body {
   background: red;
   color: #fff;
 }
+.score {
+  margin-top: 20px;
+  font-size: larger;
+}
