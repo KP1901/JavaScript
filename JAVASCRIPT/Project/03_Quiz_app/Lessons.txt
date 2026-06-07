@@ -130,3 +130,216 @@ nextBtn.addEventListener("click", () => {
 
 Rule:
 Conditions depending on changing values should run where value changes.
+-----------------------------------
+
+Mistake 1:
+
+Mistake:
+Called runApp() before removing container content.
+
+Why:
+runApp()
+↓
+showQuestion()
+↓
+renders question
+↓
+container content removed immediately
+
+Flow:
+
+runApp()
+↓
+question rendered
+↓
+containerEl.innerHTML = ""
+↓
+question removed
+
+Fix:
+Remove:
+
+runApp();
+
+Rule:
+Do not render UI if you immediately destroy/remove it.
+
+---------------------------------------------------
+
+Mistake 2:
+
+Mistake:
+Created showScore() but never called it.
+
+Why:
+Quiz completed
+↓
+score function never executes
+↓
+score never displayed
+
+Flow:
+
+Last Question
+↓
+Quiz Ends
+↓
+showScore() skipped
+↓
+No result shown
+
+Fix:
+Call:
+
+showScore();
+
+inside completion logic.
+
+Rule:
+Creating a function does nothing until you execute it.
+
+---------------------------------------------------
+
+Mistake 3:
+
+Mistake:
+Button text remained "Restart".
+
+Why:
+Logic depends on:
+
+nextBtn.textContent == "Next"
+
+but text never changed back.
+
+Flow:
+
+Quiz End
+↓
+Button = Restart
+↓
+Restart clicked
+↓
+Condition checks for "Next"
+↓
+false forever
+
+Fix:
+
+nextBtn.textContent = "Next";
+
+Rule:
+If logic depends on state/text, reset it during restart.
+
+---------------------------------------------------
+
+Mistake 4:
+
+Mistake:
+Score not reset after restarting.
+
+Why:
+Old score remained in memory.
+
+Flow:
+
+Quiz 1
+↓
+score = 4
+
+Restart
+↓
+new score continues from 4
+
+Fix:
+
+score = 0;
+
+Rule:
+Reset all changing state when restarting.
+
+---------------------------------------------------
+
+Mistake 5:
+
+Mistake:
+Removed DOM using:
+
+containerEl.innerHTML = ""
+
+Why:
+Question elements and buttons got deleted.
+
+Flow:
+
+Quiz End
+↓
+DOM nodes removed
+↓
+Restart
+↓
+showQuestion()
+↓
+nothing exists to update
+
+Fix:
+
+Use:
+
+containerEl.style.display = "none";
+
+Restart:
+
+containerEl.style.display = "block";
+
+Rule:
+Hide UI when needed.
+Do not destroy elements if you need them later.
+
+---------------------------------------------------
+
+Mistake 6:
+
+Mistake:
+Restart logic restored question index but not full app state.
+
+Why:
+Only partial state reset happened.
+
+Flow:
+
+Restart
+↓
+index reset
+↓
+old score/button/container state remains
+
+Fix:
+
+Reset:
+
+currentQuestionIndex = 0;
+score = 0;
+button text
+container visibility
+
+Rule:
+Restart means reset ALL related state.
+
+---------------------------------------------------
+
+Mistake 8 :
+
+Mistake:
+Used button text (nextBtn.textContent) to control app logic.
+
+Why:
+UI text can change anytime. Logic should not depend on displayed text because changing "Next" to "Continue" can break functionality.
+
+Fix:
+Use state variables or conditions based on data/state instead.
+
+if (currentQuestionIndex < quizData.length)
+
+Rule:
+Never use UI text to control application logic. Use variables/state instead.

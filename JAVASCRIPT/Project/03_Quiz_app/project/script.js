@@ -8,22 +8,27 @@ const containerEl = document.querySelector(".container");
 
 let currentQuestionIndex = 0;
 let score = 0;
+let isQuizRunning = true;
 
 function showQuestion() {
   questionEl.textContent = `${currentQuestionIndex + 1}. ${quizData[currentQuestionIndex].question}`;
-  console.log(currentQuestionIndex);
 
   answersBtn.forEach((answerBtn, index) => {
     answerBtn.textContent = quizData[currentQuestionIndex].answers[index];
     answerBtn.disabled = false;
-    answerBtn.classList.remove("correct");
-    answerBtn.classList.remove("incorrect");
+    answerBtn.classList.remove("correct", "incorrect");
   });
 
   nextBtn.disabled = true;
 }
 
-answersBtn.forEach((answerBtn, index) => {
+function disableAllAnswers() {
+  answersBtn.forEach((answerBtn) => {
+    answerBtn.disabled = true;
+  });
+}
+
+answersBtn.forEach((answerBtn) => {
   answerBtn.addEventListener("click", (e) => {
     nextBtn.disabled = false;
 
@@ -31,9 +36,7 @@ answersBtn.forEach((answerBtn, index) => {
     if (answer === quizData[currentQuestionIndex].correct) {
       e.target.classList.add("correct");
       score++;
-      answersBtn.forEach((answerBtn) => {
-        answerBtn.disabled = true;
-      });
+      disableAllAnswers();
     } else {
       e.target.classList.add("incorrect");
       answersBtn.forEach((answerBtn) => {
@@ -47,33 +50,34 @@ answersBtn.forEach((answerBtn, index) => {
 });
 
 function showScore() {
-  scoreEl.textContent = `${score} / ${quizData.length} are True`;
+  scoreEl.textContent = `Score: ${score} / ${quizData.length}`;
   nextBtn.disabled = true;
 }
 
 nextBtn.addEventListener("click", () => {
-  currentQuestionIndex++;
-  if (nextBtn.textContent == "Next") {
+  if (isQuizRunning) {
+    currentQuestionIndex++;
     if (currentQuestionIndex < quizData.length) {
       showQuestion();
     } else {
-      runApp();
-      containerEl.innerHTML = "";
+      showScore();
+      scoreEl.style.display = "block";
+      containerEl.style.display = "none";
       nextBtn.textContent = "Restart";
       nextBtn.disabled = false;
+      isQuizRunning = false;
     }
   } else {
     currentQuestionIndex = 0;
+    score = 0;
+    scoreEl.style.display = "none";
     showQuestion();
-    // nextBtn.textContent = "Next";
+    nextBtn.textContent = "Next";
     nextBtn.disabled = false;
+    containerEl.style.display = "block";
+    isQuizRunning = true;
   }
 });
-
-// nextBtn.addEventListener("click", () => {
-//   nextBtn.textContent = "Next";
-//   nextBtn.disabled = false;
-// });
 
 function runApp() {
   showQuestion();
