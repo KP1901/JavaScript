@@ -29,24 +29,24 @@ export const quizData = [
     answers: ["5", "6", "7", "8"],
     correct: "7",
   },
-  // {
-  //   question: "Which is the largest planet?",
-  //   answers: ["Earth", "Saturn", "Jupiter", "Mars"],
-  //   correct: "Jupiter",
-  // },
-  // {
-  //   question: "National animal of India?",
-  //   answers: ["Lion", "Tiger", "Elephant", "Peacock"],
-  //   correct: "Tiger",
-  // },
-  // {
-  //   question: "Which gas do plants use?",
-  //   answers: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Helium"],
-  //   correct: "Carbon Dioxide",
-  // },
-  // {
-  //   question: "2 + 5 = ?",
-  //   answers: ["6", "7", "8", "9"],
-  //   correct: "7",
-  // },
+  {
+    question: "Which is the largest planet?",
+    answers: ["Earth", "Saturn", "Jupiter", "Mars"],
+    correct: "Jupiter",
+  },
+  {
+    question: "National animal of India?",
+    answers: ["Lion", "Tiger", "Elephant", "Peacock"],
+    correct: "Tiger",
+  },
+  {
+    question: "Which gas do plants use?",
+    answers: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Helium"],
+    correct: "Carbon Dioxide",
+  },
+  {
+    question: "2 + 5 = ?",
+    answers: ["6", "7", "8", "9"],
+    correct: "7",
+  },
 ];

@@ -73,24 +73,9 @@ Move event listeners outside and attach once.
 Rule:
 Do not attach listeners inside repeatedly called functions.
 
---------------------------------------------------------------------------------------------
-Mistake 6 :
 
-
-Mistake:
-Added event listeners inside showQuestion().
-
-Why:
-showQuestion() runs multiple times, so listeners get added repeatedly.
-
-Fix:
-Move event listeners outside showQuestion() and add them once.
-
-Rule:
-Attach events once, update UI many times.
 -------------------------------------------
-Mistake 7 :
-
+Mistake 6 :
 
 Mistake:
 Checked question limit outside click event.
@@ -132,7 +117,7 @@ Rule:
 Conditions depending on changing values should run where value changes.
 -----------------------------------
 
-Mistake 1:
+Mistake 7:
 
 Mistake:
 Called runApp() before removing container content.
@@ -166,7 +151,7 @@ Do not render UI if you immediately destroy/remove it.
 
 ---------------------------------------------------
 
-Mistake 2:
+Mistake 8:
 
 Mistake:
 Created showScore() but never called it.
@@ -200,7 +185,7 @@ Creating a function does nothing until you execute it.
 
 ---------------------------------------------------
 
-Mistake 3:
+Mistake 9:
 
 Mistake:
 Button text remained "Restart".
@@ -233,7 +218,7 @@ If logic depends on state/text, reset it during restart.
 
 ---------------------------------------------------
 
-Mistake 4:
+Mistake 10:
 
 Mistake:
 Score not reset after restarting.
@@ -260,7 +245,7 @@ Reset all changing state when restarting.
 
 ---------------------------------------------------
 
-Mistake 5:
+Mistake 11:
 
 Mistake:
 Removed DOM using:
@@ -296,9 +281,11 @@ Rule:
 Hide UI when needed.
 Do not destroy elements if you need them later.
 
+-If elements are dynamic and created again later → innerHTML = "" can be okay.
+-If elements are needed later for updates/reuse → hide/show is better.
 ---------------------------------------------------
 
-Mistake 6:
+Mistake 12:
 
 Mistake:
 Restart logic restored question index but not full app state.
@@ -328,7 +315,7 @@ Restart means reset ALL related state.
 
 ---------------------------------------------------
 
-Mistake 8 :
+Mistake 13 :
 
 Mistake:
 Used button text (nextBtn.textContent) to control app logic.
@@ -340,6 +327,10 @@ Fix:
 Use state variables or conditions based on data/state instead.
 
 if (currentQuestionIndex < quizData.length)
+
+or 
+
+check using Boolean state variable 
 
 Rule:
 Never use UI text to control application logic. Use variables/state instead.
