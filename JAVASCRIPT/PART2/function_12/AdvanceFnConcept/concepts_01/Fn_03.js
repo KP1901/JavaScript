@@ -61,7 +61,7 @@ function memoizedSquare() {
   let cache = {};
 
   return function (n) {
-    if (cache[n] !== undefined) {
+    if (n in cache) {
       return cache[n];
     }
     console.log("calculating...");
@@ -160,7 +160,7 @@ function memoizeFetch(fn) {
   const cache = {};
 
   return async function (id) {
-    if (cache[id]) {
+    if (id in cache) {
       console.log("from cache");
       return cache[id];
     }
@@ -183,6 +183,40 @@ await getUser(1); // from cache
 await getUser(1); // from cache
 
 /*
+
+    let result = fetch(id);
+
+ stores → Promise (initially pending)
+
+   concept:
+   1) When API is called, the Promise is stored immediately in cache (before it resolves)
+   2) Once the Promise resolves, the same cached Promise gives the result
+   3) Prevents duplicate API calls because cache is already filled
+
+let result = await fetch(id);
+
+stores → resolved result (not Promise)
+
+  concept:
+  1) Function waits for Promise to resolve first
+  2) Then stores the result in cache
+  3) Problem: during waiting time, cache is still empty
+  4) So multiple calls can trigger multiple API requests ❌
+
+  conclusion =>
+
+    ✅ When to use fetch(id) (with await)
+
+    1. use with await when you want work actual data immediately
+
+    ✅ When to use fetch(id) (NO await)
+    
+    Use this when you are:
+    
+    Doing memoization / caching
+    Preventing duplicate API calls
+    Building utilities like your memoizeFetch
+
 📌 Used in:
 
 -Frontend apps

@@ -32,6 +32,7 @@ It does NOT matter how the Promise was created.
 
 
 1️⃣ Sequential (one after another)
+
 Using async / await
 async function run() {
   const data = await fetchData(); // wait here

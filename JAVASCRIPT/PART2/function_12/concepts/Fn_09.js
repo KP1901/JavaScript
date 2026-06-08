@@ -74,7 +74,7 @@ function outer() {
   inner();
 }
 
-Lexical Environment → y is stored in outer LE
+Lexical Environment → x is stored in outer LE
 Scope Chain → inner → outer → global
 Closure → inner retains access to y
 
@@ -100,7 +100,7 @@ function outer() {
 outer();
 console.log(x);
 
-Lexical scope means a function can access variables based on where it is defined in the code, not where it is called.
+
 In this example, x is defined inside the outer function, so it is accessible only inside outer and its inner functions, because inner functions have access to their outer scope.
 ---------------------------------------------------
 

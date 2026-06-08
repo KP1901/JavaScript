@@ -116,3 +116,9 @@ setTimeout(() => {
 ❌ Does not call callbacks itself as a constructor
 ✅ Timer system / runtime calls the callback later
 */
+
+/*
+MOst IMP :
+
+If you want to return a value that comes from setTimeout, you must wrap it in a Promise (or use a callback).
+*/

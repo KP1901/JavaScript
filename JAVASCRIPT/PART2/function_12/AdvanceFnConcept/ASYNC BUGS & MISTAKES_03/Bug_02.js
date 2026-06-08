@@ -2,7 +2,7 @@
 
 async function test() {
   console.log("A");
-  Promise.resolve("D").then((data) => {
+  await Promise.resolve("D").then((data) => {
     console.log(data);
   });
   console.log("B");

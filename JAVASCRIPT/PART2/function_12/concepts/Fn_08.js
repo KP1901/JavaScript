@@ -111,7 +111,7 @@ Environment Record (ER):
 
 Outer Reference (OR):
   Outer LE
-
+/
   this value :
 
 this → window
