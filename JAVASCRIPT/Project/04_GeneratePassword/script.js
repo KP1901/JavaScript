@@ -10,7 +10,7 @@ function generatePass(length = 12) {
     let upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     let lower = "abcdefghijklmnopqrstuvwxyz";
     let numbers = "0123456789";
-    let symbols = "!@#$%^&*()_-|][';/<>";
+    let results = "!@#$%^&*()_-|][';/<>";
 
     let all = upper + lower + numbers + symbols;
 
@@ -40,3 +40,4 @@ imgBtnEl.addEventListener("click", function () {
     navigator.clipboard.writeText(inputEl.value);
   }
 });
+
