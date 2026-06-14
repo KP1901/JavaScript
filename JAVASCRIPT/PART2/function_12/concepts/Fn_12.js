@@ -126,6 +126,7 @@ function makeMultiplier(x) {
     return x * y;
   };
 }
+
 const multipleBy2 = makeMultiplier(2);
 console.log(multipleBy2(5));
 

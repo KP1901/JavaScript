@@ -180,4 +180,12 @@ Manual partial application is done using a function factory.
 -merges fixed arguments + new arguments
 -calls original function
 
+
+Original Function
+        ↓
+Fix this value
+        ↓
+Optionally fix some arguments
+        ↓
+Get a new reusable function
 */
