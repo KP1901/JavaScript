@@ -1,9 +1,12 @@
-function add(a) {
-  return function (b, c) {
-    return a + b + c;
-  };
-}
-
-let addBy2 = add(10);
-console.log(addBy2(30, 20));
-
+const team = {
+  name: "Developer",
+  members: ["kiran", "Alex"],
+  showMember: function () {
+    this.members.forEach(
+      function (member) {
+        console.log(`${member} is in ${this.name}`);
+      }.bind(this),
+    );
+  },
+};
+team.showMember();

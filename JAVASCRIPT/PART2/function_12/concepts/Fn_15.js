@@ -87,6 +87,23 @@ const team = {
 };
 team.showMember();
 
+
+/* 
+MOST IMP :
+
+The surrounding scope of that arrow function is actually the place where team is created (global/module scope), not the team object itself.
+
+ so here team is calling showmember so this = team and for arrow function take scope of surrounding where it defined so it defines inside showMember scope where this = team thats why its working
+
+
+ - this is refers to object who is calling the fucntion
+- arrow function take this from surrounding scope because arrow dont have their own exectuion context  
+- so your arrow function is defined in global/moudle then this take from global (undefined)
+- if your arrow function is defined inside another(suppose outer) then this take from another another(suppose outer) function scope
+*/
+
+
+
 /*
 
 1️⃣ Global Lexical Context
