@@ -61,3 +61,17 @@ Function:
     function sayHi() { console.log("Hi"); }
 
 ---------------------------------------------------
+
+IMP :
+
+1) never consider truthy/false in case of there is not (!,if,while)
+
+[] == false
+
+2) consider truthy/false in case of there is  (!,if,while)
+
+[] == ![]
+
+3) object get convert into always into Primitive
+
+4) object is always consider truthy in terms of compariosn

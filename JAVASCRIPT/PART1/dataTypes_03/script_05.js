@@ -1,5 +1,6 @@
 /*
 ✅ Correct rules (clean)
+
 1️⃣ Loose equality (==)
 
 👉 Mostly converts to NUMBER — but with exceptions
