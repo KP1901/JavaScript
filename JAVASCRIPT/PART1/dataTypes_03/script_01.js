@@ -126,7 +126,7 @@ console.log(user2);
 /*
 ------------------------------------------------------
 In loose equality (==), null and undefined follow a special rule.
-They are never converted to numbers. hi
+They are never converted to numbers. hi how are 
 They are only compared to each other.
 
 */
