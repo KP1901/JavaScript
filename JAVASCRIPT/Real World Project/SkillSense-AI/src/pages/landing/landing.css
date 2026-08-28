@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: var(--font-main);
+}
+.landing-section {
+  padding: 0 30px;
+  background: var(--bg-main);
+}
+.nav-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-links {
+  display: flex;
+  flex: 1;
+  justify-content: right;
+}
+
+.nav-links li {
+  list-style: none;
+}

@@ -1,0 +1,24 @@
+1.structure 
+
+
+src/
+│
+├── main.js         
+│
+├── assets/           
+│
+├── components/       
+│   └── Navbar.js
+│
+├── pages/            
+│   ├── landing.js
+│   └── signup.js
+│
+├── router/
+│   └── router.js
+│
+├── styles/
+│   └── style.css
+│
+└── utils/
+    └── helpers.js

@@ -10,6 +10,8 @@ const cityEl = document.querySelector(".city");
 const weatherHideContainer = document.querySelector(".weather-hide-container");
 const message = document.getElementById("message");
 
+
+
 weatherHideContainer.style.display = "none";
 
 const apiKey = "a6446d4c283dd861e397865d928b3276";
