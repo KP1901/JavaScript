@@ -10,6 +10,7 @@ function validateEmail(email) {
   const [username, domain] = parts;
 
   if (!username) return "❌ username email : missing username";
+
   if (!domain.includes(".") || !domain)
     return "❌ Invalid email: invalid domain";
 

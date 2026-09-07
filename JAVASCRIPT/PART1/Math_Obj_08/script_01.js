@@ -41,4 +41,6 @@ So:
 0–19 → min=0, max=19
 0–20 → min=0, max=20
 1–20 → min=1, max=20
+
+Math.random() => 0 <_ x < 1
 */

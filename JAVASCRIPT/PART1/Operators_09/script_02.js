@@ -11,7 +11,6 @@ console.log(7 & 5);
 // 5 ->  0101
 //   ->  0101 = 5
 
-
 // 2. or (|)
 
 console.log(5 | 3);
@@ -49,3 +48,11 @@ console.log(5 >> 2); // loose last two bit
 //  5     =>    0101
 // 5<<2   =>      01
 //   = 16 + 4 = 20
+
+/* 
+xor -> is used for only to one unique value not more than 1
+[1,2,4,1,2]
+
+note : if you want more than 1 then use set/array technique
+
+*/

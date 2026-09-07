@@ -108,6 +108,7 @@ console.log(`${greet("kiran")}`);
 // 7. Performance of Concatenation
 
 let result = "";
+
 for (let i = 0; i < 10; i++) {
   result += "x";
   /// every iteration creates a new String which make it slow

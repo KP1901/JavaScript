@@ -90,4 +90,38 @@ It converts them into a consistent, standardized form, so that comparisons, sort
 
 -The String.prototype.normalize() method converts a string into a standard Unicode form — so that equivalent characters have a consistent binary representation.
 
+
+IMP : 
+
+Array.sort()
+
+1. Default sort converts elements to strings and compares them
+   lexicographically.
+
+   [10, 2, 30].sort()
+   → [10, 2, 30]
+
+2. Numerical ascending:
+   arr.sort((a, b) => a - b)
+
+3. Numerical descending:
+   arr.sort((a, b) => b - a)
+
+4. Comparator:
+   negative → a before b
+   positive → b before a
+   zero → equal
+
+5. sort() mutates the original array.
+
+6. toSorted() returns a new sorted array.
+
+7. For strings:
+
+ascending :
+   arr.sort((a, b) => a.localeCompare(b))
+
+descending : 
+   arr.sort((a, b) => b.localeCompare(a))
+
 */
