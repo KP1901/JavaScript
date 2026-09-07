@@ -1,9 +1,4 @@
-const contentEl = document.getElementById("content");
+let text =
+  "Hello world! Hello, how are you? I am learning programming. Programming is difficult, but programming is also interesting.";
 
-function handlePage(input) {
-  if (input == "home") {
-    contentEl.innerHTML = "<h1>home</h1>";
-  } else if (input == "about") {
-    contentEl.innerHTML = "<h1>About</h1>";
-  }
-}
+console.log(text.split(/\s/g));
