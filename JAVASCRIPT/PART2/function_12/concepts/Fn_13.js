@@ -1,10 +1,7 @@
 /*
 1️⃣ What is Currying?
 
-Currying is a technique of transforming a function that takes multiple arguments into a sequence of functions that each take a single argument.
-
-or
-where sequence of a function that each that each take single argument.
+Currying is a technique of transforming a function that takes multiple arguments into a sequence of functions, where each function takes one argument.
 
 Instead of writing f(a, b, c), you write f(a)(b)(c).
 

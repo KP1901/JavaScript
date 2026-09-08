@@ -44,6 +44,7 @@ Execution Context
   │    ├─ Environment Record (ER)
   │    └─ Outer Reference (OR)
   └─ this
+  
 
 ----------------------------
 Lexical Environment (Global LE)
@@ -111,7 +112,7 @@ Environment Record (ER):
 
 Outer Reference (OR):
   Outer LE
-/
+
   this value :
 
 this → window

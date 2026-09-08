@@ -1,4 +1,4 @@
-
+Iterable : 
 -An iterable is an object that can be looped over element by element
 -It implements the Symbol.iterator method
 -It can produce values one at a time (on demand)

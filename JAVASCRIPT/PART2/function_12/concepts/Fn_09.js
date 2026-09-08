@@ -89,19 +89,21 @@ Closure → inner retains access to y
 
 Lexical scope => means a function can access variables based on where it is defined in the code, not where it is called.
 
+let x = "global";
+
 function outer() {
-  let x = 20;
-
-  function inner() {
-    console.log(x);
-  }
-  inner();
+    let x = "outer";
+    return inner();
 }
+
+function inner() {
+    console.log(x);
+}
+
 outer();
-console.log(x);
 
 
-In this example, x is defined inside the outer function, so it is accessible only inside outer and its inner functions, because inner functions have access to their outer scope.
+In this example, x is defined inside the global scope, so it is accessible anywhere and inner functions, is defined in global scope so x=global  because lexical scope tell where you defined the function that variable you can access not where its called
 ---------------------------------------------------
 
 Concept 2 : Lexical Envrionment  :
