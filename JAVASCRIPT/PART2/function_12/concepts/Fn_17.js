@@ -19,9 +19,11 @@ function description(model, color) {
 description.call(car, "Model 3", "Red");
 
 // arrow function
+
 const getDetails = (price) => {
   console.log(this.model + "is price of " + price);
 };
+
 function wrapper() {
   const arrowFn = (model, color) => {
     console.log(`${this.brand} ${model} in ${color}`);

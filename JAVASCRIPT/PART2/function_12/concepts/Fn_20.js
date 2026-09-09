@@ -70,4 +70,14 @@ console.log(result2(5));
 | Readability | Less natural | More natural |
 | Usage       | Math style   | Practical JS |
 
+MOST IMP :
+
+pipe(a,b,c) => a -> b -> c
+
+Example pipe(add,sub) -> add -> sub
+
+compose(a,b,c) => c -> b -> a
+
+Example compose(add,sub) -> sub -> add
+
 */

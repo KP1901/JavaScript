@@ -10,9 +10,29 @@ But — its value depends on how the function is called, not where it’s writte
 /*
  🧠 Step 1: Global Context
 
-outside of function or object => refers to window (browser)
-outside of function or object => refers to {} (node js) (with out strict)
-refer to undefined (node js) (with use strict)
+log -> browser(env) -> window -> this === window
+log -> nodejs (type = module) -> undefined 
+log -> nodejs (type = commonjs) -> {}
+
+------------
+log inside fn -> browser(env) -> window
+log inside fn -> nodejs (type = module)-> undefined 
+log inside fn -> nodejs (type = commonjs) -> global object
+
+------------------
+
+CommonJS
+   ↓
+Older Node.js module system
+require()
+module.exports
+
+
+ES Modules
+   ↓
+Modern JavaScript standard
+import
+export
 */
 
 console.log(this);
@@ -75,7 +95,7 @@ but instead inherits this from the outer (lexical) scope.
 
 const team = {
   name: "Developer",
-  members: ["kiran", "ajay"],
+  members: ["kiran", "ajit"],
   showMember() {
     // this.members.forEach(function (member) {
     //   console.log(`${member} is in ${this.name}`);
@@ -86,7 +106,6 @@ const team = {
   },
 };
 team.showMember();
-
 
 /* 
 MOST IMP :
@@ -101,8 +120,6 @@ The surrounding scope of that arrow function is actually the place where team is
 - so your arrow function is defined in global/moudle then this take from global (undefined)
 - if your arrow function is defined inside another(suppose outer) then this take from another another(suppose outer) function scope
 */
-
-
 
 /*
 

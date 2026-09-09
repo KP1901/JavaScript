@@ -5,7 +5,8 @@
 
 A higher-order function is simply a function that does one or both of these:
 
-rule 1 -Takes another function as an argument
+rule 1 -Takes an
+other function as an argument
 rule 2 -Returns a new function
 
 If a function goes in or comes out → it’s a Higher-Order Function

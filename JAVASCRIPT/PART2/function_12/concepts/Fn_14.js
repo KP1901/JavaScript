@@ -11,6 +11,7 @@
 function multiply(a, b, c) {
   return a * b * c;
 }
+
 const multipleBy2 = multiply.bind(null, 2);
 console.log(multipleBy2(3, 4));
 
